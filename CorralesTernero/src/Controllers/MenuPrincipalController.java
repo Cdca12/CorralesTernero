@@ -1,4 +1,4 @@
-package Controller;
+package Controllers;
 
 import Models.*;
 import Views.*;
@@ -20,9 +20,9 @@ public class MenuPrincipalController implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent evt) {
-        // TODO: Añadir escuchadores
         if (evt.getSource() == menuPrincipalView.getAñadirCria()) {
-            System.out.println("Llego");
+            menuPrincipalView.abrirAñadirCria();
+            return;
         }
     }
     

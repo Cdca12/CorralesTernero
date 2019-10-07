@@ -1,7 +1,8 @@
 package Views;
 
 import javax.swing.*;
-import Controller.*;
+import Controllers.*;
+import Models.*;
 
 /**
  *
@@ -63,13 +64,14 @@ public class MenuPrincipalView extends JFrame {
         return añadirCriaJMenuItem;
     }
     
-    private void abrirAñadirCria() {
+    // Métodos para abrir los menús
+    public void abrirAñadirCria() {
         AñadirCriaView añadirCriaView = new AñadirCriaView();
         AñadirCriaModel añadirCriaModel = new AñadirCriaModel();
         AñadirCriaController añadirCriaController = new AñadirCriaController(añadirCriaModel, añadirCriaView);
 
         añadirCriaView.setController(añadirCriaController);
-        añadirCriaView.lanzarVista();
+        añadirCriaView.launchView();
     }
     
     
