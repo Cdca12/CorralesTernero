@@ -20,7 +20,7 @@ public class Main {
         MenuPrincipalController menuPrincipalController = new MenuPrincipalController(menuPrincipalModel, menuPrincipalView);
 
         menuPrincipalView.setController(menuPrincipalController);
-        menuPrincipalView.lanzarVista();
+        menuPrincipalView.launchView();
 
     }
 

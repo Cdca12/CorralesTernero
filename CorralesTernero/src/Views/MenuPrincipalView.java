@@ -44,23 +44,32 @@ public class MenuPrincipalView extends JFrame {
         menuBar.add(criasJMenu);
     }
     
-    public void lanzarVista() {
+    public void launchView() {
         setVisible(true);
     }
     
     public void setController(MenuPrincipalController menuPrincipalController) {
         this.menuPrincipalController = menuPrincipalController;
         // TODO: Añadir escuchadores
-        setListeners();
+        addListeners();
     }
     
-    private void setListeners() {
+    private void addListeners() {
          añadirCriaJMenuItem.addActionListener(menuPrincipalController);
     }
 
     // Getters
     public JMenuItem getAñadirCria() {
         return añadirCriaJMenuItem;
+    }
+    
+    private void abrirAñadirCria() {
+        AñadirCriaView añadirCriaView = new AñadirCriaView();
+        AñadirCriaModel añadirCriaModel = new AñadirCriaModel();
+        AñadirCriaController añadirCriaController = new AñadirCriaController(añadirCriaModel, añadirCriaView);
+
+        añadirCriaView.setController(añadirCriaController);
+        añadirCriaView.lanzarVista();
     }
     
     
