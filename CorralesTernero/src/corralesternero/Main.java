@@ -1,8 +1,10 @@
 package corralesternero;
 
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.plaf.nimbus.NimbusLookAndFeel;
+import Utils.Tema;
+import Controller.*;
+import Models.*;
+import Views.*;
+import javax.swing.*;
 
 /**
  *
@@ -11,16 +13,15 @@ import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 public class Main {
 
     public static void main(String[] args) {
-        añadirTema();
-    }
+        Tema.cambiarTema();
 
-    public static void añadirTema() {
-        try {
-            UIManager.setLookAndFeel(new NimbusLookAndFeel());
-        } catch (UnsupportedLookAndFeelException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        MenuPrincipalView menuPrincipalView = new MenuPrincipalView();
+        MenuPrincipalModel menuPrincipalModel = new MenuPrincipalModel();
+        MenuPrincipalController menuPrincipalController = new MenuPrincipalController(menuPrincipalModel, menuPrincipalView);
+
+        menuPrincipalView.setController(menuPrincipalController);
+        menuPrincipalView.lanzarVista();
+
     }
 
 }
