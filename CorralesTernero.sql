@@ -13,6 +13,7 @@ CREATE TABLE Peso (
 
 CREATE TABLE GrasaCobertura (
 	GrasaCoberturaID int PRIMARY KEY,
+	Tipo varchar(255) NOT NULL,
 	Descripcion varchar(255) NOT NULL
 );
 
@@ -23,7 +24,7 @@ CREATE TABLE Musculo (
 
 CREATE TABLE Alimentos (
 	AlimentoID int IDENTITY PRIMARY KEY,
-	Descripcion varchar(255) NOT NULL,
+	Nombre varchar(255) NOT NULL,
 	Cantidad int NOT NULL
 );
 
