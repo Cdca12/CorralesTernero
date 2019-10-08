@@ -65,8 +65,8 @@ CREATE TABLE Crias (
 	PesoID int FOREIGN KEY REFERENCES Peso,
 	GrasaCoberturaID int FOREIGN KEY REFERENCES GrasaCobertura,
 	MusculoID int FOREIGN KEY REFERENCES Musculo,
-	EstadoCriaID int FOREIGN KEY REFERENCES EstadoCria,
-	DietaID int FOREIGN KEY REFERENCES Dietas,
+	EstadoCriaID int FOREIGN KEY REFERENCES EstadoCria DEFAULT 1,
+	DietaID int FOREIGN KEY REFERENCES Dietas DEFAULT 1,
 	SensorID int FOREIGN KEY REFERENCES Sensores NULL,
 	VecesEnTratamiento int NOT NULL DEFAULT 0
 );

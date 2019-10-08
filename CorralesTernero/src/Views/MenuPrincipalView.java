@@ -4,9 +4,6 @@ import javax.swing.*;
 import Controllers.*;
 import Models.*;
 
-import DataAccesor.*;
-import java.sql.*;
-
 /**
  *
  * @author Carlos Contreras
@@ -28,16 +25,6 @@ public class MenuPrincipalView extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         initComponents();
-
-        // Test bd
-        Statement conexion = SQLConnectionHelper.getConnection();
-        if (conexion == null) {
-            JOptionPane.showMessageDialog(null, "Conexión NO realizada", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        JOptionPane.showMessageDialog(null, "Conexion SI realizada", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-        SQLConnectionHelper.closeConnection();
-
     }
 
     private void initComponents() {
@@ -58,6 +45,7 @@ public class MenuPrincipalView extends JFrame {
 
     public void launchView() {
         setVisible(true);
+        menuPrincipalController.probarConexionBaseDeDatos();
     }
 
     public void setController(MenuPrincipalController menuPrincipalController) {

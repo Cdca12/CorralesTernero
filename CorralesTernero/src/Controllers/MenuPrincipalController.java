@@ -17,6 +17,10 @@ public class MenuPrincipalController implements ActionListener {
         this.menuPrincipalModel = menuPrincipalModel;
         this.menuPrincipalView = menuPrincipalView;
     }
+    
+    public void probarConexionBaseDeDatos() {
+        menuPrincipalModel.pruebaConexionBaseDeDatos();
+    }
 
     @Override
     public void actionPerformed(ActionEvent evt) {

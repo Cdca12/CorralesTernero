@@ -33,7 +33,6 @@ INSERT INTO Dietas
 VALUES
 	(150, (SELECT AlimentoID FROM Alimentos WHERE Nombre = 'Pasto'));
 
-
 --Nos saltamos Sensores
 
 
