@@ -48,25 +48,34 @@ CREATE TABLE TipoCorral (
 	Descripcion varchar(50) NOT NULL
 );
 
+CREATE TABLE Estados (
+	EstadoID char(2) PRIMARY KEY,
+	Nombre varchar(255) NOT NULL
+);
+
 CREATE TABLE Corrales (
-	Transaccion int IDENTITY PRIMARY KEY,
-	CorralID int NOT NULL INDEX IX_CorralID NONCLUSTERED,
-	Ubicacion varchar(50) NOT NULL,
+	CorralID int PRIMARY KEY,
+	EstadoID char(2) FOREIGN KEY REFERENCES Estados,
 	TipoCorralID int FOREIGN KEY REFERENCES TipoCorral,
-	FechaIngreso date NOT NULL DEFAULT CAST(GETDATE() as date),
-	FechaEgreso date, --Default NULL
-	DiasEnCorral int NOT NULL DEFAULT 0,
-	
 );
 
 CREATE TABLE Crias (
 	CriasID int IDENTITY PRIMARY KEY,
-	EstadoCriaID int FOREIGN KEY REFERENCES EstadoCria,
+	CorralID int FOREIGN KEY REFERENCES Corrales, 
 	PesoID int FOREIGN KEY REFERENCES Peso,
 	GrasaCoberturaID int FOREIGN KEY REFERENCES GrasaCobertura,
 	MusculoID int FOREIGN KEY REFERENCES Musculo,
+	EstadoCriaID int FOREIGN KEY REFERENCES EstadoCria,
 	DietaID int FOREIGN KEY REFERENCES Dietas,
-	SensorID int FOREIGN KEY REFERENCES Sensores,
-	CorralID int FOREIGN KEY REFERENCES Corrales, 
+	SensorID int FOREIGN KEY REFERENCES Sensores NULL,
 	VecesEnTratamiento int NOT NULL DEFAULT 0
+);
+
+CREATE TABLE TrasladosCrias (
+	Transaccion int IDENTITY PRIMARY KEY,
+	CorralID int FOREIGN KEY REFERENCES Corrales INDEX IX_CorralID NONCLUSTERED,
+	CriasID int FOREIGN KEY REFERENCES Crias INDEX IX_CriasID NONCLUSTERED,
+	FechaIngreso date NOT NULL DEFAULT CAST(GETDATE() as date),
+	FechaEgreso date, --Default NULL
+	DiasEnCorral int NOT NULL DEFAULT 0,
 );
