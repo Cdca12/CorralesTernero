@@ -33,7 +33,7 @@ public class AñadirCriaModel {
     }
 
     public List<Peso> obtenerPesos() {
-        List<Peso> listaPesos = new ArrayList<Peso>();
+        List<Peso> listaPesos = new ArrayList();
         Statement conexion = SQLConnectionHelper.getConnection();
         if (conexion == null) {
             return null;
@@ -54,7 +54,7 @@ public class AñadirCriaModel {
     }
 
     public List<GrasaCobertura> obtenerGrasasCobertura() {
-        List<GrasaCobertura> listaGrasasCobertura = new ArrayList<GrasaCobertura>();
+        List<GrasaCobertura> listaGrasasCobertura = new ArrayList();
         Statement conexion = SQLConnectionHelper.getConnection();
         if (conexion == null) {
             return null;
@@ -76,18 +76,67 @@ public class AñadirCriaModel {
     }
 
     public List<Musculo> obtenerMusculos() {
-
-        return null;
+        List<Musculo> listaDietas = new ArrayList();
+        Statement conexion = SQLConnectionHelper.getConnection();
+        if (conexion == null) {
+            return null;
+        }
+        try {
+            ResultSet resultQuery = conexion.executeQuery("SELECT * FROM Musculo;");
+            Musculo dieta;
+            while (resultQuery.next()) {
+                dieta = new Musculo();
+                dieta.setMusculoID(resultQuery.getString("MusculoID"));
+                dieta.setColorMusculo(resultQuery.getString("ColorMusculo"));
+                listaDietas.add(dieta);
+            }
+        } catch (SQLException e) {
+            return null;
+        }
+        return listaDietas;
     }
 
     public List<EstadoCria> obtenerEstadosCria() {
-
-        return null;
+        List<EstadoCria> listaEstadosCria = new ArrayList();
+        Statement conexion = SQLConnectionHelper.getConnection();
+        if (conexion == null) {
+            return null;
+        }
+        try {
+            ResultSet resultQuery = conexion.executeQuery("SELECT * FROM EstadoCria;");
+            EstadoCria estadoCria;
+            while (resultQuery.next()) {
+                estadoCria = new EstadoCria();
+                estadoCria.setEstadoCriaID(resultQuery.getString("EstadoCriaID"));
+                estadoCria.setDescripcion(resultQuery.getString("Descripcion"));
+                listaEstadosCria.add(estadoCria);
+            }
+        } catch (SQLException e) {
+            return null;
+        }
+        return listaEstadosCria;
     }
 
-    public List<Dieta> obtenerDietas() {
-
-        return null;
+    public List<Dietas> obtenerDietas() {
+        List<Dietas> listaDietas = new ArrayList();
+        Statement conexion = SQLConnectionHelper.getConnection();
+        if (conexion == null) {
+            return null;
+        }
+        try {
+            ResultSet resultQuery = conexion.executeQuery("SELECT * FROM Dietas;");
+            Dietas dieta;
+            while (resultQuery.next()) {
+                dieta = new Dietas();
+                dieta.setDietaID(resultQuery.getString("DietaID"));
+                dieta.setDiasTratamiento(resultQuery.getString("DiasTratamiento"));
+                dieta.setAlimentoID(resultQuery.getString("AlimentoID"));
+                listaDietas.add(dieta);
+            }
+        } catch (SQLException e) {
+            return null;
+        }
+        return listaDietas;
     }
 
 }

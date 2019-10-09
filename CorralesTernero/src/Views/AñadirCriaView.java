@@ -28,7 +28,7 @@ public class AñadirCriaView extends JDialog {
         setLocationRelativeTo(null);
         setResizable(false);
         setModal(true);
-        
+
         initComponents();
     }
 
@@ -125,42 +125,69 @@ public class AñadirCriaView extends JDialog {
         txtDietaID.setText("");
         txtCorralID.requestFocus();
     }
-    
+
     public void showErrorMessage(String ERROR_TITLE, String ERROR_MESSAGE) {
         JOptionPane.showMessageDialog(null, ERROR_MESSAGE, ERROR_TITLE, JOptionPane.ERROR_MESSAGE);
     }
-    
+
     public void showOkMessage(String OK_TITLE, String OK_MESSAGE) {
         JOptionPane.showMessageDialog(null, OK_TITLE, OK_MESSAGE, JOptionPane.INFORMATION_MESSAGE);
     }
-    
+
     public void cargarInformacion() {
+        System.out.println("Tabla: Peso");
         cargarPesos(añadirCriaController.obtenerPesos());
-        cargarGrasasCobertura();
+        System.out.println("\n-------------------------"
+                + "\nTabla: Grasa Cobertura");
+        cargarGrasasCobertura(añadirCriaController.obtenerGrasasCobertura());
+        System.out.println("\n-------------------------"
+                + "\nTabla: Musculo");
+        cargarMusculos(añadirCriaController.obtenerMusculos());
+        System.out.println("\n-------------------------"
+                + "\nTabla: Estado Cria");
+        cargarEstadosCria(añadirCriaController.obtenerEstadosCria());
+        System.out.println("\n-------------------------"
+                + "\nTabla: Dieta");
+        cargarDietas(añadirCriaController.obtenerDietas());
+
     }
-    
+
     private void cargarPesos(List<Peso> listaPesos) {
-        for(Peso peso : listaPesos) {
-            System.out.println("PesoID:\t" + peso.getPesoID() + "CondicionCorporal:\t" + peso.getCondicionCorporal());
+        for (Peso peso : listaPesos) {
+            System.out.println("PesoID: " + peso.getPesoID()
+                    + "\t| CondicionCorporal: " + peso.getCondicionCorporal());
         }
     }
-    
-    private void cargarGrasasCobertura() {
 
-    }
-    
-    private void cargarMusculos() {
-        
-    }
-    
-    private void cargarEstadosCria() {
-        
-    }
-    
-    private void cargarDietas() {
-        
+    private void cargarGrasasCobertura(List<GrasaCobertura> listaGrasasCobertura) {
+        for (GrasaCobertura grasaCobertura : listaGrasasCobertura) {
+            System.out.println("GrasaCoberturaID: " + grasaCobertura.getGrasaCoberturaID()
+                    + "\t| Tipo: " + grasaCobertura.getTipo()
+                    + "\t| Descripcion: " + grasaCobertura.getDescripcion());
+        }
     }
 
+    private void cargarMusculos(List<Musculo> listaMusculos) {
+        for (Musculo musculo : listaMusculos) {
+            System.out.println("MusculoID: " + musculo.getMusculoID()
+                    + "\t| ColorMusculo: " + musculo.getColorMusculo());
+        }
+    }
+
+    private void cargarEstadosCria(List<EstadoCria> listaEstadosCria) {
+        for (EstadoCria estadoCria : listaEstadosCria) {
+            System.out.println("EstadoCriaID: " + estadoCria.getEstadoCriaID()
+                    + "\t| Descripcion: " + estadoCria.getDescripcion());
+        }
+    }
+
+    private void cargarDietas(List<Dietas> listaDietas) {
+        for (Dietas dietas : listaDietas) {
+            System.out.println("DietaID: " + dietas.getDietaID()
+                    + "\t| DiasTratamiento: " + dietas.getDiasTratamiento()
+                    + "\t| AlimentoID: " + dietas.getAlimentoID());
+        }
+    }
 
     // Getters y Setters
     public JButton getBtnAñadir() {

@@ -1,6 +1,6 @@
 package Controllers;
 
-import Entities.Peso;
+import Entities.*;
 import Views.*;
 import Models.*;
 import Utils.Status;
@@ -50,9 +50,25 @@ public class AñadirCriaController implements ActionListener {
                 break;
         }
     }
-    
+
     public List<Peso> obtenerPesos() {
         return añadirCriaModel.obtenerPesos();
+    }
+
+    public List<GrasaCobertura> obtenerGrasasCobertura() {
+        return añadirCriaModel.obtenerGrasasCobertura();
+    }
+
+    public List<Musculo> obtenerMusculos() {
+        return añadirCriaModel.obtenerMusculos();
+    }
+
+    public List<EstadoCria> obtenerEstadosCria() {
+        return añadirCriaModel.obtenerEstadosCria();
+    }
+
+    public List<Dietas> obtenerDietas() {
+        return añadirCriaModel.obtenerDietas();
     }
 
 }
