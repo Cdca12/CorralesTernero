@@ -27,8 +27,10 @@ public class Crias {
 
     public Crias() {
         // Defaults
+        this.EstadoCriaID = "DEFAULT"; // 1
+        this.DietaID = "DEFAULT"; // 1
         this.SensorID = "NULL";
-        this.VecesEnTratamiento = "0";
+        this.VecesEnTratamiento = "DEFAULT"; // 0
     }
 
     public String getCriasID() {
@@ -102,11 +104,8 @@ public class Crias {
     public void setVecesEnTratamiento(String VecesEnTratamiento) {
         this.VecesEnTratamiento = VecesEnTratamiento;
     }
-
-    
     
     // Métodos CRUD
-
     public static synchronized int añadirCria(Crias cria) {
         Statement conexion = SQLConnectionHelper.getConnection();
         if (conexion == null) {
