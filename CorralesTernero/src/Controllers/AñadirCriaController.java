@@ -24,10 +24,12 @@ public class AñadirCriaController implements ActionListener {
     public void actionPerformed(ActionEvent evt) {
         if (evt.getSource() == añadirCriaView.getBtnAñadir()) {
             ejecutarAccion(añadirCriaModel.añadirCria(
-                    Integer.parseInt(añadirCriaView.getTxtCorralID().getText()),
+                    añadirCriaView.getTxtCorralID().getText(),
                     añadirCriaView.getTxtPesoID().getText(),
-                    añadirCriaView.getTxtGrasaCoberturaID().getText(), añadirCriaView.getTxtMusculoID().getText(),
-                    añadirCriaView.getTxtEstadoCriaID().getText(), añadirCriaView.getTxtDietaID().getText()));
+                    añadirCriaView.getTxtGrasaCoberturaID().getText(),
+                    añadirCriaView.getTxtMusculoID().getText(),
+                    añadirCriaView.getTxtEstadoCriaID().getText(),
+                    añadirCriaView.getTxtDietaID().getText()));
             return;
         }
         if (evt.getSource() == añadirCriaView.getBtnLimpiar()) {

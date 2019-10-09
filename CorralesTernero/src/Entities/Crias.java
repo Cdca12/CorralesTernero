@@ -25,17 +25,87 @@ public class Crias {
     private String SensorID;
     private String VecesEnTratamiento;
 
-    public Crias(String CriasID, String CorralID, String PesoID, String GrasaCoberturaID, String MusculoID, String EstadoCriaID, String DietaID, String SensorID, String VecesEnTratamiento) {
+    public Crias() {
+        // Defaults
+        this.SensorID = "NULL";
+        this.VecesEnTratamiento = "0";
+    }
+
+    public String getCriasID() {
+        return CriasID;
+    }
+
+    public void setCriasID(String CriasID) {
         this.CriasID = CriasID;
+    }
+
+    public String getCorralID() {
+        return CorralID;
+    }
+
+    public void setCorralID(String CorralID) {
         this.CorralID = CorralID;
+    }
+
+    public String getPesoID() {
+        return PesoID;
+    }
+
+    public void setPesoID(String PesoID) {
         this.PesoID = PesoID;
+    }
+
+    public String getGrasaCoberturaID() {
+        return GrasaCoberturaID;
+    }
+
+    public void setGrasaCoberturaID(String GrasaCoberturaID) {
         this.GrasaCoberturaID = GrasaCoberturaID;
+    }
+
+    public String getMusculoID() {
+        return MusculoID;
+    }
+
+    public void setMusculoID(String MusculoID) {
         this.MusculoID = MusculoID;
+    }
+
+    public String getEstadoCriaID() {
+        return EstadoCriaID;
+    }
+
+    public void setEstadoCriaID(String EstadoCriaID) {
         this.EstadoCriaID = EstadoCriaID;
+    }
+
+    public String getDietaID() {
+        return DietaID;
+    }
+
+    public void setDietaID(String DietaID) {
         this.DietaID = DietaID;
+    }
+
+    public String getSensorID() {
+        return SensorID;
+    }
+
+    public void setSensorID(String SensorID) {
         this.SensorID = SensorID;
+    }
+
+    public String getVecesEnTratamiento() {
+        return VecesEnTratamiento;
+    }
+
+    public void setVecesEnTratamiento(String VecesEnTratamiento) {
         this.VecesEnTratamiento = VecesEnTratamiento;
     }
+
+    
+    
+    // Métodos CRUD
 
     public static synchronized int añadirCria(Crias cria) {
         Statement conexion = SQLConnectionHelper.getConnection();

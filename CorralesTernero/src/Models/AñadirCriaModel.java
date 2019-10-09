@@ -1,14 +1,6 @@
 package Models;
 
-import EntitiesJPA.Crias;
-import EntitiesJPA.EstadoCria;
-import EntitiesJPA.Peso;
-import EntitiesJPA.GrasaCobertura;
-import EntitiesJPA.Musculo;
-import EntitiesJPA.Corrales;
-import EntitiesJPA.Dietas;
 import Entities.*;
-import Entities.Crias;
 
 /**
  *
@@ -23,11 +15,11 @@ public class AñadirCriaModel {
         return Crias.añadirCria(cria);
     }
     
-//    public synchronized int añadirCria(String CorralID, String PesoID, String GrasaCoberturaID, String MusculoID, String EstadoCriaID, String DietaID) {
-//        return OldCrias.añadirCria(new OldCrias("", CorralID, PesoID, GrasaCoberturaID, MusculoID, EstadoCriaID, DietaID, "NULL", "0"));
+//    public synchronized cria.getañadirCria(cria.getCorralID(),  cria.getPesoID(),  cria.getGrasaCoberturaID(),  cria.getMusculoID(),  cria.getEstadoCriaID(),  cria.getDietaID) {
+//        return OldCrias.añadirCria(new OldCrias(""(),  CorralID(),  PesoID(),  GrasaCoberturaID(),  MusculoID(),  EstadoCriaID(),  DietaID(),  "NULL"(),  "0"));
 //    }
 //    
-    public synchronized int añadirCria(Corrales CorralID, Peso PesoID, GrasaCobertura GrasaCoberturaID, Musculo MusculoID, EstadoCria EstadoCriaID, Dietas DietaID) {
+    public synchronized int añadirCria(String CorralID,  String PesoID,  String GrasaCoberturaID,  String MusculoID,  String EstadoCriaID,  String DietaID) {
         Crias cria = new Crias();
         cria.setCorralID(CorralID);
         cria.setPesoID(PesoID);
