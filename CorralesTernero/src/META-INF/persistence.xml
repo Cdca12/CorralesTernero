@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="CorralesTerneroPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>EntitiesJPA.TipoCorral</class>
+    <class>EntitiesJPA.Dietas</class>
+    <class>EntitiesJPA.GrasaCobertura</class>
+    <class>EntitiesJPA.Corrales</class>
+    <class>EntitiesJPA.Musculo</class>
+    <class>EntitiesJPA.Sensores</class>
+    <class>EntitiesJPA.TrasladosCrias</class>
+    <class>EntitiesJPA.Estados</class>
+    <class>EntitiesJPA.Crias</class>
+    <class>EntitiesJPA.Alimentos</class>
+    <class>EntitiesJPA.EstadoCria</class>
+    <class>EntitiesJPA.Peso</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://localhost\\MSSQLSERVER01:8731;databaseName=CorralesTernero;user=desarrollo;password=desarrollo;"/>
+      <property name="javax.persistence.jdbc.user" value="desarrollo"/>
+      <property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+      <property name="javax.persistence.jdbc.password" value="desarrollo"/>
+    </properties>
+  </persistence-unit>
+</persistence>
