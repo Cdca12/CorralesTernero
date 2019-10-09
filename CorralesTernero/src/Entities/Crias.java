@@ -40,7 +40,7 @@ public class Crias {
     public static synchronized int añadirCria(Crias cria) {
         Statement conexion = SQLConnectionHelper.getConnection();
         if (conexion == null) {
-            return Status.ERROR_CONEXION;
+            return Status.ERROR_CONNECTION;
         }
         try {
             conexion.execute("INSERT INTO Crias VALUES ("
@@ -52,10 +52,10 @@ public class Crias {
                     + cria.DietaID + ", "
                     + cria.SensorID + ", "
                     + cria.VecesEnTratamiento + ");");
-        } catch (SQLException ex) {
-            return Status.ERROR_INSERCION;
+        } catch (SQLException e) {
+            return Status.ERROR_INSERT;
         }
-        return Status.OKAY;
+        return Status.OK_INSERT;
     }
 
 }

@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 public class MenuPrincipalModel {
 
     public MenuPrincipalModel() {
-        
+
     }
 
     public void pruebaConexionBaseDeDatos() {
@@ -33,3 +33,4 @@ public class MenuPrincipalModel {
     }
 
 }
+

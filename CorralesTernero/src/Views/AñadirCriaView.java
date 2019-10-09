@@ -1,6 +1,7 @@
 package Views;
 
 import Controllers.AñadirCriaController;
+import Utils.Status;
 import java.awt.Font;
 import javax.swing.*;
 
@@ -10,9 +11,9 @@ import javax.swing.*;
  */
 public class AñadirCriaView extends JDialog {
 
+    // TODO: Añadir un logo o un ícono de una cría
     private AñadirCriaController añadirCriaController;
 
-    // TODO: Hacer métodos private y añadir getters y setters
     private JLabel lbCorralID, lbPesoID, lbGrasaCoberturaID, lbMusculoID,
             lbEstadoCriaID, lbDietaID;
     private JTextField txtCorralID, txtPesoID, txtGrasaCoberturaID, txtMusculoID,
@@ -120,7 +121,17 @@ public class AñadirCriaView extends JDialog {
         txtMusculoID.setText("");
         txtEstadoCriaID.setText("");
         txtDietaID.setText("");
+        txtCorralID.requestFocus();
     }
+    
+    public void showErrorMessage(String ERROR_TITLE, String ERROR_MESSAGE) {
+        JOptionPane.showMessageDialog(null, ERROR_MESSAGE, ERROR_TITLE, JOptionPane.ERROR_MESSAGE);
+    }
+    
+    public void showOkMessage(String OK_TITLE, String OK_MESSAGE) {
+        JOptionPane.showMessageDialog(null, OK_TITLE, OK_MESSAGE, JOptionPane.INFORMATION_MESSAGE);
+    }
+
 
     // Getters y Setters
     public JButton getBtnAñadir() {
