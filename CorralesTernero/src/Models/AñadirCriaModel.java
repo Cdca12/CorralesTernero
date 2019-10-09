@@ -9,16 +9,15 @@ import Entities.Crias;
 public class AñadirCriaModel {
     
     public AñadirCriaModel() {
-        // Prueba añadir cria
-        Crias cria = new Crias("", "1", "3", "2", "1", "1", "1", "NULL", "DEFAULT");
-        añadirCria(cria);
     }
     
-    public synchronized void añadirCria(Crias cria) {
-        Crias.añadirCria(cria);
+    public synchronized int añadirCria(Crias cria) {
+        return Crias.añadirCria(cria);
     }
     
-    
+    public synchronized int añadirCria(String CorralID, String PesoID, String GrasaCoberturaID, String MusculoID, String EstadoCriaID, String DietaID) {
+        return Crias.añadirCria(new Crias("", CorralID, PesoID, GrasaCoberturaID, MusculoID, EstadoCriaID, DietaID, "NULL", "0"));
+    }
     
     
     

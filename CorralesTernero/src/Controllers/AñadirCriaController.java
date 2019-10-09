@@ -21,7 +21,16 @@ public class AñadirCriaController implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent evt) {
-        // TODO: Añadir escuchadores
+        if (evt.getSource() == añadirCriaView.getBtnAñadir()) {
+            añadirCriaModel.añadirCria(añadirCriaView.getTxtCorralID().getText(), añadirCriaView.getTxtPesoID().getText(),
+                    añadirCriaView.getTxtGrasaCoberturaID().getText(), añadirCriaView.getTxtMusculoID().getText(),
+                    añadirCriaView.getTxtEstadoCriaID().getText(), añadirCriaView.getTxtDietaID().getText());
+            return;
+        }
+        if (evt.getSource() == añadirCriaView.getBtnLimpiar()) {
+            añadirCriaView.limpiarCampos();
+            return;
+        }
     }
 
 }

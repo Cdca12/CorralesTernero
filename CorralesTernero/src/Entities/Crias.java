@@ -1,6 +1,7 @@
 package Entities;
 
 import DataAccesor.SQLConnectionHelper;
+import Utils.Status;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
@@ -35,14 +36,11 @@ public class Crias {
         this.SensorID = SensorID;
         this.VecesEnTratamiento = VecesEnTratamiento;
     }
-    
 
-    public static synchronized void añadirCria(Crias cria) {
+    public static synchronized int añadirCria(Crias cria) {
         Statement conexion = SQLConnectionHelper.getConnection();
         if (conexion == null) {
-            JOptionPane.showMessageDialog(null, "No se pudo conectar a la base de datos. Compruebe"
-                    + " su conexión a internet", "ERROR: Conexión NO realizada", JOptionPane.ERROR_MESSAGE);
-            return;
+            return Status.ERROR_CONEXION;
         }
         try {
             conexion.execute("INSERT INTO Crias VALUES ("
@@ -55,9 +53,9 @@ public class Crias {
                     + cria.SensorID + ", "
                     + cria.VecesEnTratamiento + ");");
         } catch (SQLException ex) {
-            Logger.getLogger(Crias.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("Errorsazo");
+            return Status.ERROR_INSERCION;
         }
+        return Status.OKAY;
     }
 
 }
