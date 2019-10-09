@@ -1,10 +1,12 @@
 package Controllers;
 
+import Entities.Peso;
 import Views.*;
 import Models.*;
 import Utils.Status;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 /**
  *
@@ -47,6 +49,10 @@ public class AñadirCriaController implements ActionListener {
                 añadirCriaView.showOkMessage(Status.OK_INSERT_TITLE, Status.OK_INSERT_MESSAGE);
                 break;
         }
+    }
+    
+    public List<Peso> obtenerPesos() {
+        return añadirCriaModel.obtenerPesos();
     }
 
 }

@@ -1,8 +1,9 @@
 package Views;
 
 import Controllers.AñadirCriaController;
-import Utils.Status;
+import Entities.*;
 import java.awt.Font;
+import java.util.*;
 import javax.swing.*;
 
 /**
@@ -27,7 +28,7 @@ public class AñadirCriaView extends JDialog {
         setLocationRelativeTo(null);
         setResizable(false);
         setModal(true);
-
+        
         initComponents();
     }
 
@@ -101,6 +102,7 @@ public class AñadirCriaView extends JDialog {
     }
 
     public void launchView() {
+        cargarInformacion();
         setVisible(true);
     }
 
@@ -130,6 +132,33 @@ public class AñadirCriaView extends JDialog {
     
     public void showOkMessage(String OK_TITLE, String OK_MESSAGE) {
         JOptionPane.showMessageDialog(null, OK_TITLE, OK_MESSAGE, JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    public void cargarInformacion() {
+        cargarPesos(añadirCriaController.obtenerPesos());
+        cargarGrasasCobertura();
+    }
+    
+    private void cargarPesos(List<Peso> listaPesos) {
+        for(Peso peso : listaPesos) {
+            System.out.println("PesoID:\t" + peso.getPesoID() + "CondicionCorporal:\t" + peso.getCondicionCorporal());
+        }
+    }
+    
+    private void cargarGrasasCobertura() {
+
+    }
+    
+    private void cargarMusculos() {
+        
+    }
+    
+    private void cargarEstadosCria() {
+        
+    }
+    
+    private void cargarDietas() {
+        
     }
 
 
