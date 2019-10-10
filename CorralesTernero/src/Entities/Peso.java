@@ -27,6 +27,11 @@ public class Peso {
     public void setCondicionCorporal(String CondicionCorporal) {
         this.CondicionCorporal = CondicionCorporal;
     }
+    
+    @Override
+    public String toString() {
+        return CondicionCorporal;
+    }
 
     // Métodos CRUD
     // TODO:

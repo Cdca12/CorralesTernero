@@ -5,11 +5,11 @@ package Entities;
  * @author Carlos Contreras
  */
 public class Dietas {
-    
+
     private String DietaID;
     private String DiasTratamiento;
     private String AlimentoID;
-    
+
     public Dietas() {
     }
 
@@ -36,8 +36,12 @@ public class Dietas {
     public void setAlimentoID(String AlimentoID) {
         this.AlimentoID = AlimentoID;
     }
-    
+
+    @Override
+    public String toString() {
+        return DietaID;
+    }
+
     // Métodos CRUD
     // TODO:
-    
 }

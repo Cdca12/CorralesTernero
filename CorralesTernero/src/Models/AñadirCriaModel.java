@@ -21,15 +21,36 @@ public class AñadirCriaModel {
         return Crias.añadirCria(cria);
     }
 
-    public synchronized int añadirCria(String CorralID, String PesoID, String GrasaCoberturaID, String MusculoID, String EstadoCriaID, String DietaID) {
+    public synchronized int añadirCria(String CorralID, String PesoID, String GrasaCoberturaID, String MusculoID, String DietaID) {
         Crias cria = new Crias();
         cria.setCorralID(CorralID);
         cria.setPesoID(PesoID);
         cria.setGrasaCoberturaID(GrasaCoberturaID);
         cria.setMusculoID(MusculoID);
-        cria.setEstadoCriaID(EstadoCriaID);
         cria.setDietaID(DietaID);
         return Crias.añadirCria(cria);
+    }
+    
+    public List<Corrales> obtenerCorrales() {
+        List<Corrales> listaCorrales = new ArrayList();
+        Statement conexion = SQLConnectionHelper.getConnection();
+        if (conexion == null) {
+            return null;
+        }
+        try {
+            ResultSet resultQuery = conexion.executeQuery("SELECT * FROM Corrales;");
+            Corrales corral;
+            while (resultQuery.next()) {
+                corral = new Corrales();
+                corral.setCorralID(resultQuery.getString("CorralID"));
+                corral.setEstadoID(resultQuery.getString("EstadoID"));
+                corral.setTipoCorralID(resultQuery.getString("TipoCorralID"));
+                listaCorrales.add(corral);
+            }
+        } catch (SQLException e) {
+            return null;
+        }
+        return listaCorrales;
     }
 
     public List<Peso> obtenerPesos() {
@@ -138,5 +159,5 @@ public class AñadirCriaModel {
         }
         return listaDietas;
     }
-
+    
 }

@@ -37,6 +37,11 @@ public class GrasaCobertura {
         this.Descripcion = Descripcion;
     }
 
+    @Override
+    public String toString() {
+        return Tipo;
+    }
+
     // Métodos CRUD
     // TODO:
 }

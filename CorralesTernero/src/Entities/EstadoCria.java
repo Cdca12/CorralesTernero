@@ -28,6 +28,11 @@ public class EstadoCria {
         this.Descripcion = Descripcion;
     }
 
+    @Override
+    public String toString() {
+        return Descripcion;
+    }
+
     // Métodos CRUD
     // TODO:
 }

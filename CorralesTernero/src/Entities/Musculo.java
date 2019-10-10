@@ -5,10 +5,10 @@ package Entities;
  * @author Carlos Contreras
  */
 public class Musculo {
-    
+
     private String MusculoID;
     private String ColorMusculo;
-    
+
     public Musculo() {
     }
 
@@ -27,8 +27,12 @@ public class Musculo {
     public void setColorMusculo(String ColorMusculo) {
         this.ColorMusculo = ColorMusculo;
     }
-    
+
+    @Override
+    public String toString() {
+        return ColorMusculo;
+    }
+
     // Métodos CRUD
     // TODO:
-    
 }

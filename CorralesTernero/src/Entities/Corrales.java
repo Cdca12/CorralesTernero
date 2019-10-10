@@ -37,7 +37,14 @@ public class Corrales {
         this.TipoCorralID = TipoCorralID;
     }
     
+    @Override
+    public String toString() {
+        return CorralID;
+    }
+    
+    
     // Métodos CRUD
     // TODO:
+
     
 }

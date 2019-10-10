@@ -3,6 +3,7 @@ package Views;
 import Controllers.AñadirCriaController;
 import Entities.*;
 import java.awt.Font;
+//import java.awt.*;
 import java.util.*;
 import javax.swing.*;
 
@@ -15,10 +16,8 @@ public class AñadirCriaView extends JDialog {
     // TODO: Añadir un logo o un ícono de una cría
     private AñadirCriaController añadirCriaController;
 
-    private JLabel lbCorralID, lbPesoID, lbGrasaCoberturaID, lbMusculoID,
-            lbEstadoCriaID, lbDietaID;
-    private JTextField txtCorralID, txtPesoID, txtGrasaCoberturaID, txtMusculoID,
-            txtEstadoCriaID, txtDietaID;
+    private JLabel lbCorralID, lbPesoID, lbGrasaCoberturaID, lbMusculoID, lbDietaID;
+    private JComboBox cmbCorral, cmbPeso, cmbGrasaCobertura, cmbMusculo, cmbDieta;
     private JButton btnAñadir, btnLimpiar;
 
     public AñadirCriaView() {
@@ -33,66 +32,56 @@ public class AñadirCriaView extends JDialog {
     }
 
     private void initComponents() {
+        // ComboBox
+        cmbCorral = new JComboBox();
+        cmbCorral.setBounds(270, 145, 170, 30);
+        add(cmbCorral);
+
+        cmbPeso = new JComboBox();
+        cmbPeso.setBounds(270, cmbCorral.getY() + 40, 170, 30);
+        add(cmbPeso);
+
+        cmbGrasaCobertura = new JComboBox();
+        cmbGrasaCobertura.setBounds(270, cmbPeso.getY() + 40, 170, 30);
+        add(cmbGrasaCobertura);
+
+        cmbMusculo = new JComboBox();
+        cmbMusculo.setBounds(270, cmbGrasaCobertura.getY() + 40, 170, 30);
+        add(cmbMusculo);
+
+        cmbDieta = new JComboBox();
+        cmbDieta.setBounds(270, cmbMusculo.getY() + 40, 170, 30);
+        add(cmbDieta);
 
         // Labels
-        lbCorralID = new JLabel("CorralID");
+        lbCorralID = new JLabel("Corral");
         lbCorralID.setFont(new Font("Arial", Font.PLAIN, 14));
         lbCorralID.setBounds(190, 150, 100, 20);
         add(lbCorralID);
 
-        lbPesoID = new JLabel("PesoID");
+        lbPesoID = new JLabel("Peso");
         lbPesoID.setFont(new Font("Arial", Font.PLAIN, 14));
-        lbPesoID.setBounds(190, lbCorralID.getY() + 40, 100, 20);
+        lbPesoID.setBounds(200, lbCorralID.getY() + 40, 100, 20);
         add(lbPesoID);
 
-        lbGrasaCoberturaID = new JLabel("GrasaCoberturaID");
+        lbGrasaCoberturaID = new JLabel("Grasa Cobertura");
         lbGrasaCoberturaID.setFont(new Font("Arial", Font.PLAIN, 14));
         lbGrasaCoberturaID.setBounds(130, lbPesoID.getY() + 40, 150, 20);
         add(lbGrasaCoberturaID);
 
-        lbMusculoID = new JLabel("MusculoID");
+        lbMusculoID = new JLabel("Tipo Musculo");
         lbMusculoID.setFont(new Font("Arial", Font.PLAIN, 14));
-        lbMusculoID.setBounds(180, lbGrasaCoberturaID.getY() + 40, 150, 20);
+        lbMusculoID.setBounds(150, lbGrasaCoberturaID.getY() + 40, 150, 20);
         add(lbMusculoID);
 
-        lbEstadoCriaID = new JLabel("EstadoCriaID");
-        lbEstadoCriaID.setFont(new Font("Arial", Font.PLAIN, 14));
-        lbEstadoCriaID.setBounds(165, lbMusculoID.getY() + 40, 150, 20);
-        add(lbEstadoCriaID);
-
-        lbDietaID = new JLabel("DietaID");
+        lbDietaID = new JLabel("Dieta");
         lbDietaID.setFont(new Font("Arial", Font.PLAIN, 14));
-        lbDietaID.setBounds(200, lbEstadoCriaID.getY() + 40, 150, 20);
+        lbDietaID.setBounds(200, lbMusculoID.getY() + 40, 150, 20);
         add(lbDietaID);
-
-        // TextFields
-        txtCorralID = new JTextField();
-        txtCorralID.setBounds(270, 145, 150, 30);
-        add(txtCorralID);
-
-        txtPesoID = new JTextField();
-        txtPesoID.setBounds(txtPesoID.getX() + 270, txtCorralID.getY() + 40, 150, 30);
-        add(txtPesoID);
-
-        txtGrasaCoberturaID = new JTextField();
-        txtGrasaCoberturaID.setBounds(270, txtPesoID.getY() + 40, 150, 30);
-        add(txtGrasaCoberturaID);
-
-        txtMusculoID = new JTextField();
-        txtMusculoID.setBounds(270, txtGrasaCoberturaID.getY() + 40, 150, 30);
-        add(txtMusculoID);
-
-        txtEstadoCriaID = new JTextField();
-        txtEstadoCriaID.setBounds(270, txtMusculoID.getY() + 40, 150, 30);
-        add(txtEstadoCriaID);
-
-        txtDietaID = new JTextField();
-        txtDietaID.setBounds(270, txtEstadoCriaID.getY() + 40, 150, 30);
-        add(txtDietaID);
 
         // Buttons
         btnLimpiar = new JButton("Limpiar");
-        btnLimpiar.setBounds(200, 420, 100, 30);
+        btnLimpiar.setBounds(200, 410, 100, 30);
         add(btnLimpiar);
 
         btnAñadir = new JButton("Añadir");
@@ -117,13 +106,12 @@ public class AñadirCriaView extends JDialog {
     }
 
     public void limpiarCampos() {
-        txtCorralID.setText("");
-        txtPesoID.setText("");
-        txtGrasaCoberturaID.setText("");
-        txtMusculoID.setText("");
-        txtEstadoCriaID.setText("");
-        txtDietaID.setText("");
-        txtCorralID.requestFocus();
+        cmbCorral.setSelectedIndex(0);
+        cmbPeso.setSelectedIndex(0);
+        cmbGrasaCobertura.setSelectedIndex(0);
+        cmbMusculo.setSelectedIndex(0);
+        cmbDieta.setSelectedIndex(0);
+        cmbCorral.requestFocus();
     }
 
     public void showErrorMessage(String ERROR_TITLE, String ERROR_MESSAGE) {
@@ -135,58 +123,41 @@ public class AñadirCriaView extends JDialog {
     }
 
     public void cargarInformacion() {
-        System.out.println("Tabla: Peso");
+        cargarCorrales(añadirCriaController.obtenerCorrales());
         cargarPesos(añadirCriaController.obtenerPesos());
-        System.out.println("\n-------------------------"
-                + "\nTabla: Grasa Cobertura");
         cargarGrasasCobertura(añadirCriaController.obtenerGrasasCobertura());
-        System.out.println("\n-------------------------"
-                + "\nTabla: Musculo");
         cargarMusculos(añadirCriaController.obtenerMusculos());
-        System.out.println("\n-------------------------"
-                + "\nTabla: Estado Cria");
-        cargarEstadosCria(añadirCriaController.obtenerEstadosCria());
-        System.out.println("\n-------------------------"
-                + "\nTabla: Dieta");
         cargarDietas(añadirCriaController.obtenerDietas());
+    }
 
+    private void cargarCorrales(List<Corrales> listaCorrales) {
+        cmbCorral.setModel(new DefaultComboBoxModel(listaCorrales.toArray()));
+        cmbCorral.insertItemAt("Seleccione una opción", 0);
+        cmbCorral.setSelectedIndex(0);
     }
 
     private void cargarPesos(List<Peso> listaPesos) {
-        for (Peso peso : listaPesos) {
-            System.out.println("PesoID: " + peso.getPesoID()
-                    + "\t| CondicionCorporal: " + peso.getCondicionCorporal());
-        }
+        cmbPeso.setModel(new DefaultComboBoxModel(listaPesos.toArray()));
+        cmbPeso.insertItemAt("Seleccione una opción", 0);
+        cmbPeso.setSelectedIndex(0);
     }
 
     private void cargarGrasasCobertura(List<GrasaCobertura> listaGrasasCobertura) {
-        for (GrasaCobertura grasaCobertura : listaGrasasCobertura) {
-            System.out.println("GrasaCoberturaID: " + grasaCobertura.getGrasaCoberturaID()
-                    + "\t| Tipo: " + grasaCobertura.getTipo()
-                    + "\t| Descripcion: " + grasaCobertura.getDescripcion());
-        }
+        cmbGrasaCobertura.setModel(new DefaultComboBoxModel(listaGrasasCobertura.toArray()));
+        cmbGrasaCobertura.insertItemAt("Seleccione una opción", 0);
+        cmbGrasaCobertura.setSelectedIndex(0);
     }
 
     private void cargarMusculos(List<Musculo> listaMusculos) {
-        for (Musculo musculo : listaMusculos) {
-            System.out.println("MusculoID: " + musculo.getMusculoID()
-                    + "\t| ColorMusculo: " + musculo.getColorMusculo());
-        }
-    }
-
-    private void cargarEstadosCria(List<EstadoCria> listaEstadosCria) {
-        for (EstadoCria estadoCria : listaEstadosCria) {
-            System.out.println("EstadoCriaID: " + estadoCria.getEstadoCriaID()
-                    + "\t| Descripcion: " + estadoCria.getDescripcion());
-        }
+        cmbMusculo.setModel(new DefaultComboBoxModel(listaMusculos.toArray()));
+        cmbMusculo.insertItemAt("Seleccione una opción", 0);
+        cmbMusculo.setSelectedIndex(0);
     }
 
     private void cargarDietas(List<Dietas> listaDietas) {
-        for (Dietas dietas : listaDietas) {
-            System.out.println("DietaID: " + dietas.getDietaID()
-                    + "\t| DiasTratamiento: " + dietas.getDiasTratamiento()
-                    + "\t| AlimentoID: " + dietas.getAlimentoID());
-        }
+        cmbDieta.setModel(new DefaultComboBoxModel(listaDietas.toArray()));
+        cmbDieta.insertItemAt("Seleccione una opción", 0);
+        cmbDieta.setSelectedIndex(0);
     }
 
     // Getters y Setters
@@ -198,51 +169,24 @@ public class AñadirCriaView extends JDialog {
         return btnLimpiar;
     }
 
-    public JTextField getTxtCorralID() {
-        return txtCorralID;
+    public JComboBox getCmbCorral() {
+        return cmbCorral;
     }
 
-    public void setTxtCorralID(JTextField txtCorralID) {
-        this.txtCorralID = txtCorralID;
+    public JComboBox getCmbPeso() {
+        return cmbPeso;
     }
 
-    public JTextField getTxtPesoID() {
-        return txtPesoID;
+    public JComboBox getCmbGrasaCobertura() {
+        return cmbGrasaCobertura;
     }
 
-    public void setTxtPesoID(JTextField txtPesoID) {
-        this.txtPesoID = txtPesoID;
+    public JComboBox getCmbMusculo() {
+        return cmbMusculo;
     }
 
-    public JTextField getTxtGrasaCoberturaID() {
-        return txtGrasaCoberturaID;
+    public JComboBox getCmbDieta() {
+        return cmbDieta;
     }
 
-    public void setTxtGrasaCoberturaID(JTextField txtGrasaCoberturaID) {
-        this.txtGrasaCoberturaID = txtGrasaCoberturaID;
-    }
-
-    public JTextField getTxtMusculoID() {
-        return txtMusculoID;
-    }
-
-    public void setTxtMusculoID(JTextField txtMusculoID) {
-        this.txtMusculoID = txtMusculoID;
-    }
-
-    public JTextField getTxtEstadoCriaID() {
-        return txtEstadoCriaID;
-    }
-
-    public void setTxtEstadoCriaID(JTextField txtEstadoCriaID) {
-        this.txtEstadoCriaID = txtEstadoCriaID;
-    }
-
-    public JTextField getTxtDietaID() {
-        return txtDietaID;
-    }
-
-    public void setTxtDietaID(JTextField txtDietaID) {
-        this.txtDietaID = txtDietaID;
-    }
 }
