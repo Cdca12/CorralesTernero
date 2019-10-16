@@ -37,6 +37,10 @@ public class AñadirCriaController implements ActionListener {
             añadirCriaView.limpiarCampos();
             return;
         }
+        if (evt.getSource() == añadirCriaView.getBtnSeleccionarDieta()) {
+            DietasView dietasView = new DietasView();
+            dietasView.launchView();
+        }
     }
 
     private void ejecutarAccion(int statusAccion) {

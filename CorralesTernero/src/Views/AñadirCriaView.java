@@ -18,7 +18,8 @@ public class AñadirCriaView extends JDialog {
 
     private JLabel lbCorralID, lbPesoID, lbGrasaCoberturaID, lbMusculoID, lbDietaID;
     private JComboBox cmbCorral, cmbPeso, cmbGrasaCobertura, cmbMusculo, cmbDieta;
-    private JButton btnAñadir, btnLimpiar;
+    private static JTextField txtDieta;
+    private JButton btnAñadir, btnLimpiar, btnSeleccionarDieta;
 
     public AñadirCriaView() {
         setTitle("Añadir Cría");
@@ -52,6 +53,11 @@ public class AñadirCriaView extends JDialog {
         cmbDieta = new JComboBox();
         cmbDieta.setBounds(270, cmbMusculo.getY() + 40, 170, 30);
         add(cmbDieta);
+        
+        txtDieta = new JTextField();
+        txtDieta.setBounds(270, cmbMusculo.getY() + 80, 170, 30);
+        txtDieta.setEditable(false);
+        add(txtDieta);
 
         // Labels
         lbCorralID = new JLabel("Corral");
@@ -87,6 +93,10 @@ public class AñadirCriaView extends JDialog {
         btnAñadir = new JButton("Añadir");
         btnAñadir.setBounds(btnLimpiar.getX() + 110, btnLimpiar.getY(), 100, 30);
         add(btnAñadir);
+        
+        btnSeleccionarDieta = new JButton("Seleccionar");
+        btnSeleccionarDieta.setBounds(450, cmbMusculo.getY() + 40, 100, 30);
+        add(btnSeleccionarDieta);
 
     }
 
@@ -103,6 +113,7 @@ public class AñadirCriaView extends JDialog {
     private void addListeners() {
         btnAñadir.addActionListener(añadirCriaController);
         btnLimpiar.addActionListener(añadirCriaController);
+        btnSeleccionarDieta.addActionListener(añadirCriaController);
     }
 
     public void limpiarCampos() {
@@ -132,31 +143,31 @@ public class AñadirCriaView extends JDialog {
 
     private void cargarCorrales(List<Corrales> listaCorrales) {
         cmbCorral.setModel(new DefaultComboBoxModel(listaCorrales.toArray()));
-        cmbCorral.insertItemAt("Seleccione una opción", 0);
+        cmbCorral.insertItemAt("Seleccionar...", 0);
         cmbCorral.setSelectedIndex(0);
     }
 
     private void cargarPesos(List<Peso> listaPesos) {
         cmbPeso.setModel(new DefaultComboBoxModel(listaPesos.toArray()));
-        cmbPeso.insertItemAt("Seleccione una opción", 0);
+        cmbPeso.insertItemAt("Seleccionar...", 0);
         cmbPeso.setSelectedIndex(0);
     }
 
     private void cargarGrasasCobertura(List<GrasaCobertura> listaGrasasCobertura) {
         cmbGrasaCobertura.setModel(new DefaultComboBoxModel(listaGrasasCobertura.toArray()));
-        cmbGrasaCobertura.insertItemAt("Seleccione una opción", 0);
+        cmbGrasaCobertura.insertItemAt("Seleccionar...", 0);
         cmbGrasaCobertura.setSelectedIndex(0);
     }
 
     private void cargarMusculos(List<Musculo> listaMusculos) {
         cmbMusculo.setModel(new DefaultComboBoxModel(listaMusculos.toArray()));
-        cmbMusculo.insertItemAt("Seleccione una opción", 0);
+        cmbMusculo.insertItemAt("Seleccionar...", 0);
         cmbMusculo.setSelectedIndex(0);
     }
 
     private void cargarDietas(List<Dietas> listaDietas) {
         cmbDieta.setModel(new DefaultComboBoxModel(listaDietas.toArray()));
-        cmbDieta.insertItemAt("Seleccione una opción", 0);
+        cmbDieta.insertItemAt("Seleccionar...", 0);
         cmbDieta.setSelectedIndex(0);
     }
 
@@ -169,6 +180,10 @@ public class AñadirCriaView extends JDialog {
         return btnLimpiar;
     }
 
+    public JButton getBtnSeleccionarDieta() {
+        return btnSeleccionarDieta;
+    }
+    
     public JComboBox getCmbCorral() {
         return cmbCorral;
     }
@@ -184,9 +199,15 @@ public class AñadirCriaView extends JDialog {
     public JComboBox getCmbMusculo() {
         return cmbMusculo;
     }
+    
+    
 
     public JComboBox getCmbDieta() {
         return cmbDieta;
+    }
+
+    public static JTextField getTxtDieta() {
+        return txtDieta;
     }
 
 }
