@@ -18,7 +18,7 @@ public class AñadirCriaView extends JDialog {
 
     private JLabel lbCorral, lbPeso, lbGrasaCobertura, lbTipoMusculo, lbDieta, lbKg;
     // TODO: Evitar usar static y pasar parámetro del TextField a modificar
-    private static JTextField txtCorral, txtPeso, txtGrasaCobertura, txtTipoMusculo, txtDieta;
+    private static JTextField txtCorral, txtPeso, txtDieta;
     private JComboBox cmbTipoMusculo, cmbGrasaCobertura;
     private JButton btnAñadir, btnLimpiar, btnSeleccionarCorral, btnSeleccionarDieta;
     private String dietaID;
@@ -186,17 +186,19 @@ public class AñadirCriaView extends JDialog {
         return txtPeso;
     }
 
-    public JTextField getTxtGrasaCobertura() {
-        return txtGrasaCobertura;
-    }
-
-    public JTextField getTxtMusculo() {
-        return txtTipoMusculo;
-    }
-
     public JTextField getTxtDieta() {
         return txtDieta;
     }
+
+    public JComboBox getCmbTipoMusculo() {
+        return cmbTipoMusculo;
+    }
+
+    public JComboBox getCmbGrasaCobertura() {
+        return cmbGrasaCobertura;
+    }
+    
+    
     
     public static void setCorralID(String corralID) {
         txtCorral.setText(corralID);

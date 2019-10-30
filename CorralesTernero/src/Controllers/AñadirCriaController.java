@@ -28,8 +28,8 @@ public class AñadirCriaController implements ActionListener {
             ejecutarAccion(añadirCriaModel.añadirCria(
                     añadirCriaView.getTxtCorral().getText(),
                     añadirCriaView.getTxtPeso().getText(),
-                    añadirCriaView.getTxtGrasaCobertura().getText(),
-                    añadirCriaView.getTxtMusculo().getText(),
+                    ((GrasaCobertura) añadirCriaView.getCmbGrasaCobertura().getSelectedItem()).getGrasaCoberturaID(),
+                    ((Musculo) añadirCriaView.getCmbTipoMusculo().getSelectedItem()).getMusculoID(),
                     añadirCriaView.getTxtDieta().getText()));
             return;
         }
@@ -55,6 +55,7 @@ public class AñadirCriaController implements ActionListener {
                 break;
             case Status.OK_INSERT:
                 añadirCriaView.showOkMessage(Status.OK_INSERT_TITLE, Status.OK_INSERT_MESSAGE);
+                añadirCriaView.limpiarCampos();
                 break;
         }
     }

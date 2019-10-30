@@ -33,10 +33,10 @@ CREATE TABLE Dietas (
 CREATE TABLE Sensores (
 	Señal int IDENTITY PRIMARY KEY,
 	SensorID int NOT NULL INDEX IX_SensorID NONCLUSTERED,
-	PresionArterial int NOT NULL,
-	Respiracion int NOT NULL,
-	Pulso int NOT NULL,
-	Temperatura int NOT NULL
+	PresionArterial int,
+	Respiracion int,
+	Pulso int,
+	Temperatura int
 );
 
 CREATE TABLE TipoCorral (
