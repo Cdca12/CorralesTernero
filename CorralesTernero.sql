@@ -1,14 +1,10 @@
 CREATE DATABASE CorralesTernero;
 USE CorralesTernero;
 
+
 CREATE TABLE EstadoCria (
 	EstadoCriaID int PRIMARY KEY,
 	Descripcion varchar(255) NOT NULL
-);
-
-CREATE TABLE Peso (
-	PesoID int PRIMARY KEY,
-	CondicionCorporal varchar(255) NOT NULL
 );
 
 CREATE TABLE GrasaCobertura (
@@ -62,7 +58,7 @@ CREATE TABLE Corrales (
 CREATE TABLE Crias (
 	CriasID int IDENTITY PRIMARY KEY,
 	CorralID int FOREIGN KEY REFERENCES Corrales, 
-	PesoID int FOREIGN KEY REFERENCES Peso,
+	Peso int NOT NULL,
 	GrasaCoberturaID int FOREIGN KEY REFERENCES GrasaCobertura,
 	MusculoID int FOREIGN KEY REFERENCES Musculo,
 	EstadoCriaID int FOREIGN KEY REFERENCES EstadoCria DEFAULT 1,

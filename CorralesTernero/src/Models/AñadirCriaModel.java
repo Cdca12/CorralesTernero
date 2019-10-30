@@ -54,26 +54,6 @@ public class AñadirCriaModel {
         return listaCorrales;
     }
 
-    public List<Peso> obtenerPesos() {
-        List<Peso> listaPesos = new ArrayList();
-        Statement conexion = SQLConnectionHelper.getConnection();
-        if (conexion == null) {
-            return null;
-        }
-        try {
-            ResultSet resultQuery = conexion.executeQuery("SELECT * FROM Peso;");
-            Peso peso;
-            while (resultQuery.next()) {
-                peso = new Peso();
-                peso.setPesoID(resultQuery.getString("PesoID"));
-                peso.setCondicionCorporal(resultQuery.getString("CondicionCorporal"));
-                listaPesos.add(peso);
-            }
-        } catch (SQLException e) {
-            return null;
-        }
-        return listaPesos;
-    }
 
     public List<GrasaCobertura> obtenerGrasasCobertura() {
         List<GrasaCobertura> listaGrasasCobertura = new ArrayList();
@@ -97,7 +77,7 @@ public class AñadirCriaModel {
         return listaGrasasCobertura;
     }
 
-    public List<Musculo> obtenerMusculos() {
+    public List<Musculo> obtenerTiposMusculo() {
         List<Musculo> listaDietas = new ArrayList();
         Statement conexion = SQLConnectionHelper.getConnection();
         if (conexion == null) {

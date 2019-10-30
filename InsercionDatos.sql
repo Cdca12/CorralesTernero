@@ -3,15 +3,8 @@
 INSERT INTO EstadoCria
 VALUES
 	(1, 'Saludable'),
-	(2, 'En tratamiento'),
+	(2, 'Tratamiento'),
 	(3, 'Sacrificado');
-
-INSERT INTO Peso
-VALUES
-	(1, 'Flacas'),
-	(2, 'Límite'),
-	(3, 'Moderadas'),
-	(4, 'Gordas');
 
 INSERT INTO GrasaCobertura
 VALUES
@@ -51,6 +44,7 @@ INSERT INTO Corrales
 VALUES
 	(1, (SELECT EstadoID FROM Estados WHERE Nombre = 'Sinaloa'), (SELECT TipoCorralID FROM TipoCorral WHERE Descripcion = 'Sanos')),
 	(2, (SELECT EstadoID FROM Estados WHERE Nombre = 'Ciudad de México'), (SELECT TipoCorralID FROM TipoCorral WHERE Descripcion = 'Cuarentena'));
+
 
 
 --Pendiente: Acomodar a la Cria, para insertar en la tabla TrasladosCrias

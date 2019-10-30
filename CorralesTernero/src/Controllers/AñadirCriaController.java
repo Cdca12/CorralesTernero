@@ -26,11 +26,11 @@ public class AñadirCriaController implements ActionListener {
     public void actionPerformed(ActionEvent evt) {
         if (evt.getSource() == añadirCriaView.getBtnAñadir()) {
             ejecutarAccion(añadirCriaModel.añadirCria(
-                    ((Corrales) añadirCriaView.getCmbCorral().getSelectedItem()).getCorralID(),
-                    ((Peso) añadirCriaView.getCmbPeso().getSelectedItem()).getPesoID(),
-                    ((GrasaCobertura) añadirCriaView.getCmbGrasaCobertura().getSelectedItem()).getGrasaCoberturaID(),
-                    ((Musculo) añadirCriaView.getCmbMusculo().getSelectedItem()).getMusculoID(),
-                    (añadirCriaView.getTxtDieta().getText())));
+                    añadirCriaView.getTxtCorral().getText(),
+                    añadirCriaView.getTxtPeso().getText(),
+                    añadirCriaView.getTxtGrasaCobertura().getText(),
+                    añadirCriaView.getTxtMusculo().getText(),
+                    añadirCriaView.getTxtDieta().getText()));
             return;
         }
         if (evt.getSource() == añadirCriaView.getBtnLimpiar()) {
@@ -59,16 +59,12 @@ public class AñadirCriaController implements ActionListener {
         return añadirCriaModel.obtenerCorrales();
     }
 
-    public List<Peso> obtenerPesos() {
-        return añadirCriaModel.obtenerPesos();
-    }
-
     public List<GrasaCobertura> obtenerGrasasCobertura() {
         return añadirCriaModel.obtenerGrasasCobertura();
     }
 
-    public List<Musculo> obtenerMusculos() {
-        return añadirCriaModel.obtenerMusculos();
+    public List<Musculo> obtenerTiposMusculo() {
+        return añadirCriaModel.obtenerTiposMusculo();
     }
 
     public List<Dietas> obtenerDietas() {

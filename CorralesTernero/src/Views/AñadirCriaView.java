@@ -4,8 +4,7 @@ import Models.*;
 import Controllers.*;
 import Entities.*;
 import java.awt.Font;
-//import java.awt.*;
-import java.util.*;
+import java.util.List;
 import javax.swing.*;
 
 /**
@@ -17,10 +16,11 @@ public class AñadirCriaView extends JDialog {
     // TODO: Añadir un logo o un ícono de una cría
     private AñadirCriaController añadirCriaController;
 
-    private JLabel lbCorralID, lbPesoID, lbGrasaCoberturaID, lbMusculoID, lbDietaID;
-    private JComboBox cmbCorral, cmbPeso, cmbGrasaCobertura, cmbMusculo;
-    private static JTextField txtDieta;
-    private JButton btnAñadir, btnLimpiar, btnSeleccionarDieta;
+    private JLabel lbCorral, lbPeso, lbGrasaCobertura, lbTipoMusculo, lbDieta, lbKg;
+    // TODO: Evitar usar static y pasar parámetro del TextField a modificar
+    private static JTextField txtCorral, txtPeso, txtGrasaCobertura, txtTipoMusculo, txtDieta;
+    private JComboBox cmbTipoMusculo, cmbGrasaCobertura;
+    private JButton btnAñadir, btnLimpiar, btnSeleccionarCorral, btnSeleccionarDieta;
     private String dietaID;
 
     public AñadirCriaView() {
@@ -35,53 +35,61 @@ public class AñadirCriaView extends JDialog {
     }
 
     private void initComponents() {
-        // ComboBox
-        cmbCorral = new JComboBox();
-        cmbCorral.setBounds(270, 145, 170, 30);
-        add(cmbCorral);
+        // Labels
+        lbCorral = new JLabel("Corral");
+        lbCorral.setFont(new Font("Arial", Font.PLAIN, 14));
+        lbCorral.setBounds(190, 150, 100, 20);
+        add(lbCorral);
 
-        cmbPeso = new JComboBox();
-        cmbPeso.setBounds(270, cmbCorral.getY() + 40, 170, 30);
-        add(cmbPeso);
+        lbDieta = new JLabel("Dieta");
+        lbDieta.setFont(new Font("Arial", Font.PLAIN, 14));
+        lbDieta.setBounds(200, lbCorral.getY() + 40, 100, 20);
+        add(lbDieta);
 
-        cmbGrasaCobertura = new JComboBox();
-        cmbGrasaCobertura.setBounds(270, cmbPeso.getY() + 40, 170, 30);
-        add(cmbGrasaCobertura);
+        lbTipoMusculo = new JLabel("Tipo Músculo");
+        lbTipoMusculo.setFont(new Font("Arial", Font.PLAIN, 14));
+        lbTipoMusculo.setBounds(150, lbDieta.getY() + 40, 150, 20);
+        add(lbTipoMusculo);
 
-        cmbMusculo = new JComboBox();
-        cmbMusculo.setBounds(270, cmbGrasaCobertura.getY() + 40, 170, 30);
-        add(cmbMusculo);
+        lbGrasaCobertura = new JLabel("Grasa Cobertura");
+        lbGrasaCobertura.setFont(new Font("Arial", Font.PLAIN, 14));
+        lbGrasaCobertura.setBounds(130, lbTipoMusculo.getY() + 40, 150, 20);
+        add(lbGrasaCobertura);
+
+        lbPeso = new JLabel("Peso");
+        lbPeso.setFont(new Font("Arial", Font.PLAIN, 14));
+        lbPeso.setBounds(200, lbGrasaCobertura.getY() + 40, 150, 20);
+        add(lbPeso);
+        
+        lbKg = new JLabel("kg");
+        lbKg.setFont(new Font("Arial", Font.PLAIN, 14));
+        lbKg.setBounds(lbPeso.getX() + 170, lbPeso.getY(), 150, 20);
+        add(lbKg);
+
+        // TextFields
+        txtCorral = new JTextField();
+        txtCorral.setBounds(270, 145, 90, 30);
+        txtCorral.setEditable(false);
+        add(txtCorral);
 
         txtDieta = new JTextField();
-        txtDieta.setBounds(270, cmbMusculo.getY() + 40, 170, 30);
+        txtDieta.setBounds(270, txtCorral.getY() + 40, 90, 30);
         txtDieta.setEditable(false);
         add(txtDieta);
 
-        // Labels
-        lbCorralID = new JLabel("Corral");
-        lbCorralID.setFont(new Font("Arial", Font.PLAIN, 14));
-        lbCorralID.setBounds(190, 150, 100, 20);
-        add(lbCorralID);
+        txtPeso = new JTextField();
+        txtPeso.setBounds(270, txtDieta.getY() + 120, 90, 30);
+//        txtPeso.setEditable(false);
+        add(txtPeso);
 
-        lbPesoID = new JLabel("Peso");
-        lbPesoID.setFont(new Font("Arial", Font.PLAIN, 14));
-        lbPesoID.setBounds(200, lbCorralID.getY() + 40, 100, 20);
-        add(lbPesoID);
+        // ComboBox
+        cmbTipoMusculo = new JComboBox();
+        cmbTipoMusculo.setBounds(270, txtDieta.getY() + 40, 185, 30);
+        add(cmbTipoMusculo);
 
-        lbGrasaCoberturaID = new JLabel("Grasa Cobertura");
-        lbGrasaCoberturaID.setFont(new Font("Arial", Font.PLAIN, 14));
-        lbGrasaCoberturaID.setBounds(130, lbPesoID.getY() + 40, 150, 20);
-        add(lbGrasaCoberturaID);
-
-        lbMusculoID = new JLabel("Tipo Musculo");
-        lbMusculoID.setFont(new Font("Arial", Font.PLAIN, 14));
-        lbMusculoID.setBounds(150, lbGrasaCoberturaID.getY() + 40, 150, 20);
-        add(lbMusculoID);
-
-        lbDietaID = new JLabel("Dieta");
-        lbDietaID.setFont(new Font("Arial", Font.PLAIN, 14));
-        lbDietaID.setBounds(200, lbMusculoID.getY() + 40, 150, 20);
-        add(lbDietaID);
+        cmbGrasaCobertura = new JComboBox();
+        cmbGrasaCobertura.setBounds(270, cmbTipoMusculo.getY() + 40, 185, 30);
+        add(cmbGrasaCobertura);
 
         // Buttons
         btnLimpiar = new JButton("Limpiar");
@@ -91,9 +99,13 @@ public class AñadirCriaView extends JDialog {
         btnAñadir = new JButton("Añadir");
         btnAñadir.setBounds(btnLimpiar.getX() + 110, btnLimpiar.getY(), 100, 30);
         add(btnAñadir);
-        
+
+        btnSeleccionarCorral = new JButton("Seleccionar");
+        btnSeleccionarCorral.setBounds(txtCorral.getX() + 90, txtCorral.getY(), 95, 30);
+        add(btnSeleccionarCorral);
+
         btnSeleccionarDieta = new JButton("Seleccionar");
-        btnSeleccionarDieta.setBounds(450, cmbMusculo.getY() + 40, 100, 30);
+        btnSeleccionarDieta.setBounds(txtDieta.getX() + 90, txtDieta.getY(), 95, 30);
         add(btnSeleccionarDieta);
 
     }
@@ -115,12 +127,29 @@ public class AñadirCriaView extends JDialog {
     }
 
     public void limpiarCampos() {
-        cmbCorral.setSelectedIndex(0);
-        cmbPeso.setSelectedIndex(0);
+        txtCorral.setText("");
+        txtDieta.setText("");
+        cmbTipoMusculo.setSelectedIndex(0);
         cmbGrasaCobertura.setSelectedIndex(0);
-        cmbMusculo.setSelectedIndex(0);
-        txtDieta.setText(null); // Null o " "
-        cmbCorral.requestFocus();
+        txtPeso.setText("");
+        btnSeleccionarCorral.requestFocus();
+    }
+
+    public void cargarInformacion() {
+        cargarGrasasCobertura(añadirCriaController.obtenerGrasasCobertura());
+        cargarTiposMusculo(añadirCriaController.obtenerTiposMusculo());
+    }
+
+    private void cargarGrasasCobertura(List<GrasaCobertura> listaGrasasCobertura) {
+        cmbGrasaCobertura.setModel(new DefaultComboBoxModel(listaGrasasCobertura.toArray()));
+        cmbGrasaCobertura.insertItemAt("Selecciona una opcíón", 0);
+        cmbGrasaCobertura.setSelectedIndex(0);
+    }
+
+    private void cargarTiposMusculo(List<Musculo> listaMusculos) {
+        cmbTipoMusculo.setModel(new DefaultComboBoxModel(listaMusculos.toArray()));
+        cmbTipoMusculo.insertItemAt("Seleccionar opcíón", 0);
+        cmbTipoMusculo.setSelectedIndex(0);
     }
 
     public void showErrorMessage(String ERROR_TITLE, String ERROR_MESSAGE) {
@@ -129,38 +158,6 @@ public class AñadirCriaView extends JDialog {
 
     public void showOkMessage(String OK_TITLE, String OK_MESSAGE) {
         JOptionPane.showMessageDialog(null, OK_TITLE, OK_MESSAGE, JOptionPane.INFORMATION_MESSAGE);
-    }
-
-    public void cargarInformacion() {
-        cargarCorrales(añadirCriaController.obtenerCorrales());
-        cargarPesos(añadirCriaController.obtenerPesos());
-        cargarGrasasCobertura(añadirCriaController.obtenerGrasasCobertura());
-        cargarMusculos(añadirCriaController.obtenerMusculos());
-//        cargarDietas(añadirCriaController.obtenerDietas());
-    }
-
-    private void cargarCorrales(List<Corrales> listaCorrales) {
-        cmbCorral.setModel(new DefaultComboBoxModel(listaCorrales.toArray()));
-        cmbCorral.insertItemAt("Seleccionar...", 0);
-        cmbCorral.setSelectedIndex(0);
-    }
-
-    private void cargarPesos(List<Peso> listaPesos) {
-        cmbPeso.setModel(new DefaultComboBoxModel(listaPesos.toArray()));
-        cmbPeso.insertItemAt("Seleccionar...", 0);
-        cmbPeso.setSelectedIndex(0);
-    }
-
-    private void cargarGrasasCobertura(List<GrasaCobertura> listaGrasasCobertura) {
-        cmbGrasaCobertura.setModel(new DefaultComboBoxModel(listaGrasasCobertura.toArray()));
-        cmbGrasaCobertura.insertItemAt("Seleccionar...", 0);
-        cmbGrasaCobertura.setSelectedIndex(0);
-    }
-
-    private void cargarMusculos(List<Musculo> listaMusculos) {
-        cmbMusculo.setModel(new DefaultComboBoxModel(listaMusculos.toArray()));
-        cmbMusculo.insertItemAt("Seleccionar...", 0);
-        cmbMusculo.setSelectedIndex(0);
     }
 
     // Getters y Setters
@@ -175,23 +172,23 @@ public class AñadirCriaView extends JDialog {
     public JButton getBtnSeleccionarDieta() {
         return btnSeleccionarDieta;
     }
-    
-    public JComboBox getCmbCorral() {
-        return cmbCorral;
+
+    public JTextField getTxtCorral() {
+        return txtCorral;
     }
 
-    public JComboBox getCmbPeso() {
-        return cmbPeso;
+    public JTextField getTxtPeso() {
+        return txtPeso;
     }
 
-    public JComboBox getCmbGrasaCobertura() {
-        return cmbGrasaCobertura;
+    public JTextField getTxtGrasaCobertura() {
+        return txtGrasaCobertura;
     }
 
-    public JComboBox getCmbMusculo() {
-        return cmbMusculo;
+    public JTextField getTxtMusculo() {
+        return txtTipoMusculo;
     }
-    
+
     public JTextField getTxtDieta() {
         return txtDieta;
     }
@@ -199,7 +196,7 @@ public class AñadirCriaView extends JDialog {
     public static void setDietaID(String dietaID) {
         txtDieta.setText(dietaID);
     }
-    
+
     // Métodos para abrir las consultas
     public void abrirDietas() {
         DietasView dietasView = new DietasView();
