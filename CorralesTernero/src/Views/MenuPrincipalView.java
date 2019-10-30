@@ -14,7 +14,7 @@ public class MenuPrincipalView extends JFrame {
 
     private JMenuBar menuBar;
     private JMenu criasJMenu;
-    private JMenuItem añadirCriaJMenuItem, reporteCriasEnfermasJMenuItem;
+    private JMenuItem añadirCriaJMenuItem, reporteCriasEnfermasJMenuItem, procesarSalidasCriasJMenuItem;
     private JLabel logoEmpresa;
 
     public MenuPrincipalView() {
@@ -40,9 +40,11 @@ public class MenuPrincipalView extends JFrame {
         // MenuItem
         añadirCriaJMenuItem = new JMenuItem("Añadir Crías");
         reporteCriasEnfermasJMenuItem = new JMenuItem("Reporte Crías Enfermas");
+        procesarSalidasCriasJMenuItem = new JMenuItem("Procesar Salidas");
 
         criasJMenu.add(añadirCriaJMenuItem);
         criasJMenu.add(reporteCriasEnfermasJMenuItem);
+        criasJMenu.add(procesarSalidasCriasJMenuItem);
 
         
         menuBar.add(criasJMenu);
@@ -61,6 +63,7 @@ public class MenuPrincipalView extends JFrame {
     private void addListeners() {
         añadirCriaJMenuItem.addActionListener(menuPrincipalController);
         reporteCriasEnfermasJMenuItem.addActionListener(menuPrincipalController);
+        procesarSalidasCriasJMenuItem.addActionListener(menuPrincipalController);
     }
 
     // Getters
@@ -68,8 +71,12 @@ public class MenuPrincipalView extends JFrame {
         return añadirCriaJMenuItem;
     }
 
-    public JMenuItem getReporteCriasEnfermasJMenuItem() {
+    public JMenuItem getReporteCriasEnfermas() {
         return reporteCriasEnfermasJMenuItem;
+    }
+
+    public JMenuItem getProcesarSalidasCrias() {
+        return procesarSalidasCriasJMenuItem;
     }
     
 
@@ -90,7 +97,17 @@ public class MenuPrincipalView extends JFrame {
         
         reporteCriasEnfermasView.setController(reporteCriasEnfermasController);
         reporteCriasEnfermasView.launchView();
-        
     }
+    
+    public void abrirProcesarSalidasCrias() {
+        ProcesarSalidasCriasView procesarSalidasCriasView = new ProcesarSalidasCriasView();
+        ProcesarSalidasCriasModel procesarSalidasCriasModel = new ProcesarSalidasCriasModel();
+        ProcesarSalidasCriasController procesarSalidasCriasController = new ProcesarSalidasCriasController(procesarSalidasCriasModel, procesarSalidasCriasView);
+        
+        procesarSalidasCriasView.setController(procesarSalidasCriasController);
+        procesarSalidasCriasView.launchView();
+    }
+    
+    
 
 }
