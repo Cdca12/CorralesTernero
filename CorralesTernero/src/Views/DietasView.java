@@ -58,15 +58,9 @@ public class DietasView extends JDialog {
     }
 
     private void addListeners() {
-        tablaDietas.getSelectionModel().addListSelectionListener(evt -> {
-            btnSeleccionar.setEnabled(true);
-        });
-        btnSeleccionar.addActionListener(evt -> {
-            guardarId();
-        });
-        btnCancelar.addActionListener(evt -> {
-            dispose();
-        });
+        tablaDietas.getSelectionModel().addListSelectionListener(dietasController);
+        btnSeleccionar.addActionListener(dietasController);
+        btnCancelar.addActionListener(dietasController);
     }
 
     private void generarTablaResultados() {
@@ -76,9 +70,25 @@ public class DietasView extends JDialog {
         scrollPane.setViewportView(tablaDietas);
     }
 
-    private void guardarId() {
+    public void guardarId() {
         String DietaID = tablaDietas.getValueAt(tablaDietas.getSelectedRow(), 0).toString();
         AñadirCriaView.setDietaID(DietaID);
         dispose();
     }
+
+    public JButton getBtnSeleccionar() {
+        return btnSeleccionar;
+    }
+
+    public JButton getBtnCancelar() {
+        return btnCancelar;
+    }
+
+    public JTable getTablaDietas() {
+        return tablaDietas;
+    }
+    
+    
+    
+    
 }

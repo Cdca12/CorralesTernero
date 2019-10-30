@@ -56,15 +56,10 @@ public class CorralesView extends JDialog {
     }
 
     private void addListeners() {
-        tablaCorrales.getSelectionModel().addListSelectionListener(evt -> {
-            btnSeleccionar.setEnabled(true);
-        });
-        btnSeleccionar.addActionListener(evt -> {
-            guardarId();
-        });
-        btnCancelar.addActionListener(evt -> {
-            dispose();
-        });
+        tablaCorrales.getSelectionModel().addListSelectionListener(corralesController);
+        btnSeleccionar.addActionListener(corralesController);
+        btnCancelar.addActionListener(corralesController);
+        
     }
 
     private void generarTablaResultados() {
@@ -74,9 +69,23 @@ public class CorralesView extends JDialog {
         scrollPane.setViewportView(tablaCorrales);
     }
 
-    private void guardarId() {
+    public void guardarId() {
         String corralID = tablaCorrales.getValueAt(tablaCorrales.getSelectedRow(), 0).toString();
         AñadirCriaView.setCorralID(corralID);
         dispose();
     }
+
+    public JTable getTablaCorrales() {
+        return tablaCorrales;
+    }
+
+    public JButton getBtnSeleccionar() {
+        return btnSeleccionar;
+    }
+
+    public JButton getBtnCancelar() {
+        return btnCancelar;
+    }
+    
+    
 }
