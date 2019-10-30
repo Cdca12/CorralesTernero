@@ -14,7 +14,7 @@ public class MenuPrincipalView extends JFrame {
 
     private JMenuBar menuBar;
     private JMenu criasJMenu;
-    private JMenuItem añadirCriaJMenuItem;
+    private JMenuItem añadirCriaJMenuItem, reporteCriasEnfermasJMenuItem;
     private JLabel logoEmpresa;
 
     public MenuPrincipalView() {
@@ -34,12 +34,17 @@ public class MenuPrincipalView extends JFrame {
         menuBar.setSize(100, 100);
         setJMenuBar(menuBar);
 
+        // Menu
         criasJMenu = new JMenu("Crías");
 
+        // MenuItem
         añadirCriaJMenuItem = new JMenuItem("Añadir Crías");
+        reporteCriasEnfermasJMenuItem = new JMenuItem("Reporte Crías Enfermas");
 
         criasJMenu.add(añadirCriaJMenuItem);
+        criasJMenu.add(reporteCriasEnfermasJMenuItem);
 
+        
         menuBar.add(criasJMenu);
     }
 
@@ -55,12 +60,18 @@ public class MenuPrincipalView extends JFrame {
 
     private void addListeners() {
         añadirCriaJMenuItem.addActionListener(menuPrincipalController);
+        reporteCriasEnfermasJMenuItem.addActionListener(menuPrincipalController);
     }
 
     // Getters
     public JMenuItem getAñadirCria() {
         return añadirCriaJMenuItem;
     }
+
+    public JMenuItem getReporteCriasEnfermasJMenuItem() {
+        return reporteCriasEnfermasJMenuItem;
+    }
+    
 
     // Métodos para abrir los menús
     public void abrirAñadirCria() {
@@ -70,6 +81,16 @@ public class MenuPrincipalView extends JFrame {
 
         añadirCriaView.setController(añadirCriaController);
         añadirCriaView.launchView();
+    }
+    
+    public void abrirReporteCriasEnfermas() {
+        ReporteCriasEnfermasView reporteCriasEnfermasView = new ReporteCriasEnfermasView();
+        ReporteCriasEnfermasModel reporteCriasEnfermasModel = new ReporteCriasEnfermasModel();
+        ReporteCriasEnfermasController reporteCriasEnfermasController = new ReporteCriasEnfermasController(reporteCriasEnfermasModel, reporteCriasEnfermasView);
+        
+        reporteCriasEnfermasView.setController(reporteCriasEnfermasController);
+        reporteCriasEnfermasView.launchView();
+        
     }
 
 }

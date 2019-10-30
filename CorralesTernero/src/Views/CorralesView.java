@@ -19,7 +19,7 @@ public class CorralesView extends JDialog {
     private JButton btnSeleccionar, btnCancelar;
 
     public CorralesView() {
-        setTitle("Dietas");
+        setTitle("Corrales");
         setSize(650, 350);
         setLayout(null);
         setLocationRelativeTo(null);
