@@ -15,6 +15,7 @@ import java.util.*;
 public class AñadirCriaModel {
 
     public AñadirCriaModel() {
+        
     }
 
     public synchronized int añadirCria(Crias cria) {

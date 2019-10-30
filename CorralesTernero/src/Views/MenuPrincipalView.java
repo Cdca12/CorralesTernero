@@ -50,7 +50,6 @@ public class MenuPrincipalView extends JFrame {
 
     public void setController(MenuPrincipalController menuPrincipalController) {
         this.menuPrincipalController = menuPrincipalController;
-        // TODO: Añadir escuchadores
         addListeners();
     }
 

@@ -30,7 +30,7 @@ public class AñadirCriaController implements ActionListener {
                     ((Peso) añadirCriaView.getCmbPeso().getSelectedItem()).getPesoID(),
                     ((GrasaCobertura) añadirCriaView.getCmbGrasaCobertura().getSelectedItem()).getGrasaCoberturaID(),
                     ((Musculo) añadirCriaView.getCmbMusculo().getSelectedItem()).getMusculoID(),
-                    ((Dietas) añadirCriaView.getCmbDieta().getSelectedItem()).getDietaID()));
+                    (añadirCriaView.getTxtDieta().getText())));
             return;
         }
         if (evt.getSource() == añadirCriaView.getBtnLimpiar()) {
@@ -38,8 +38,9 @@ public class AñadirCriaController implements ActionListener {
             return;
         }
         if (evt.getSource() == añadirCriaView.getBtnSeleccionarDieta()) {
-            DietasView dietasView = new DietasView();
-            dietasView.launchView();
+            añadirCriaView.abrirDietas();
+            return;
+            
         }
     }
 
