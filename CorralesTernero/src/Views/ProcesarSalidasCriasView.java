@@ -37,8 +37,6 @@ public class ProcesarSalidasCriasView extends JDialog {
     private void initComponents() {
         btnProcesar = new JButton("Procesar");
         btnProcesar.setBounds(1035, 160, 100, 30);
-//        btnProcesar.setEnabled(false);
-        // TODO: Habilitar si hay crias disponibles, si no, mantener deshabilitado
         add(btnProcesar);
 
         btnCancelar = new JButton("Cancelar");
@@ -58,6 +56,7 @@ public class ProcesarSalidasCriasView extends JDialog {
     public void setController(ProcesarSalidasCriasController procesarSalidasCriasController) {
         this.procesarSalidasCriasController = procesarSalidasCriasController;
         generarTablaResultados();
+        validarBotonProcesar();
         addListeners();
     }
 
@@ -97,5 +96,10 @@ public class ProcesarSalidasCriasView extends JDialog {
     public JButton getBtnCancelar() {
         return btnCancelar;
     }
-
+    
+    private void validarBotonProcesar() {
+        if (tablaProcesarSalidasCrias.getRowCount() == 0) {
+            btnProcesar.setEnabled(false);
+        }
+    }
 }

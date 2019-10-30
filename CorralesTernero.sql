@@ -30,15 +30,6 @@ CREATE TABLE Dietas (
 	AlimentoID int FOREIGN KEY REFERENCES Alimentos
 );
 
-CREATE TABLE Sensores (
-	Señal int IDENTITY PRIMARY KEY,
-	SensorID int NOT NULL INDEX IX_SensorID NONCLUSTERED,
-	PresionArterial int,
-	Respiracion int,
-	Pulso int,
-	Temperatura int
-);
-
 CREATE TABLE TipoCorral (
 	TipoCorralID int PRIMARY KEY,
 	Descripcion varchar(50) NOT NULL
@@ -54,6 +45,22 @@ CREATE TABLE Corrales (
 	EstadoID char(2) FOREIGN KEY REFERENCES Estados,
 	TipoCorralID int FOREIGN KEY REFERENCES TipoCorral,
 );
+
+
+CREATE TABLE Sensores (
+	SensorID int IDENTITY PRIMARY KEY,
+	CriasID int NOT NULL,
+);
+
+CREATE TABLE SeñalesSensores (
+	Señal int IDENTITY PRIMARY KEY,
+	SensorID int FOREIGN KEY REFERENCES Sensores,
+	PresionArterial int,
+	Respiracion int,
+	Pulso int,
+	Temperatura int
+)
+
 
 CREATE TABLE Crias (
 	CriasID int IDENTITY PRIMARY KEY,
