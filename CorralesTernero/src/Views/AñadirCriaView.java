@@ -123,6 +123,7 @@ public class AñadirCriaView extends JDialog {
     private void addListeners() {
         btnAñadir.addActionListener(añadirCriaController);
         btnLimpiar.addActionListener(añadirCriaController);
+        btnSeleccionarCorral.addActionListener(añadirCriaController);
         btnSeleccionarDieta.addActionListener(añadirCriaController);
     }
 
@@ -173,6 +174,10 @@ public class AñadirCriaView extends JDialog {
         return btnSeleccionarDieta;
     }
 
+    public JButton getBtnSeleccionarCorral() {
+        return btnSeleccionarCorral;
+    }
+    
     public JTextField getTxtCorral() {
         return txtCorral;
     }
@@ -192,6 +197,10 @@ public class AñadirCriaView extends JDialog {
     public JTextField getTxtDieta() {
         return txtDieta;
     }
+    
+    public static void setCorralID(String corralID) {
+        txtCorral.setText(corralID);
+    }
 
     public static void setDietaID(String dietaID) {
         txtDieta.setText(dietaID);
@@ -201,10 +210,19 @@ public class AñadirCriaView extends JDialog {
     public void abrirDietas() {
         DietasView dietasView = new DietasView();
         DietasModel dietasModel = new DietasModel();
-        DietasController añadirCriaController = new DietasController(dietasModel, dietasView);
+        DietasController dietasController = new DietasController(dietasModel, dietasView);
 
-        dietasView.setController(añadirCriaController);
+        dietasView.setController(dietasController);
         dietasView.launchView();
+    }
+    
+    public void abrirCorrales() {
+        CorralesView corralesView = new CorralesView();
+        CorralesModel corralesModel = new CorralesModel();
+        CorralesController corralesController = new CorralesController(corralesModel, corralesView);
+        
+        corralesView.setController(corralesController);
+        corralesView.launchView();
     }
 
 }

@@ -37,11 +37,15 @@ public class AñadirCriaController implements ActionListener {
             añadirCriaView.limpiarCampos();
             return;
         }
+        if (evt.getSource() == añadirCriaView.getBtnSeleccionarCorral()) {
+            añadirCriaView.abrirCorrales();
+            return;
+        }
         if (evt.getSource() == añadirCriaView.getBtnSeleccionarDieta()) {
             añadirCriaView.abrirDietas();
             return;
-            
         }
+        
     }
 
     private void ejecutarAccion(int statusAccion) {
