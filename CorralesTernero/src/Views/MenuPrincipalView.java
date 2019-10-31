@@ -13,8 +13,8 @@ public class MenuPrincipalView extends JFrame {
     private MenuPrincipalController menuPrincipalController;
 
     private JMenuBar menuBar;
-    private JMenu criasJMenu;
-    private JMenuItem añadirCriaJMenuItem, reporteCriasEnfermasJMenuItem, procesarSalidasCriasJMenuItem;
+    private JMenu criasJMenu, sensoresJMenu;
+    private JMenuItem añadirCriaJMenuItem, reporteCriasEnfermasJMenuItem, procesarSalidasCriasJMenuItem, simularSeñalesJMenuItem;
     private JLabel logoEmpresa;
 
     public MenuPrincipalView() {
@@ -36,18 +36,23 @@ public class MenuPrincipalView extends JFrame {
 
         // Menu
         criasJMenu = new JMenu("Crías");
+        sensoresJMenu = new JMenu("Sensores");
 
         // MenuItem
         añadirCriaJMenuItem = new JMenuItem("Añadir Crías");
         reporteCriasEnfermasJMenuItem = new JMenuItem("Reporte Crías Enfermas");
         procesarSalidasCriasJMenuItem = new JMenuItem("Procesar Salidas");
+        
+        simularSeñalesJMenuItem = new JMenuItem("Simular señales");
 
         criasJMenu.add(añadirCriaJMenuItem);
         criasJMenu.add(reporteCriasEnfermasJMenuItem);
         criasJMenu.add(procesarSalidasCriasJMenuItem);
-
+        
+        sensoresJMenu.add(simularSeñalesJMenuItem);
         
         menuBar.add(criasJMenu);
+        menuBar.add(sensoresJMenu);
     }
 
     public void launchView() {
@@ -64,6 +69,7 @@ public class MenuPrincipalView extends JFrame {
         añadirCriaJMenuItem.addActionListener(menuPrincipalController);
         reporteCriasEnfermasJMenuItem.addActionListener(menuPrincipalController);
         procesarSalidasCriasJMenuItem.addActionListener(menuPrincipalController);
+        simularSeñalesJMenuItem.addActionListener(menuPrincipalController);
     }
 
     // Getters
@@ -78,7 +84,10 @@ public class MenuPrincipalView extends JFrame {
     public JMenuItem getProcesarSalidasCrias() {
         return procesarSalidasCriasJMenuItem;
     }
-    
+
+    public JMenuItem getSimularSeñalesJMenuItem() {
+        return simularSeñalesJMenuItem;
+    }
 
     // Métodos para abrir los menús
     public void abrirAñadirCria() {
@@ -108,6 +117,14 @@ public class MenuPrincipalView extends JFrame {
         procesarSalidasCriasView.launchView();
     }
     
-    
+    public void abrirSimularSeñales() {
+        // TODO: Simular Señales
+        SimularSeñalesView simularSeñalesView = new SimularSeñalesView();
+        SimularSeñalesModel simularSeñalesModel = new SimularSeñalesModel();
+        SimularSeñalesController simularSeñalesController = new SimularSeñalesController(simularSeñalesModel, simularSeñalesView);
+        
+        simularSeñalesView.setController(simularSeñalesController);
+        simularSeñalesView.launchView();
+    }
 
 }

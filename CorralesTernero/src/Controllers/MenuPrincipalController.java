@@ -36,6 +36,10 @@ public class MenuPrincipalController implements ActionListener {
             menuPrincipalView.abrirProcesarSalidasCrias();
             return;
         }
+        if (evt.getSource() == menuPrincipalView.getSimularSeñalesJMenuItem()) {
+            menuPrincipalView.abrirSimularSeñales();
+            return;
+        }
     }
     
 }
