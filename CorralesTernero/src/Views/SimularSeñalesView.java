@@ -16,13 +16,13 @@ import javax.swing.JTextField;
 public class SimularSeñalesView extends JDialog {
     
     private SimularSeñalesController simularSeñalesController;
-    private JLabel lbSensorID, lbPresionArterial, lbPulso, lbTemperatura, lbNumeroSimulaciones;
-    private JTextField txtSensorID, txtPresionArterial, txtPulso, txtTemperatura, txtNumeroSimulaciones;
+    private JLabel lbSensorID, lbNumeroSimulaciones;
+    private JTextField txtSensorID, txtNumeroSimulaciones;
     private JButton btnIniciarSimulacion;
     
     public SimularSeñalesView() {
         setTitle("Simular Señales");
-        setSize(300, 350);
+        setSize(300, 200);
         setLayout(null);
         setLocationRelativeTo(null);
         setResizable(false);
@@ -38,24 +38,9 @@ public class SimularSeñalesView extends JDialog {
         lbSensorID.setBounds(55, 40, 100, 20);
         add(lbSensorID);
 
-        lbPresionArterial = new JLabel("Presion Arterial");
-        lbPresionArterial.setFont(new Font("Arial", Font.PLAIN, 14));
-        lbPresionArterial.setBounds(30, lbSensorID.getY() + 40, 150, 20);
-        add(lbPresionArterial);
-
-        lbPulso = new JLabel("Pulso");
-        lbPulso.setFont(new Font("Arial", Font.PLAIN, 14));
-        lbPulso.setBounds(65, lbPresionArterial.getY() + 40, 150, 20);
-        add(lbPulso);
-
-        lbTemperatura = new JLabel("Temperatura");
-        lbTemperatura.setFont(new Font("Arial", Font.PLAIN, 14));
-        lbTemperatura.setBounds(40, lbPulso.getY() + 40, 150, 20);
-        add(lbTemperatura);
-        
         lbNumeroSimulaciones = new JLabel("# Simulaciones");
         lbNumeroSimulaciones.setFont(new Font("Arial", Font.PLAIN, 14));
-        lbNumeroSimulaciones.setBounds(35, lbTemperatura.getY() + 40, 150, 20);
+        lbNumeroSimulaciones.setBounds(35, lbSensorID.getY() + 40, 150, 20);
         add(lbNumeroSimulaciones);
         
         // TextFields
@@ -63,28 +48,13 @@ public class SimularSeñalesView extends JDialog {
         txtSensorID.setBounds(150, lbSensorID.getY() -5 , 100, 30);
         add(txtSensorID);
 
-        txtPresionArterial = new JTextField();
-        txtPresionArterial.setBounds(txtSensorID.getX(), lbPresionArterial.getY() - 5, 100, 30);
-        txtPresionArterial.setEditable(false);
-        add(txtPresionArterial);
-        
-        txtPulso = new JTextField();
-        txtPulso.setBounds(txtSensorID.getX(), lbPulso.getY() - 5, 100, 30);
-        txtPulso.setEditable(false);
-        add(txtPulso);
-        
-        txtTemperatura = new JTextField();
-        txtTemperatura.setBounds(txtSensorID.getX(), lbTemperatura.getY() - 5, 100, 30);
-        txtTemperatura.setEditable(false);
-        add(txtTemperatura);
-        
         txtNumeroSimulaciones = new JTextField();
         txtNumeroSimulaciones.setBounds(txtSensorID.getX(), lbNumeroSimulaciones.getY() - 5, 100, 30);
         add(txtNumeroSimulaciones);
         
         // Buttons
         btnIniciarSimulacion = new JButton("Iniciar Simulación");
-        btnIniciarSimulacion.setBounds(50, 250, 200, 30);
+        btnIniciarSimulacion.setBounds(50, 120, 200, 30);
         add(btnIniciarSimulacion);
 
     }
@@ -106,20 +76,18 @@ public class SimularSeñalesView extends JDialog {
         return txtSensorID;
     }
 
-    public JTextField getTxtPresionArterial() {
-        return txtPresionArterial;
-    }
-
-    public JTextField getTxtTemperatura() {
-        return txtTemperatura;
-    }
-
     public JTextField getTxtNumeroSimulaciones() {
         return txtNumeroSimulaciones;
     }
 
     public JButton getBtnIniciarSimulacion() {
         return btnIniciarSimulacion;
+    }
+    
+    public void limpiarCampos() {
+        txtSensorID.setText("");
+        txtNumeroSimulaciones.setText("");
+        txtSensorID.requestFocus();
     }
     
     

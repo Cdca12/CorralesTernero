@@ -25,6 +25,7 @@ public class SimularSeñalesController implements ActionListener {
             String sensorID = simularSeñalesView.getTxtSensorID().getText();
             int numeroSimulaciones = Integer.parseInt(simularSeñalesView.getTxtNumeroSimulaciones().getText());
             simularSeñalesModel.simularSeñales(sensorID, numeroSimulaciones);
+            simularSeñalesView.limpiarCampos();
             return;
         }
     }
