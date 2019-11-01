@@ -25,12 +25,13 @@ public class AñadirCriaController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent evt) {
         if (evt.getSource() == añadirCriaView.getBtnAñadir()) {
-            ejecutarAccion(añadirCriaModel.añadirCria(
-                    añadirCriaView.getTxtCorral().getText(),
-                    añadirCriaView.getTxtPeso().getText(),
-                    ((GrasaCobertura) añadirCriaView.getCmbGrasaCobertura().getSelectedItem()).getGrasaCoberturaID(),
-                    ((Musculo) añadirCriaView.getCmbTipoMusculo().getSelectedItem()).getMusculoID(),
-                    añadirCriaView.getTxtDieta().getText()));
+            Crias cria = new Crias();
+            cria.setCorralID(añadirCriaView.getTxtCorral().getText());
+            cria.setPesoID(añadirCriaView.getTxtPeso().getText());
+            cria.setGrasaCoberturaID(((GrasaCobertura) añadirCriaView.getCmbGrasaCobertura().getSelectedItem()).getGrasaCoberturaID());
+            cria.setMusculoID(((Musculo) añadirCriaView.getCmbTipoMusculo().getSelectedItem()).getMusculoID());
+            cria.setDietaID((añadirCriaView.getTxtDieta().getText()));
+            ejecutarAccion(añadirCriaModel.añadirCria(cria));
             return;
         }
         if (evt.getSource() == añadirCriaView.getBtnLimpiar()) {
@@ -45,7 +46,7 @@ public class AñadirCriaController implements ActionListener {
             añadirCriaView.abrirDietas();
             return;
         }
-        
+
     }
 
     private void ejecutarAccion(int statusAccion) {
@@ -59,7 +60,7 @@ public class AñadirCriaController implements ActionListener {
                 break;
         }
     }
-    
+
     public List<Corrales> obtenerCorrales() {
         return añadirCriaModel.obtenerCorrales();
     }

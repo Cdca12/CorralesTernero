@@ -21,16 +21,6 @@ public class AñadirCriaModel {
     public synchronized int añadirCria(Crias cria) {
         return Crias.añadirCria(cria);
     }
-
-    public synchronized int añadirCria(String CorralID, String PesoID, String GrasaCoberturaID, String MusculoID, String DietaID) {
-        Crias cria = new Crias();
-        cria.setCorralID(CorralID);
-        cria.setPesoID(PesoID);
-        cria.setGrasaCoberturaID(GrasaCoberturaID);
-        cria.setMusculoID(MusculoID);
-        cria.setDietaID(DietaID);
-        return Crias.añadirCria(cria);
-    }
     
     public List<Corrales> obtenerCorrales() {
         List<Corrales> listaCorrales = new ArrayList();
