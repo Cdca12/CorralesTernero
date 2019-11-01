@@ -25,5 +25,12 @@ AS
 		WHERE CriasID IN (
 			SELECT CriasID FROM #CriasAProcesar
 		)
+		
 	
+
+	COMMIT TRAN
 	END
+
+
+
+

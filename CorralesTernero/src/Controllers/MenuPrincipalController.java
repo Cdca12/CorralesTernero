@@ -24,20 +24,24 @@ public class MenuPrincipalController implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent evt) {
-        if (evt.getSource() == menuPrincipalView.getAñadirCria()) {
+        if (evt.getSource() == menuPrincipalView.getAñadirCriaJMenu()) {
             menuPrincipalView.abrirAñadirCria();
             return;
         }
-        if (evt.getSource() == menuPrincipalView.getReporteCriasEnfermas()) {
+        if (evt.getSource() == menuPrincipalView.getReporteCriasEnfermasJMenu()) {
             menuPrincipalView.abrirReporteCriasEnfermas();
             return;
         }
-        if (evt.getSource() == menuPrincipalView.getProcesarSalidasCrias()) {
+        if (evt.getSource() == menuPrincipalView.getProcesarSalidasCriasJMenu()) {
             menuPrincipalView.abrirProcesarSalidasCrias();
             return;
         }
         if (evt.getSource() == menuPrincipalView.getSimularSeñalesJMenuItem()) {
             menuPrincipalView.abrirSimularSeñales();
+            return;
+        }
+        if (evt.getSource() == menuPrincipalView.getAnalizarSeñalesSensoresJMenuItem()) {
+            menuPrincipalView.abrirAnalizarSeñalesSensores();
             return;
         }
     }

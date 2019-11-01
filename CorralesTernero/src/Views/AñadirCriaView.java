@@ -149,7 +149,7 @@ public class AñadirCriaView extends JDialog {
 
     private void cargarTiposMusculo(List<Musculo> listaMusculos) {
         cmbTipoMusculo.setModel(new DefaultComboBoxModel(listaMusculos.toArray()));
-        cmbTipoMusculo.insertItemAt("Seleccionar opcíón", 0);
+        cmbTipoMusculo.insertItemAt("Seleccionar una opcíón", 0);
         cmbTipoMusculo.setSelectedIndex(0);
     }
 
