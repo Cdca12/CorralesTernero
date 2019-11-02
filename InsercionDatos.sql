@@ -49,26 +49,120 @@ VALUES
 	(2, (SELECT EstadoID FROM Estados WHERE Nombre = 'Ciudad de México'), (SELECT TipoCorralID FROM TipoCorral WHERE Descripcion = 'Enfermos'));
 
 
---Insertar Crias
+--Insertar Crias Test
 INSERT INTO Crias (CorralID, Peso, Grasa, MusculoID, DietaID)
 VALUES 
-	(1, 50, 25, 1, 1);
+	(1, 35, 7, 1, 1);
 
 INSERT INTO Crias (CorralID, Peso, Grasa, MusculoID, DietaID)
 VALUES 
-	(1, 55, 30, 2, 2);
+	(1, 35, 10, 1, 1);
+
+--GrasaCobertura2
+INSERT INTO Crias (CorralID, Peso, Grasa, MusculoID, DietaID)
+VALUES 
+	(1, 35, 15, 1, 1);
 
 INSERT INTO Crias (CorralID, Peso, Grasa, MusculoID, DietaID)
 VALUES 
-	(1, 60, 35, 1, 3);
+	(1, 35, 25, 1, 1);
+
+--
+INSERT INTO Crias (CorralID, Peso, Grasa, MusculoID, DietaID)
+VALUES 
+	(1, 55, 12, 1, 1);
 
 INSERT INTO Crias (CorralID, Peso, Grasa, MusculoID, DietaID)
 VALUES 
-	(1, 45, 20, 2, 1);
+	(1, 55, 15, 1, 1);
+
+--GrasaCobertura2
+INSERT INTO Crias (CorralID, Peso, Grasa, MusculoID, DietaID)
+VALUES 
+	(1, 55, 23, 1, 1);
+
+INSERT INTO Crias (CorralID, Peso, Grasa, MusculoID, DietaID)
+VALUES 
+	(1, 55, 27, 1, 1);
+
+--
+INSERT INTO Crias (CorralID, Peso, Grasa, MusculoID, DietaID)
+VALUES 
+	(1, 75, 15, 1, 1);
+
+INSERT INTO Crias (CorralID, Peso, Grasa, MusculoID, DietaID)
+VALUES 
+	(1, 75, 24, 1, 1);
+
+--GrasaCobertura2
+INSERT INTO Crias (CorralID, Peso, Grasa, MusculoID, DietaID)
+VALUES 
+	(1, 75, 35, 1, 1);
+
+INSERT INTO Crias (CorralID, Peso, Grasa, MusculoID, DietaID)
+VALUES 
+	(1, 75, 40, 1, 1);
+
+
+--Carnes Blancas
+
+INSERT INTO Crias (CorralID, Peso, Grasa, MusculoID, DietaID)
+VALUES 
+	(1, 55, 7, 2, 1);
+
+INSERT INTO Crias (CorralID, Peso, Grasa, MusculoID, DietaID)
+VALUES 
+	(1, 55, 10, 2, 1);
+
+--GrasaCobertura2
+INSERT INTO Crias (CorralID, Peso, Grasa, MusculoID, DietaID)
+VALUES 
+	(1, 55, 15, 2, 1);
+
+INSERT INTO Crias (CorralID, Peso, Grasa, MusculoID, DietaID)
+VALUES 
+	(1, 55, 25, 2, 1);
+
+
+--
+INSERT INTO Crias (CorralID, Peso, Grasa, MusculoID, DietaID)
+VALUES 
+	(1, 73, 12, 2, 1);
+
+INSERT INTO Crias (CorralID, Peso, Grasa, MusculoID, DietaID)
+VALUES 
+	(1, 73, 15, 2, 1);
+
+--GrasaCobertura2
+INSERT INTO Crias (CorralID, Peso, Grasa, MusculoID, DietaID)
+VALUES
+	(1, 73, 23, 2, 1);
+
+INSERT INTO Crias (CorralID, Peso, Grasa, MusculoID, DietaID)
+VALUES 
+	(1, 73, 27, 2, 1);
+
+--
+INSERT INTO Crias (CorralID, Peso, Grasa, MusculoID, DietaID)
+VALUES 
+	(1, 94, 15, 2, 1);
+
+INSERT INTO Crias (CorralID, Peso, Grasa, MusculoID, DietaID)
+VALUES 
+	(1, 94, 24, 2, 1);
+
+--GrasaCobertura2
+INSERT INTO Crias (CorralID, Peso, Grasa, MusculoID, DietaID)
+VALUES 
+	(1, 94, 35, 2, 1);
+
+INSERT INTO Crias (CorralID, Peso, Grasa, MusculoID, DietaID)
+VALUES 
+	(1, 94, 40, 2, 1);
+
+
 
 	-- Tests:
 	-- Sensores se inserta cuando una cría se clasifica con grasa cobertura 2
 	-- SeñalesSensores se inserta desde la app, simulando el envío de señales
-	-- TrasladosCrias se inserta cuando se añade una nueva cria
-
---Pendiente: Acomodar a la Cria, para insertar en la tabla TrasladosCrias
+	-- TrasladosCrias se inserta cuando se añade una nueva cria o se meuve de Corral (Proceso de enfermarse)

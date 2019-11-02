@@ -1,18 +1,14 @@
-CREATE TRIGGER triAsignarSensor
-ON Crias
-
-AFTER INSERT
+CREATE PROCEDURE spAsignarSensor
+	@CriaID int,
+	@GrasaCoberturaID int
+	
 AS
 	BEGIN
-		DECLARE 
-			@GrasaCoberturaCria int,
-			@CriaID int,
-			@SensorID int 
 
-		SELECT @GrasaCoberturaCria = GrasaCoberturaID, @CriaID = CriaID, @SensorID = CriaID FROM inserted
-	
+		DECLARE @SensorID int
+
 		-- Regla de negocio, si la grasa cobertura es 2 se le añade un sensor para monitoreo
-		IF @GrasaCoberturaCria = 2 
+		IF @GrasaCoberturaID = 2 
 			BEGIN				
 			--TODO: Hacer transaccion para atomizar el INSERT con el UPDATE
 					INSERT INTO Sensores

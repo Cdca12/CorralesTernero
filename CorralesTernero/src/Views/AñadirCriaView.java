@@ -55,7 +55,7 @@ public class AñadirCriaView extends JDialog {
         lbPeso.setBounds(200, lbTipoMusculo.getY() + 40, 150, 20);
         add(lbPeso);
         
-        JLabel lbKgPeso = new JLabel("kgPeso");
+        JLabel lbKgPeso = new JLabel("kg");
         lbKgPeso.setFont(new Font("Arial", Font.PLAIN, 14));
         lbKgPeso.setBounds(370, lbPeso.getY(), 150, 20);
         add(lbKgPeso);
@@ -65,7 +65,7 @@ public class AñadirCriaView extends JDialog {
         lbGrasa.setBounds(195, lbPeso.getY() + 40, 150, 20);
         add(lbGrasa);
 
-        JLabel lbKgGrasa = new JLabel("kgGrasa");
+        JLabel lbKgGrasa = new JLabel("kg");
         lbKgGrasa.setFont(new Font("Arial", Font.PLAIN, 14));
         lbKgGrasa.setBounds(370, lbGrasa.getY(), 150, 20);
         add(lbKgGrasa);
@@ -186,7 +186,7 @@ public class AñadirCriaView extends JDialog {
         return txtDieta;
     }
 
-    public static JTextField getTxtGrasa() {
+    public JTextField getTxtGrasa() {
         return txtGrasa;
     }
     
