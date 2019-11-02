@@ -3,16 +3,18 @@ ON Crias
 
 AFTER INSERT
 AS
-	BEGIN
+
+DECLARE 
+	@CriasID int,
+	@CorralID int;
 	
-		INSERT INTO TrasladosCrias
-		VALUES (
-			(SELECT CorralID FROM inserted),
-			(SELECT CriasID FROM inserted),
-			DEFAULT,
-			NULL,
-			0
-		)
+
+SELECT @CriasID = CriasID, @CorralID = CorralID FROM inserted;
+
+	BEGIN
+		INSERT INTO TrasladosCrias (CorralID, CriasID)
+		VALUES 
+			(@CorralID, @CriasID);
 	END
 
 	
