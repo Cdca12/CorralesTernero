@@ -36,6 +36,7 @@ public class ProcesarSalidasCriasModel {
                 row.add(resultQuery.getString(5));
                 row.add(resultQuery.getString(6));
                 row.add(resultQuery.getString(7));
+                row.add(resultQuery.getString(8));
                 datosTabla.add(row);
             }
         } catch (SQLException e) {

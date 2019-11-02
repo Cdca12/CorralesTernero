@@ -69,13 +69,13 @@ public class ProcesarSalidasCriasView extends JDialog {
     private void generarTablaResultados() {
         Vector<Vector<String>> datosTablaProcesarSalidasCrias = procesarSalidasCriasController.obtenerDatosTabla();
         vectorNombreColumnas = new Vector<>(Arrays.asList(
-                "CriasID",
+                "CriaID",
                 "CorralID",
                 "Peso",
                 "GrasaCobertura",
                 "TipoMusculo",
                 "EstadoCria",
-                "DiasEnCorral"
+                "DiasEdad"
         ));
         tablaProcesarSalidasCrias = new JTable(datosTablaProcesarSalidasCrias, vectorNombreColumnas);
         scrollPane.setViewportView(tablaProcesarSalidasCrias);
