@@ -5,7 +5,9 @@ INSERT INTO EstadoCria
 VALUES
 	(1, 'Saludable'),
 	(2, 'En Tratamiento'),
-	(3, 'Sacrificado');
+	(3, 'Sacrificado'),
+	(4, 'Procesado');
+
 
 INSERT INTO GrasaCobertura
 VALUES

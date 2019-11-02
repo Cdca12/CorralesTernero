@@ -95,4 +95,5 @@ DECLARE
 	WHERE CriaID = @CriaID
 
 	--Asignar Sensor en base a la GrasaCobertura actualizada
-	EXECUTE spAsignarSensor @CriaID, @GrasaCoberturaID
+	IF @GrasaCoberturaID = 2
+	EXECUTE spAsignarSensor @CriaID

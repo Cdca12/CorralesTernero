@@ -62,7 +62,7 @@ CREATE TABLE SeñalesSensores (
 
 CREATE TABLE Crias (
 	CriaID int IDENTITY PRIMARY KEY,
-	CorralID int FOREIGN KEY REFERENCES Corrales NOT NULL, 
+	CorralID int FOREIGN KEY REFERENCES Corrales, 
 	Peso int NOT NULL,
 	Grasa int NOT NULL,
 	GrasaCoberturaID int FOREIGN KEY REFERENCES GrasaCobertura NULL,

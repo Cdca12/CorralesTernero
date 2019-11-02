@@ -4,33 +4,28 @@ CREATE PROCEDURE spProcesarSalidasCrias
 AS
 	BEGIN
 
-	if OBJECT_ID('tempdb.dbo.#CriasAProcesar') IS NOT NULL DROP TABLE #CriasAProcesar
+	IF OBJECT_ID('tempdb.dbo.#CriasAProcesar') IS NOT NULL DROP TABLE #CriasAProcesar
 
 		CREATE TABLE #CriasAProcesar (
-			CriasID int
+			CriaID int
 		)
 
 		INSERT INTO #CriasAProcesar
-		SELECT CriasID FROM TrasladosCrias
-		WHERE DiasEnCorral >= 150
+		SELECT CriaID FROM Crias
+		WHERE EstadoCriaID = 1
+		AND DiasEdad >= 150
 		
+
 		UPDATE TrasladosCrias
 		SET FechaEgreso = GETDATE()
-		WHERE CriasID IN (
-			SELECT CriasID FROM #CriasAProcesar
+		WHERE CriaID IN (
+			SELECT CriaID FROM #CriasAProcesar
 		)
 
 		UPDATE Crias
-		SET CorralID = NULL
-		WHERE CriasID IN (
-			SELECT CriasID FROM #CriasAProcesar
+		SET CorralID = NULL, EstadoCriaID = 4
+		WHERE CriaID IN (
+			SELECT CriaID FROM #CriasAProcesar
 		)
-		
 	
-
-	COMMIT TRAN
 	END
-
-
-
-

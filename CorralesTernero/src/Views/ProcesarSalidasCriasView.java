@@ -25,7 +25,7 @@ public class ProcesarSalidasCriasView extends JDialog {
 
     public ProcesarSalidasCriasView() {
         setTitle("Procesar Salidas");
-        setSize(1200, 350);
+        setSize(1300, 350);
         setLayout(null);
         setLocationRelativeTo(null);
         setResizable(false);
@@ -36,7 +36,7 @@ public class ProcesarSalidasCriasView extends JDialog {
 
     private void initComponents() {
         btnProcesar = new JButton("Procesar");
-        btnProcesar.setBounds(1035, 160, 100, 30);
+        btnProcesar.setBounds(1135, 160, 100, 30);
         add(btnProcesar);
 
         btnCancelar = new JButton("Cancelar");
@@ -44,7 +44,7 @@ public class ProcesarSalidasCriasView extends JDialog {
         add(btnCancelar);
 
         scrollPane = new JScrollPane();
-        scrollPane.setBounds(30, 30, 950, 250);
+        scrollPane.setBounds(30, 30, 1050, 250);
         add(scrollPane);
 
     }
@@ -72,6 +72,7 @@ public class ProcesarSalidasCriasView extends JDialog {
                 "CriaID",
                 "CorralID",
                 "Peso",
+                "Grasa",
                 "GrasaCobertura",
                 "TipoMusculo",
                 "EstadoCria",
@@ -79,10 +80,6 @@ public class ProcesarSalidasCriasView extends JDialog {
         ));
         tablaProcesarSalidasCrias = new JTable(datosTablaProcesarSalidasCrias, vectorNombreColumnas);
         scrollPane.setViewportView(tablaProcesarSalidasCrias);
-    }
-
-    public void procesarSalidas() {
-        // Nada aun...
     }
 
     public JTable getTablaProcesarSalidasCrias() {
