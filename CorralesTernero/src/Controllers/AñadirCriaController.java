@@ -27,8 +27,8 @@ public class AñadirCriaController implements ActionListener {
         if (evt.getSource() == añadirCriaView.getBtnAñadir()) {
             Crias cria = new Crias();
             cria.setCorralID(añadirCriaView.getTxtCorral().getText());
-            cria.setPesoID(añadirCriaView.getTxtPeso().getText());
-            cria.setGrasaCoberturaID(((GrasaCobertura) añadirCriaView.getCmbGrasaCobertura().getSelectedItem()).getGrasaCoberturaID());
+            cria.setPeso(añadirCriaView.getTxtPeso().getText());
+            cria.setGrasa((añadirCriaView.getTxtGrasa().getText()));
             cria.setMusculoID(((Musculo) añadirCriaView.getCmbTipoMusculo().getSelectedItem()).getMusculoID());
             cria.setDietaID((añadirCriaView.getTxtDieta().getText()));
             ejecutarAccion(añadirCriaModel.añadirCria(cria));

@@ -48,7 +48,7 @@ CREATE TABLE Corrales (
 
 CREATE TABLE Sensores (
 	SensorID int IDENTITY PRIMARY KEY,
-	CriasID int NOT NULL,
+	CriaID int NOT NULL,
 );
 
 CREATE TABLE SeñalesSensores (
@@ -61,7 +61,7 @@ CREATE TABLE SeñalesSensores (
 );
 
 CREATE TABLE Crias (
-	CriasID int IDENTITY PRIMARY KEY,
+	CriaID int IDENTITY PRIMARY KEY,
 	CorralID int FOREIGN KEY REFERENCES Corrales NOT NULL, 
 	Peso int NOT NULL,
 	Grasa int NOT NULL,
@@ -76,7 +76,7 @@ CREATE TABLE Crias (
 CREATE TABLE TrasladosCrias (
 	Transaccion int IDENTITY PRIMARY KEY,
 	CorralID int FOREIGN KEY REFERENCES Corrales INDEX IX_CorralID NONCLUSTERED,
-	CriasID int FOREIGN KEY REFERENCES Crias INDEX IX_CriasID NONCLUSTERED,
+	CriaID int FOREIGN KEY REFERENCES Crias INDEX IX_CriaID NONCLUSTERED,
 	FechaIngreso date NOT NULL DEFAULT CAST(GETDATE() as date),
 	FechaEgreso date, --Default NULL
 	DiasEnCorral int NOT NULL DEFAULT 0

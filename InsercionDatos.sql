@@ -52,9 +52,18 @@ VALUES
 --Insertar Crias
 INSERT INTO Crias (CorralID, Peso, Grasa, MusculoID, DietaID)
 VALUES 
-	(1, 50, 25, 1, 1),
-	(1, 55, 30, 2, 2),
-	(1, 60, 35, 1, 3),
+	(1, 50, 25, 1, 1);
+
+INSERT INTO Crias (CorralID, Peso, Grasa, MusculoID, DietaID)
+VALUES 
+	(1, 55, 30, 2, 2);
+
+INSERT INTO Crias (CorralID, Peso, Grasa, MusculoID, DietaID)
+VALUES 
+	(1, 60, 35, 1, 3);
+
+INSERT INTO Crias (CorralID, Peso, Grasa, MusculoID, DietaID)
+VALUES 
 	(1, 45, 20, 2, 1);
 
 	-- Tests:

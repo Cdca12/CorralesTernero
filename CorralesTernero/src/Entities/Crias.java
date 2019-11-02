@@ -4,9 +4,6 @@ import DataAccesor.SQLConnectionHelper;
 import Utils.Status;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 /**
  * Clase que modela la entidad de Crias
@@ -15,30 +12,27 @@ import javax.swing.JOptionPane;
  */
 public class Crias {
 
-    private String CriasID;
+    private String CriaID;
     private String CorralID;
-    private String PesoID;
+    private String Peso;
+    private String Grasa;
     private String GrasaCoberturaID;
     private String MusculoID;
-    private String EstadoCriaID;
-    private String DietaID;
     private String SensorID;
-    private String VecesEnTratamiento;
+    private String DietaID;
+    private String EstadoCriaID;
+    private String DiasEdad;
 
     public Crias() {
-        // Defaults
-        this.EstadoCriaID = "DEFAULT"; // 1
-        this.DietaID = "DEFAULT"; // 1
-        this.SensorID = "NULL";
-        this.VecesEnTratamiento = "DEFAULT"; // 0
+        // Constructor vacío
     }
 
-    public String getCriasID() {
-        return CriasID;
+    public String getCriaID() {
+        return CriaID;
     }
 
-    public void setCriasID(String CriasID) {
-        this.CriasID = CriasID;
+    public void setCriaID(String CriaID) {
+        this.CriaID = CriaID;
     }
 
     public String getCorralID() {
@@ -49,12 +43,20 @@ public class Crias {
         this.CorralID = CorralID;
     }
 
-    public String getPesoID() {
-        return PesoID;
+    public String getPeso() {
+        return Peso;
     }
 
-    public void setPesoID(String PesoID) {
-        this.PesoID = PesoID;
+    public void setPeso(String Peso) {
+        this.Peso = Peso;
+    }
+
+    public String getGrasa() {
+        return Grasa;
+    }
+
+    public void setGrasa(String Grasa) {
+        this.Grasa = Grasa;
     }
 
     public String getGrasaCoberturaID() {
@@ -73,12 +75,12 @@ public class Crias {
         this.MusculoID = MusculoID;
     }
 
-    public String getEstadoCriaID() {
-        return EstadoCriaID;
+    public String getSensorID() {
+        return SensorID;
     }
 
-    public void setEstadoCriaID(String EstadoCriaID) {
-        this.EstadoCriaID = EstadoCriaID;
+    public void setSensorID(String SensorID) {
+        this.SensorID = SensorID;
     }
 
     public String getDietaID() {
@@ -89,22 +91,22 @@ public class Crias {
         this.DietaID = DietaID;
     }
 
-    public String getSensorID() {
-        return SensorID;
+    public String getEstadoCriaID() {
+        return EstadoCriaID;
     }
 
-    public void setSensorID(String SensorID) {
-        this.SensorID = SensorID;
+    public void setEstadoCriaID(String EstadoCriaID) {
+        this.EstadoCriaID = EstadoCriaID;
     }
 
-    public String getVecesEnTratamiento() {
-        return VecesEnTratamiento;
+    public String getDiasEdad() {
+        return DiasEdad;
     }
 
-    public void setVecesEnTratamiento(String VecesEnTratamiento) {
-        this.VecesEnTratamiento = VecesEnTratamiento;
+    public void setDiasEdad(String DiasEdad) {
+        this.DiasEdad = DiasEdad;
     }
-    
+
     // Métodos CRUD
     public static synchronized int añadirCria(Crias cria) {
         Statement conexion = SQLConnectionHelper.getConnection();
@@ -112,15 +114,14 @@ public class Crias {
             return Status.ERROR_CONNECTION;
         }
         try {
-            conexion.execute("INSERT INTO Crias VALUES ("
+            conexion.execute(
+                    "INSERT INTO Crias (CorralID, Peso, Grasa, MusculoID, DietaID) "
+                    + "VALUES ("
                     + cria.CorralID + ", "
-                    + cria.PesoID + ", "
-                    + cria.GrasaCoberturaID + ", "
+                    + cria.Peso + ", "
+                    + cria.Grasa + ", "
                     + cria.MusculoID + ", "
-                    + cria.EstadoCriaID + ", "
-                    + cria.DietaID + ", "
-                    + cria.SensorID + ", "
-                    + cria.VecesEnTratamiento + ");");
+                    + cria.DietaID + ");");
         } catch (SQLException e) {
             return Status.ERROR_INSERT;
         }

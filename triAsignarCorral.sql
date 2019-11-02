@@ -5,16 +5,16 @@ AFTER INSERT
 AS
 
 DECLARE 
-	@CriasID int,
+	@CriaID int,
 	@CorralID int;
 	
 
-SELECT @CriasID = CriasID, @CorralID = CorralID FROM inserted;
+SELECT @CriaID = CriaID, @CorralID = CorralID FROM inserted;
 
 	BEGIN
-		INSERT INTO TrasladosCrias (CorralID, CriasID)
+		INSERT INTO TrasladosCrias (CorralID, CriaID)
 		VALUES 
-			(@CorralID, @CriasID);
+			(@CorralID, @CriaID);
 	END
 
 	
