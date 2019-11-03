@@ -12,13 +12,13 @@ import java.util.Vector;
  * @author Carlos Contreras
  */
 public class AnalizarSeñalesSensoresModel {
-    
-    public ArrayList<String> criasID;
-    
-     public AnalizarSeñalesSensoresModel() {
-        
+
+    public ArrayList<String> sensoresID;
+
+    public AnalizarSeñalesSensoresModel() {
+        sensoresID = new ArrayList();
     }
-    
+
     public Vector<Vector<String>> obtenerDatosTabla() {
         Vector<Vector<String>> datosTablaSeñalesSensores = new Vector<>();
 
@@ -28,7 +28,7 @@ public class AnalizarSeñalesSensoresModel {
         }
         try {
             ResultSet resultQuery = conexion.executeQuery(
-                    "SELECT * FROM SeñalesSensores"); 
+                    "SELECT * FROM SeñalesSensores");
             // TODO
             // Hacer un top x tuplas y con el buscador ya mostrar todas las señales, o preguntar cuantas señales y con un boton hacer la busqueda
             Vector<String> row;
@@ -47,4 +47,45 @@ public class AnalizarSeñalesSensoresModel {
         }
         return datosTablaSeñalesSensores;
     }
+    public Vector<Vector<String>> obtenerDatosTablaPropensosEnfermarse() {
+        Vector<Vector<String>> datosTablaPropensosEnfermarse = new Vector<>();
+
+        Statement conexion = SQLConnectionHelper.getConnection();
+        if (conexion == null) {
+            return null;
+        }
+        try {
+            ResultSet resultQuery = conexion.executeQuery(
+                    "SELECT * FROM ReporteCriasPropensaEnfermarseView");
+            Vector<String> row;
+            while (resultQuery.next()) {
+                row = new Vector();
+                row.add(resultQuery.getString(1));
+                row.add(resultQuery.getString(2));
+                row.add(resultQuery.getString(3));
+                row.add(resultQuery.getString(4));
+                row.add(resultQuery.getString(5));
+                row.add(resultQuery.getString(6));
+                row.add(resultQuery.getString(7));
+                datosTablaPropensosEnfermarse.add(row);
+            }
+        } catch (SQLException e) {
+            return null;
+        }
+        return datosTablaPropensosEnfermarse;
+    }
+
+    public void añadirCuarentena() {
+        Statement conexion = SQLConnectionHelper.getConnection();
+        if (conexion == null) {
+            return;
+        }
+        try {
+                conexion.execute("EXECUTE spAñadirCuarentena");
+        } catch (SQLException e) {
+            System.out.println("Error sp");
+            return;
+        }
+    }
+
 }

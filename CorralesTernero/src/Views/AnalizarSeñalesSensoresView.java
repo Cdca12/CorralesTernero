@@ -10,14 +10,14 @@ import java.util.Vector;
  * @author Carlos Contreras
  */
 public class AnalizarSeñalesSensoresView extends JDialog {
-    
+
     private AnalizarSeñalesSensoresController analizarSeñalesSensoresController;
-    
+
     private JTable tablaSeñalesSensores;
     private JScrollPane scrollPane;
     private Vector<String> vectorNombreColumnas;
-    private JButton btnAñadirCuarentena;
-    
+    private JButton btnCriasPropensasEnfermarse, btnAñadirCuarentena;
+
     public AnalizarSeñalesSensoresView() {
         setTitle("Analizar Señales Sensores");
         setSize(650, 520);
@@ -30,8 +30,12 @@ public class AnalizarSeñalesSensoresView extends JDialog {
     }
 
     private void initComponents() {
-        btnAñadirCuarentena = new JButton("Añadir a cuarentena");
-        btnAñadirCuarentena.setBounds(250, 430, 150, 30);
+        btnCriasPropensasEnfermarse = new JButton("Obtener crias propensas a enfermarse");
+        btnCriasPropensasEnfermarse.setBounds(110, 430, 260, 30);
+        add(btnCriasPropensasEnfermarse);
+
+        btnAñadirCuarentena = new JButton("Añadir Cuarentena");
+        btnAñadirCuarentena.setBounds(btnCriasPropensasEnfermarse.getX() + btnCriasPropensasEnfermarse.getWidth() + 10, 430, 150, 30);
         add(btnAñadirCuarentena);
 
         scrollPane = new JScrollPane();
@@ -50,9 +54,8 @@ public class AnalizarSeñalesSensoresView extends JDialog {
     }
 
     private void addListeners() {
-        tablaSeñalesSensores.getSelectionModel().addListSelectionListener(analizarSeñalesSensoresController);
-        btnAñadirCuarentena.addActionListener(analizarSeñalesSensoresController);
-        
+        btnCriasPropensasEnfermarse.addActionListener(analizarSeñalesSensoresController);
+
     }
 
     private void generarTablaResultados() {
@@ -62,14 +65,24 @@ public class AnalizarSeñalesSensoresView extends JDialog {
         scrollPane.setViewportView(tablaSeñalesSensores);
     }
 
-    public JTable getTablaSeñalesSensores() {
-        return tablaSeñalesSensores;
+    private void generarTablaPropensasEnfermarse() {
+        Vector<Vector<String>> datosTablaPropensasEnfermarse = analizarSeñalesSensoresController.obtenerDatosTablaPropensosEnfermarse();
+        vectorNombreColumnas = new Vector<>(Arrays.asList("Señal", "SensorID", "PresionArterial", "Respiracion", "Pulso", "Temperatura", "CriaID"));
+        tablaSeñalesSensores = new JTable(datosTablaPropensasEnfermarse, vectorNombreColumnas);
+        scrollPane.setViewportView(tablaSeñalesSensores);
+    }
+
+    public void actualizarTablaPropensosEnfermarse() {
+        generarTablaPropensasEnfermarse();
+        scrollPane.updateUI();
+    }
+
+    public JButton getBtnCriasPropensasEnfermarse() {
+        return btnCriasPropensasEnfermarse;
     }
 
     public JButton getBtnAñadirCuarentena() {
         return btnAñadirCuarentena;
     }
-    
-    
-    
+
 }
