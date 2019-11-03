@@ -1,4 +1,4 @@
-ALTER VIEW ReporteCriasPropensaEnfermarseView
+CREATE VIEW ReporteCriasPropensaEnfermarseView
 AS
 	SELECT SS.*, C.CriaID FROM
 	(SELECT * FROM SeñalesSensores 

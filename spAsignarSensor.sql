@@ -16,3 +16,4 @@ AS
 	WHERE CriaID = @CriaID
 
 	END
+

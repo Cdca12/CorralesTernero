@@ -9,3 +9,5 @@ AS
 		INNER JOIN Musculo M ON C.MusculoID = M.MusculoID
 		INNER JOIN EstadoCria E ON C.EstadoCriaID = E.EstadoCriaID
 		INNER JOIN Dietas D ON C.DietaID = D.DietaID
+
+		
