@@ -14,7 +14,7 @@ public class MenuPrincipalView extends JFrame {
 
     private JMenuBar menuBar;
     private JMenu criasJMenu, sensoresJMenu;
-    private JMenuItem añadirCriaJMenuItem, reporteCriasEnfermasJMenuItem, procesarSalidasCriasJMenuItem, 
+    private JMenuItem añadirCriaJMenuItem, consultarCriasJMenuItem, reporteCriasEnfermasJMenuItem, procesarSalidasCriasJMenuItem, 
             simularSeñalesJMenuItem, analizarSeñalesSensoresJMenuItem, sacrificarCriasJMenuItem;
     private JLabel logoEmpresa;
 
@@ -41,6 +41,7 @@ public class MenuPrincipalView extends JFrame {
 
         // MenuItem
         añadirCriaJMenuItem = new JMenuItem("Añadir Crías");
+        consultarCriasJMenuItem = new JMenuItem("Consultar Crias");
         reporteCriasEnfermasJMenuItem = new JMenuItem("Reporte Crías Enfermas");
         procesarSalidasCriasJMenuItem = new JMenuItem("Procesar Salidas");
         sacrificarCriasJMenuItem = new JMenuItem("Sacrificar Crias");
@@ -49,6 +50,7 @@ public class MenuPrincipalView extends JFrame {
         analizarSeñalesSensoresJMenuItem = new JMenuItem("Analizar Señales");
 
         criasJMenu.add(añadirCriaJMenuItem);
+        criasJMenu.add(consultarCriasJMenuItem);
         criasJMenu.add(reporteCriasEnfermasJMenuItem);
         criasJMenu.add(procesarSalidasCriasJMenuItem);
         criasJMenu.add(sacrificarCriasJMenuItem);
@@ -72,6 +74,7 @@ public class MenuPrincipalView extends JFrame {
 
     private void addListeners() {
         añadirCriaJMenuItem.addActionListener(menuPrincipalController);
+        consultarCriasJMenuItem.addActionListener(menuPrincipalController);
         reporteCriasEnfermasJMenuItem.addActionListener(menuPrincipalController);
         procesarSalidasCriasJMenuItem.addActionListener(menuPrincipalController);
         simularSeñalesJMenuItem.addActionListener(menuPrincipalController);
@@ -103,8 +106,10 @@ public class MenuPrincipalView extends JFrame {
     public JMenuItem getSacrificarCriasJMenuItem() {
         return sacrificarCriasJMenuItem;
     }
-    
-    
+
+    public JMenuItem getConsultarCriasJMenuItem() {
+        return consultarCriasJMenuItem;
+    }
     
 
     // Métodos para abrir los menús
@@ -151,6 +156,15 @@ public class MenuPrincipalView extends JFrame {
         
         analizarSeñalesSensoresView.setController(analizarSeñalesSensoresController);
         analizarSeñalesSensoresView.launchView();
+    }
+    
+    public void abrirConsultarCrias() {
+        ConsultarCriasView consultarCriasView = new ConsultarCriasView();
+        ConsultarCriasModel consultarCriasModel = new ConsultarCriasModel();
+        ConsultarCriasController consultarCriasController = new ConsultarCriasController(consultarCriasModel, consultarCriasView);
+        
+        consultarCriasView.setController(consultarCriasController);
+        consultarCriasView.launchView();
     }
 
     

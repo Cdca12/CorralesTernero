@@ -28,6 +28,10 @@ public class MenuPrincipalController implements ActionListener {
             menuPrincipalView.abrirAñadirCria();
             return;
         }
+        if (evt.getSource() == menuPrincipalView.getConsultarCriasJMenuItem()) {
+            menuPrincipalView.abrirConsultarCrias();
+            return;
+        }
         if (evt.getSource() == menuPrincipalView.getReporteCriasEnfermasJMenu()) {
             menuPrincipalView.abrirReporteCriasEnfermas();
             return;
