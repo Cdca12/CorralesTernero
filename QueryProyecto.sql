@@ -541,7 +541,14 @@ VALUES
 	(1, 94, 40, 2, 1);
 GO
 
+--TEST: Preparar Crias para salida
+UPDATE Crias
+SET DiasEdad = 150
+WHERE CriaID IN (
+	1, 5, 6
+)
 
+GO
 	-- Tests:
 	-- Sensores se inserta automáticamente cuando una cría se clasifica con grasa cobertura 2
 	-- SeñalesSensores se inserta desde la app, simulando el envío de señales

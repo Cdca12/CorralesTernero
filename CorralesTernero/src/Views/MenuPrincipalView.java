@@ -14,7 +14,8 @@ public class MenuPrincipalView extends JFrame {
 
     private JMenuBar menuBar;
     private JMenu criasJMenu, sensoresJMenu;
-    private JMenuItem añadirCriaJMenuItem, reporteCriasEnfermasJMenuItem, procesarSalidasCriasJMenuItem, simularSeñalesJMenuItem, analizarSeñalesSensoresJMenuItem;
+    private JMenuItem añadirCriaJMenuItem, reporteCriasEnfermasJMenuItem, procesarSalidasCriasJMenuItem, 
+            simularSeñalesJMenuItem, analizarSeñalesSensoresJMenuItem, sacrificarCriasJMenuItem;
     private JLabel logoEmpresa;
 
     public MenuPrincipalView() {
@@ -42,13 +43,15 @@ public class MenuPrincipalView extends JFrame {
         añadirCriaJMenuItem = new JMenuItem("Añadir Crías");
         reporteCriasEnfermasJMenuItem = new JMenuItem("Reporte Crías Enfermas");
         procesarSalidasCriasJMenuItem = new JMenuItem("Procesar Salidas");
+        sacrificarCriasJMenuItem = new JMenuItem("Sacrificar Crias");
         
-        simularSeñalesJMenuItem = new JMenuItem("Simular señales");
+        simularSeñalesJMenuItem = new JMenuItem("Simular Señales");
         analizarSeñalesSensoresJMenuItem = new JMenuItem("Analizar Señales");
 
         criasJMenu.add(añadirCriaJMenuItem);
         criasJMenu.add(reporteCriasEnfermasJMenuItem);
         criasJMenu.add(procesarSalidasCriasJMenuItem);
+        criasJMenu.add(sacrificarCriasJMenuItem);
         
         sensoresJMenu.add(simularSeñalesJMenuItem);
         sensoresJMenu.add(analizarSeñalesSensoresJMenuItem);
@@ -73,6 +76,7 @@ public class MenuPrincipalView extends JFrame {
         procesarSalidasCriasJMenuItem.addActionListener(menuPrincipalController);
         simularSeñalesJMenuItem.addActionListener(menuPrincipalController);
         analizarSeñalesSensoresJMenuItem.addActionListener(menuPrincipalController);
+        sacrificarCriasJMenuItem.addActionListener(menuPrincipalController);
     }
 
     // Getters
@@ -95,6 +99,13 @@ public class MenuPrincipalView extends JFrame {
     public JMenuItem getAnalizarSeñalesSensoresJMenuItem() {
         return analizarSeñalesSensoresJMenuItem;
     }
+
+    public JMenuItem getSacrificarCriasJMenuItem() {
+        return sacrificarCriasJMenuItem;
+    }
+    
+    
+    
 
     // Métodos para abrir los menús
     public void abrirAñadirCria() {
@@ -142,4 +153,8 @@ public class MenuPrincipalView extends JFrame {
         analizarSeñalesSensoresView.launchView();
     }
 
+    
+    public void mostrarMensajeSacrificarCrias() {
+        JOptionPane.showMessageDialog(null, "Crias Sacrificadas", "Las Crías se han sacrificado correctamente", JOptionPane.INFORMATION_MESSAGE);
+    }
 }

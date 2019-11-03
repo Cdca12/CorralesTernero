@@ -2,8 +2,8 @@
 CREATE VIEW ReporteCriasEnfermasView
 AS
 
-	SELECT C.CriasID, C.CorralID, C.Peso, G.Tipo as GrasaCobertura, M.ColorMusculo as TipoMusculo, 
-	E.Descripcion as EstadoCria, D.DietaID, C.SensorID, C.VecesEnTratamiento 
+	SELECT C.CriaID, C.CorralID, C.Peso, G.Tipo as GrasaCobertura, M.ColorMusculo as TipoMusculo, 
+	E.Descripcion as EstadoCria, D.DietaID, C.SensorID, C.DiasEdad 
 	FROM (SELECT * FROM Crias WHERE EstadoCriaID = 2) as C
 		INNER JOIN GrasaCobertura G ON C.GrasaCoberturaID = G.GrasaCoberturaID
 		INNER JOIN Musculo M ON C.MusculoID = M.MusculoID

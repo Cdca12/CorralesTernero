@@ -2,8 +2,10 @@ package Models;
 
 import DataAccesor.SQLConnectionHelper;
 import Views.MenuPrincipalView;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -32,5 +34,15 @@ public class MenuPrincipalModel {
 
     }
 
+    public void sacrificarCrias() {
+        Statement conexion = SQLConnectionHelper.getConnection();
+        if (conexion == null) {
+            return;
+        }
+        try {
+            conexion.execute("EXECUTE spSacrificarCrias");
+        } catch (SQLException e) {
+            return;
+        }
+    }
 }
-

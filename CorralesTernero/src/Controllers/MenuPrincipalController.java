@@ -44,6 +44,11 @@ public class MenuPrincipalController implements ActionListener {
             menuPrincipalView.abrirAnalizarSeñalesSensores();
             return;
         }
+        if (evt.getSource() == menuPrincipalView.getSacrificarCriasJMenuItem()) {
+            menuPrincipalModel.sacrificarCrias();
+            menuPrincipalView.mostrarMensajeSacrificarCrias();
+            return;
+        }
     }
     
 }
