@@ -38,7 +38,7 @@ public class AnalizarSeñalesSensoresController implements ActionListener {
             return;
         }
         if (evt.getSource() == analizarSeñalesSensoresView.getBtnAñadirCuarentena()) {
-            
+            analizarSeñalesSensoresModel.añadirCuarentena();
             return;
         }
     }

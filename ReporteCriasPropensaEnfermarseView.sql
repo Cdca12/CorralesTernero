@@ -1,7 +1,8 @@
-CREATE VIEW ReporteCriasPropensaEnfermarseView
+ALTER VIEW ReporteCriasPropensaEnfermarseView
 AS
-	SELECT S.*, C.CriaID FROM SeñalesSensores S
-	INNER JOIN Crias C ON S.SensorID = C.SensorID
+	SELECT SS.*, C.CriaID FROM
+	(SELECT * FROM SeñalesSensores 
 	WHERE Temperatura >= 40
 	OR PresionArterial >= 120
-	OR Pulso >= 90
+	OR Pulso >= 90) AS SS
+	INNER JOIN (SELECT * FROM Crias WHERE EstadoCriaID = 1) AS C ON SS.SensorID = C.SensorID

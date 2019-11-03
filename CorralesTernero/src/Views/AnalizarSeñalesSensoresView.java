@@ -55,7 +55,7 @@ public class AnalizarSeñalesSensoresView extends JDialog {
 
     private void addListeners() {
         btnCriasPropensasEnfermarse.addActionListener(analizarSeñalesSensoresController);
-
+        btnAñadirCuarentena.addActionListener(analizarSeñalesSensoresController);
     }
 
     private void generarTablaResultados() {
