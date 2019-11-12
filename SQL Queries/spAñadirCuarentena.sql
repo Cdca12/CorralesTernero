@@ -8,7 +8,7 @@ AS
 	--Por el momento te manda al 2do corral, de Enfermos
 	DECLARE @CorralID int = 2
 
-	DECLARE @Transaccion int = (SELECT MAX(Transaccion) FROM TrasladosCrias WHERE CriaID = @CriaID)
+	DECLARE @Transaccion int = (SELECT MAX(Transaccion) FROM TrasladosCrias WITH(updlock) WHERE CriaID = @CriaID)
 
 	
 	UPDATE Crias
