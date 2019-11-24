@@ -8,7 +8,7 @@ public class TrasladosCrias {
     
     private String Transaccion;
     private String CorralID;
-    private String CriasID;
+    private String CriaID;
     private String FechaIngreso;
     private String FechaEgreso;
     private String DiasEnCorral;
@@ -36,12 +36,12 @@ public class TrasladosCrias {
         this.CorralID = CorralID;
     }
 
-    public String getCriasID() {
-        return CriasID;
+    public String getCriaID() {
+        return CriaID;
     }
 
-    public void setCriasID(String CriasID) {
-        this.CriasID = CriasID;
+    public void setCriaID(String CriaID) {
+        this.CriaID = CriaID;
     }
 
     public String getFechaIngreso() {
