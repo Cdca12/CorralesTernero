@@ -29,9 +29,6 @@ public class MenuPrincipalModel {
             System.exit(0); // Cerrar programa Java
             return;
         }
-//        JOptionPane.showMessageDialog(null, "Conexion SI realizada", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-//        SQLConnectionHelper.closeConnection();
-
     }
 
     public void sacrificarCrias() {

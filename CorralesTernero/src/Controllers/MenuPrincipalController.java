@@ -40,10 +40,6 @@ public class MenuPrincipalController implements ActionListener {
             menuPrincipalView.abrirProcesarSalidasCrias();
             return;
         }
-        if (evt.getSource() == menuPrincipalView.getSimularSeñalesJMenuItem()) {
-            menuPrincipalView.abrirSimularSeñales();
-            return;
-        }
         if (evt.getSource() == menuPrincipalView.getAnalizarSeñalesSensoresJMenuItem()) {
             menuPrincipalView.abrirAnalizarSeñalesSensores();
             return;
@@ -53,6 +49,15 @@ public class MenuPrincipalController implements ActionListener {
             menuPrincipalView.mostrarMensajeSacrificarCrias();
             return;
         }
+        if (evt.getSource() == menuPrincipalView.getSimularSeñalesJMenuItem()) {
+            menuPrincipalView.abrirSimularSeñales();
+            return;
+        }
+        if (evt.getSource() == menuPrincipalView.getAvanzarDiasJMenuItem()) {
+            menuPrincipalView.abrirAvanzarDias();
+            return;
+        }
+        
     }
     
 }

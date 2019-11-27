@@ -13,9 +13,9 @@ public class MenuPrincipalView extends JFrame {
     private MenuPrincipalController menuPrincipalController;
 
     private JMenuBar menuBar;
-    private JMenu criasJMenu, sensoresJMenu;
-    private JMenuItem añadirCriaJMenuItem, consultarCriasJMenuItem, reporteCriasEnfermasJMenuItem, procesarSalidasCriasJMenuItem, 
-            simularSeñalesJMenuItem, analizarSeñalesSensoresJMenuItem, sacrificarCriasJMenuItem;
+    private JMenu criasJMenu, sensoresJMenu, simulacionesJMenu;
+    private JMenuItem añadirCriaJMenuItem, consultarCriasJMenuItem, reporteCriasEnfermasJMenuItem, procesarSalidasCriasJMenuItem,
+            analizarSeñalesSensoresJMenuItem, sacrificarCriasJMenuItem, simularSeñalesJMenuItem, avanzarDiasJMenuItem;
     private JLabel logoEmpresa;
 
     public MenuPrincipalView() {
@@ -38,6 +38,7 @@ public class MenuPrincipalView extends JFrame {
         // Menu
         criasJMenu = new JMenu("Crías");
         sensoresJMenu = new JMenu("Sensores");
+        simulacionesJMenu = new JMenu("Simulaciones");
 
         // MenuItem
         añadirCriaJMenuItem = new JMenuItem("Añadir Crías");
@@ -46,8 +47,10 @@ public class MenuPrincipalView extends JFrame {
         procesarSalidasCriasJMenuItem = new JMenuItem("Procesar Salidas");
         sacrificarCriasJMenuItem = new JMenuItem("Sacrificar Crias");
         
-        simularSeñalesJMenuItem = new JMenuItem("Simular Señales");
         analizarSeñalesSensoresJMenuItem = new JMenuItem("Analizar Señales");
+        
+        simularSeñalesJMenuItem = new JMenuItem("Simular Señales");
+        avanzarDiasJMenuItem = new JMenuItem("Avanzar Días");
 
         criasJMenu.add(añadirCriaJMenuItem);
         criasJMenu.add(consultarCriasJMenuItem);
@@ -55,11 +58,14 @@ public class MenuPrincipalView extends JFrame {
         criasJMenu.add(procesarSalidasCriasJMenuItem);
         criasJMenu.add(sacrificarCriasJMenuItem);
         
-        sensoresJMenu.add(simularSeñalesJMenuItem);
         sensoresJMenu.add(analizarSeñalesSensoresJMenuItem);
+        
+        simulacionesJMenu.add(simularSeñalesJMenuItem);
+        simulacionesJMenu.add(avanzarDiasJMenuItem);
         
         menuBar.add(criasJMenu);
         menuBar.add(sensoresJMenu);
+        menuBar.add(simulacionesJMenu);
     }
 
     public void launchView() {
@@ -77,9 +83,10 @@ public class MenuPrincipalView extends JFrame {
         consultarCriasJMenuItem.addActionListener(menuPrincipalController);
         reporteCriasEnfermasJMenuItem.addActionListener(menuPrincipalController);
         procesarSalidasCriasJMenuItem.addActionListener(menuPrincipalController);
-        simularSeñalesJMenuItem.addActionListener(menuPrincipalController);
         analizarSeñalesSensoresJMenuItem.addActionListener(menuPrincipalController);
         sacrificarCriasJMenuItem.addActionListener(menuPrincipalController);
+        simularSeñalesJMenuItem.addActionListener(menuPrincipalController);
+        avanzarDiasJMenuItem.addActionListener(menuPrincipalController);
     }
 
     // Getters
@@ -109,6 +116,10 @@ public class MenuPrincipalView extends JFrame {
 
     public JMenuItem getConsultarCriasJMenuItem() {
         return consultarCriasJMenuItem;
+    }
+    
+    public JMenuItem getAvanzarDiasJMenuItem() {
+        return avanzarDiasJMenuItem;
     }
     
 
@@ -165,6 +176,15 @@ public class MenuPrincipalView extends JFrame {
         
         consultarCriasView.setController(consultarCriasController);
         consultarCriasView.launchView();
+    }
+    
+    public void abrirAvanzarDias() {
+        AvanzarDiasView avanzarDiasView = new AvanzarDiasView();
+        AvanzarDiasModel avanzarDiasModel = new AvanzarDiasModel();
+        AvanzarDiasController avanzarDiasController = new AvanzarDiasController(avanzarDiasModel, avanzarDiasView);
+        
+        avanzarDiasView.setController(avanzarDiasController);
+        avanzarDiasView.launchView();
     }
 
     
