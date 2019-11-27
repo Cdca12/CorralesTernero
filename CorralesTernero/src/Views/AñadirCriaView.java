@@ -1,4 +1,4 @@
-package Views;
+    package Views;
 
 import Models.*;
 import Controllers.*;
@@ -13,7 +13,6 @@ import javax.swing.*;
  */
 public class AñadirCriaView extends JDialog {
 
-    // TODO: Añadir un logo o un ícono de una cría
     private AñadirCriaController añadirCriaController;
 
     private JLabel lbCorral, lbDieta, lbTipoMusculo, lbPeso, lbGrasa;
