@@ -1,19 +1,25 @@
 CREATE PROCEDURE spAsignarSensor
 	@CriaID int
 AS
-	BEGIN
 
-	DECLARE @SensorID int
+	BEGIN TRY
+		BEGIN TRAN
 
-	--TODO: Hacer transaccion para atomizar el INSERT con el UPDATE
-	INSERT INTO Sensores
-	VALUES (@CriaID)
-			
-	SET @SensorID = (SELECT TOP(1) SensorID FROM Sensores WHERE CriaID = @CriaID)
+		INSERT INTO Sensores
+		VALUES (@CriaID)
 
-	UPDATE Crias
-	SET SensorID = @SensorID
-	WHERE CriaID = @CriaID
+		DECLARE @SensorID int = (SELECT SensorID FROM Sensores WHERE CriaID = @CriaID)
 
-	END
+		UPDATE Crias
+		SET SensorID = @SensorID
+		WHERE CriaID = @CriaID
 
+		COMMIT TRAN
+
+	END TRY
+	BEGIN CATCH
+
+		IF @@TRANCOUNT > 0 
+		ROLLBACK TRANSACTION
+
+	END CATCH

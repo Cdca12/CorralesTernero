@@ -2,7 +2,6 @@
 CREATE PROCEDURE spProcesarSalidasCrias
 	
 AS
-	BEGIN
 
 	IF OBJECT_ID('tempdb.dbo.#CriasAProcesar') IS NOT NULL DROP TABLE #CriasAProcesar
 
@@ -10,22 +9,36 @@ AS
 			CriaID int
 		)
 
-		INSERT INTO #CriasAProcesar
-		SELECT CriaID FROM Crias
-		WHERE EstadoCriaID = 1
-		AND DiasEdad >= 150
-		
+		BEGIN TRY
 
-		UPDATE TrasladosCrias
-		SET FechaEgreso = GETDATE()
-		WHERE CriaID IN (
-			SELECT CriaID FROM #CriasAProcesar
-		)
+			BEGIN TRAN
 
-		UPDATE Crias
-		SET CorralID = NULL, EstadoCriaID = 4
-		WHERE CriaID IN (
-			SELECT CriaID FROM #CriasAProcesar
-		)
+			--Obtenemos crías listas para procesar su salida
+			INSERT INTO #CriasAProcesar
+			SELECT CriaID FROM Crias
+			WHERE EstadoCriaID = 1
+			AND DiasEdad >= 150
+
+			--Añadimos fecha de egreso a esas crías
+			UPDATE TrasladosCrias
+			SET FechaEgreso = GETDATE()
+			WHERE CriaID IN (
+				SELECT CriaID FROM #CriasAProcesar
+			)
+
+			--Actualizamos datos de la cria, poniendo su EstadoCriaID a Procesado
+			UPDATE Crias
+			SET CorralID = NULL, EstadoCriaID = 4
+			WHERE CriaID IN (
+				SELECT CriaID FROM #CriasAProcesar
+			)
 	
-	END
+			COMMIT TRAN	
+
+		END TRY
+		BEGIN CATCH
+
+			IF @@TRANCOUNT > 0 
+			ROLLBACK TRANSACTION
+
+		END CATCH

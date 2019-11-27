@@ -93,20 +93,28 @@ GO
 CREATE PROCEDURE spAsignarSensor
 	@CriaID int
 AS
-	BEGIN
 
-	DECLARE @SensorID int
+	BEGIN TRY
+		BEGIN TRAN
 
-	INSERT INTO Sensores
-	VALUES (@CriaID)
-			
-	SET @SensorID = (SELECT TOP(1) SensorID FROM Sensores WHERE CriaID = @CriaID)
+		INSERT INTO Sensores
+		VALUES (@CriaID)
 
-	UPDATE Crias
-	SET SensorID = @SensorID
-	WHERE CriaID = @CriaID
+		DECLARE @SensorID int = (SELECT SensorID FROM Sensores WHERE CriaID = @CriaID)
 
-	END
+		UPDATE Crias
+		SET SensorID = @SensorID
+		WHERE CriaID = @CriaID
+
+		COMMIT TRAN
+
+	END TRY
+	BEGIN CATCH
+
+		IF @@TRANCOUNT > 0 
+		ROLLBACK TRANSACTION
+
+	END CATCH
 GO
 
 CREATE PROCEDURE spAñadirCuarentena
@@ -163,33 +171,46 @@ AS
 		Transaccion int
 	)
 
-	INSERT INTO @CriasIDASacrificar SELECT CriaID, Transaccion FROM TrasladosCrias
-	WHERE CorralID IN (
-		SELECT CorralID FROM Corrales
-		WHERE TipoCorralID = 2 --Corrales Enfermos
-	)
-	AND FechaEgreso IS NULL
-	AND DiasEnCorral >= 40
-	
-	--Poner CorralID null o dejar historial del ultimo corral (?
-	UPDATE Crias
-	SET EstadoCriaID = 3
-	WHERE CriaID IN (
-		SELECT CriaID FROM @CriasIDASacrificar
-	)
+	BEGIN TRY
+		BEGIN TRAN
 
-	UPDATE TrasladosCrias
-	SET FechaEgreso = GETDATE()
-	WHERE Transaccion IN (
-		SELECT Transaccion FROM @CriasIDASacrificar
-	)
+		INSERT INTO @CriasIDASacrificar 
+		SELECT CriaID, Transaccion FROM TrasladosCrias
+		WHERE CorralID IN (
+			SELECT CorralID FROM Corrales
+			WHERE TipoCorralID = 2 --Corrales Enfermos
+		)
+		AND FechaEgreso IS NULL
+		AND DiasEnCorral >= 40
+	
+		--Poner CorralID null o dejar historial del ultimo corral (?
+		UPDATE Crias
+		SET EstadoCriaID = 3
+		WHERE CriaID IN (
+			SELECT CriaID FROM @CriasIDASacrificar
+		)
+
+		UPDATE TrasladosCrias
+		SET FechaEgreso = GETDATE()
+		WHERE Transaccion IN (
+			SELECT Transaccion FROM @CriasIDASacrificar
+		)
+
+		COMMIT TRAN
+
+	END TRY
+	BEGIN CATCH
+
+		IF @@TRANCOUNT > 0
+		ROLLBACK TRAN
+
+	END CATCH
 GO
 
 --Procesar salidas de crias
 CREATE PROCEDURE spProcesarSalidasCrias
 	
 AS
-	BEGIN
 
 	IF OBJECT_ID('tempdb.dbo.#CriasAProcesar') IS NOT NULL DROP TABLE #CriasAProcesar
 
@@ -197,25 +218,39 @@ AS
 			CriaID int
 		)
 
-		INSERT INTO #CriasAProcesar
-		SELECT CriaID FROM Crias
-		WHERE EstadoCriaID = 1
-		AND DiasEdad >= 150
-		
+		BEGIN TRY
 
-		UPDATE TrasladosCrias
-		SET FechaEgreso = GETDATE()
-		WHERE CriaID IN (
-			SELECT CriaID FROM #CriasAProcesar
-		)
+			BEGIN TRAN
 
-		UPDATE Crias
-		SET CorralID = NULL, EstadoCriaID = 4
-		WHERE CriaID IN (
-			SELECT CriaID FROM #CriasAProcesar
-		)
+			--Obtenemos crías listas para procesar su salida
+			INSERT INTO #CriasAProcesar
+			SELECT CriaID FROM Crias
+			WHERE EstadoCriaID = 1
+			AND DiasEdad >= 150
+
+			--Añadimos fecha de egreso a esas crías
+			UPDATE TrasladosCrias
+			SET FechaEgreso = GETDATE()
+			WHERE CriaID IN (
+				SELECT CriaID FROM #CriasAProcesar
+			)
+
+			--Actualizamos datos de la cria, poniendo su EstadoCriaID a Procesado
+			UPDATE Crias
+			SET CorralID = NULL, EstadoCriaID = 4
+			WHERE CriaID IN (
+				SELECT CriaID FROM #CriasAProcesar
+			)
 	
-	END
+			COMMIT TRAN	
+
+		END TRY
+		BEGIN CATCH
+
+			IF @@TRANCOUNT > 0 
+			ROLLBACK TRANSACTION
+
+		END CATCH
 GO
 
 --Creación de Triggers
@@ -288,7 +323,7 @@ DECLARE
 		IF @Peso BETWEEN 60 AND 80
 		BEGIN
 			SELECT @GrasaCoberturaID =
-			CASE
+			CASE	
 				WHEN @Grasa < 13 THEN 0
 				WHEN @Grasa BETWEEN 14 AND 16 THEN 1
 				WHEN @Grasa BETWEEN 17 AND 25 THEN 2
@@ -309,15 +344,24 @@ DECLARE
 
 	END
 
-		
-	--Actualizar GrasaCobertura
-	UPDATE Crias
-	SET GrasaCoberturaID = @GrasaCoberturaID
-	WHERE CriaID = @CriaID
+	BEGIN TRY
+		BEGIN TRAN
+		--Actualizar GrasaCobertura
+		UPDATE Crias
+		SET GrasaCoberturaID = @GrasaCoberturaID
+		WHERE CriaID = @CriaID
 
-	--Asignar Sensor en base a la GrasaCobertura actualizada
-	IF @GrasaCoberturaID = 2
-	EXECUTE spAsignarSensor @CriaID
+		--Asignar Sensor en base a la GrasaCobertura actualizada
+		IF @GrasaCoberturaID = 2
+		EXECUTE spAsignarSensor @CriaID
+
+		COMMIT TRAN
+
+	END TRY
+	BEGIN CATCH
+		IF @@TRANCOUNT > 0
+		ROLLBACK TRAN
+	END CATCH
 GO
 
 
@@ -327,24 +371,13 @@ ON Crias
 AFTER INSERT
 AS
 
-DECLARE 
-	@CriaID int,
-	@CorralID int;
-	
-
-SELECT @CriaID = CriaID, @CorralID = CorralID FROM inserted;
-
-	BEGIN
-		INSERT INTO TrasladosCrias (CorralID, CriaID)
-		VALUES 
-			(@CorralID, @CriaID);
-	END
+	INSERT INTO TrasladosCrias (CorralID, CriaID)
+	SELECT CorralID, CriaID FROM inserted
 GO
 
-	--Creación de vistas
+--Creación de vistas
 CREATE VIEW ConsultarCriasView
 AS
-
 	SELECT C.CriaID, C.CorralID, C.Peso, C.Grasa, G.Tipo as GrasaCobertura, M.ColorMusculo as TipoMusculo, 
 	C.SensorID, C.DietaID, E.Descripcion as EstadoCria, C.DiasEdad FROM Crias C
 	INNER JOIN GrasaCobertura G ON C.GrasaCoberturaID = G.GrasaCoberturaID
@@ -367,7 +400,7 @@ AS
 	SELECT TC.CriaID, C.CorralID, TC.Peso, TC.Grasa, 
 	G.Tipo as GrasaCobertura, M.ColorMusculo as TipoMusculo, 
 	E.Descripcion as EstadoCria, TC.DiasEdad FROM 
-	(SELECT * FROM Crias WHERE EstadoCriaID = 1 AND DiasEdad >= 150) AS TC
+	(SELECT * FROM Crias WHERE EstadoCriaID = 1 AND DiasEdad >= 150 AND) AS TC
 	INNER JOIN Corrales C ON TC.CorralID = C.CorralID
 	INNER JOIN GrasaCobertura G ON TC.GrasaCoberturaID = G.GrasaCoberturaID
 	INNER JOIN Musculo M ON TC.MusculoID = M.MusculoID
@@ -378,11 +411,11 @@ CREATE VIEW ReporteCriasEnfermasView
 AS
 	SELECT C.CriaID, C.CorralID, C.Peso, G.Tipo as GrasaCobertura, M.ColorMusculo as TipoMusculo, 
 	E.Descripcion as EstadoCria, D.DietaID, C.SensorID, C.DiasEdad 
-	FROM (SELECT * FROM Crias WHERE EstadoCriaID = 2) as C
-		INNER JOIN GrasaCobertura G ON C.GrasaCoberturaID = G.GrasaCoberturaID
-		INNER JOIN Musculo M ON C.MusculoID = M.MusculoID
-		INNER JOIN EstadoCria E ON C.EstadoCriaID = E.EstadoCriaID
-		INNER JOIN Dietas D ON C.DietaID = D.DietaID
+	FROM (SELECT * FROM Crias WHERE EstadoCriaID = 2) as C --Filtro las crias en subconsulta para hacer menos joins
+	INNER JOIN GrasaCobertura G ON C.GrasaCoberturaID = G.GrasaCoberturaID
+	INNER JOIN Musculo M ON C.MusculoID = M.MusculoID
+	INNER JOIN EstadoCria E ON C.EstadoCriaID = E.EstadoCriaID
+	INNER JOIN Dietas D ON C.DietaID = D.DietaID
 GO
 
 --Inserción de Datos

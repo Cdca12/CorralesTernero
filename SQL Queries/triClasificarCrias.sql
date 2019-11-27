@@ -67,7 +67,7 @@ DECLARE
 		IF @Peso BETWEEN 60 AND 80
 		BEGIN
 			SELECT @GrasaCoberturaID =
-			CASE
+			CASE	
 				WHEN @Grasa < 13 THEN 0
 				WHEN @Grasa BETWEEN 14 AND 16 THEN 1
 				WHEN @Grasa BETWEEN 17 AND 25 THEN 2
@@ -88,12 +88,24 @@ DECLARE
 
 	END
 
-		
-	--Actualizar GrasaCobertura
-	UPDATE Crias
-	SET GrasaCoberturaID = @GrasaCoberturaID
-	WHERE CriaID = @CriaID
+	BEGIN TRY
+		BEGIN TRAN
+		--Actualizar GrasaCobertura
+		UPDATE Crias
+		SET GrasaCoberturaID = @GrasaCoberturaID
+		WHERE CriaID = @CriaID
 
-	--Asignar Sensor en base a la GrasaCobertura actualizada
-	IF @GrasaCoberturaID = 2
-	EXECUTE spAsignarSensor @CriaID
+		--Asignar Sensor en base a la GrasaCobertura actualizada
+		IF @GrasaCoberturaID = 2
+		EXECUTE spAsignarSensor @CriaID
+
+		COMMIT TRAN
+
+	END TRY
+	BEGIN CATCH
+		IF @@TRANCOUNT > 0
+		ROLLBACK TRAN
+	END CATCH
+
+
+
