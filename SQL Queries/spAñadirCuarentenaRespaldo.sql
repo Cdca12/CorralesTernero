@@ -59,9 +59,9 @@
 
 
 		--Obtener datos sin problema de concurrencia en tablas, ya que pueden ser uno o más datos correspondientes a sus tuplas
-		DECLARE @ListaDietaID TABLE (DietaID int) 
+		DECLARE @ListaDietaID TABLE (DietaID int, CriaID int) 
 		INSERT INTO @ListaDietaID 
-		SELECT DietaID FROM Crias WHERE CriaID IN (SELECT CriaID FROM @ListaCriaID)
+		SELECT DietaID, CriaID FROM Crias WHERE CriaID IN (SELECT CriaID FROM @ListaCriaID)
 
 
 		DECLARE @ListaAlimentoID TABLE (AlimentoID int) 
@@ -83,6 +83,7 @@
 		INSERT @AlimentosIDRespaldo
 		SELECT AlimentoID FROM Alimentos
 
+
 		--Insertar en la tabla Alimentos el nuevo medicamento que se compone del alimento + medicinas
 		INSERT INTO Alimentos
 		SELECT 
@@ -101,9 +102,14 @@
 
 
 		--Respaldo de la tabla actual de Dietas
-		DECLARE @DietasIDRespaldo TABLE (DietaID int)
+		DECLARE @DietasIDRespaldo TABLE (DietaID int, CriaID int)
 		INSERT @DietasIDRespaldo
-		SELECT DietaID FROM Dietas
+		SELECT
+			(SELECT DietaID FROM Dietas),
+			(SELECT CriaID FROM @ListaCriaID)
+
+
+
 		
 		--Creamos una nueva dieta con este nuevo alimento + medicinas	
 		INSERT INTO Dietas
@@ -120,42 +126,44 @@
 			SELECT DietaID FROM @DietasIDRespaldo
 		)
 
+		--Test
+		--SELECT * FROM Dietas
+		--SELECT * FROM Alimentos
+		--SELECT * FROM @NuevosAlimentos
+		--SELECT * FROM @NuevasDietas
+		--SELECT * FROM Crias
 
-		SELECT * FROM Dietas
-		SELECT * FROM Alimentos
-		SELECT * FROM @NuevosAlimentos
-		SELECT * FROM @NuevasDietas
-		SELECT * FROM Crias
-
+		
 
 
 		--Enlazamos cria con su dieta correspondiente
-		DECLARE @DietaCria TABLE (
-			DietaID int,
-			CriaID int
-		)
+		--DECLARE @DietaCria TABLE (
+		--	DietaID int,
+		--	CriaID int
+		--)
 
 
-		SELECT DietaID = 
+		--SELECT DietaID = 
 
-		INSERT INTO @DietaCria
-		SELECT 
-			(SELECT DietaID FROM @NuevasDietas),
-			(SELECT CriaID FROM @ListaCriaID)
+		--INSERT INTO @DietaCria
+		--SELECT 
+		--	(SELECT DietaID FROM @NuevasDietas),
+		--	(SELECT CriaID FROM @ListaCriaID)
 		
 
-		SELECT * FROM @DietaCria
+		--SELECT * FROM @DietaCria
 
 
-		INSERT INTO Alimentos
-		SELECT 
-			(SELECT NombreAlimentoDieta + ' con medicinas' FROM @ListaNombreAlimentoDieta),
-			(SELECT CantidadAlimentoDieta FROM @ListaCantidadAlimentoDieta)
+
+		--INSERT INTO Alimentos
+		--SELECT 
+		--	(SELECT NombreAlimentoDieta + ' con medicinas' FROM @ListaNombreAlimentoDieta),
+		--	(SELECT CantidadAlimentoDieta FROM @ListaCantidadAlimentoDieta)
 
 		--Actualizamos los datos de las crias con su nueva Dieta
-		--UPDATE Crias
-		--SET DietaID = (SELECT DietaID FROM @NuevasDietas)
-		--WHERE CriaID IN (SELECT CriaID FROM @ListaCriaID)
+		UPDATE Crias
+		SET DietaID = (SELECT DietaID FROM @NuevasDietas)
+		WHERE CriaID IN (SELECT CriaID FROM @ListaDietaID)
 
 	
 
