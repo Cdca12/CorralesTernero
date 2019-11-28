@@ -1,7 +1,7 @@
 package Controllers;
 
-import Views.CorralesView;
-import Models.CorralesModel;
+import Views.ConsultarCorralesView;
+import Models.ConsultarCorralesModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
@@ -12,12 +12,12 @@ import javax.swing.event.ListSelectionListener;
  *
  * @author Carlos Contreras
  */
-public class CorralesController implements ActionListener, ListSelectionListener {
+public class ConsultarCorralesController implements ActionListener, ListSelectionListener {
 
-    private CorralesModel corralesModel;
-    private CorralesView corralesView;
+    private ConsultarCorralesModel corralesModel;
+    private ConsultarCorralesView corralesView;
 
-    public CorralesController(CorralesModel corralesModel, CorralesView corralesView) {
+    public ConsultarCorralesController(ConsultarCorralesModel corralesModel, ConsultarCorralesView corralesView) {
         this.corralesView = corralesView;
         this.corralesModel = corralesModel;
     }

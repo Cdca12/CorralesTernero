@@ -282,27 +282,27 @@ public class MenuPrincipalView extends JFrame {
     }
 
     public void abrirConsultarDietas() {
-        DietasView dietasView = new DietasView(Config.CONSULTA);
-        DietasModel dietasModel = new DietasModel();
-        DietasController dietasController = new DietasController(dietasModel, dietasView);
+        ConsultarDietasView dietasView = new ConsultarDietasView(Config.CONSULTA);
+        ConsultarDietasModel dietasModel = new ConsultarDietasModel();
+        ConsultarDietasController dietasController = new ConsultarDietasController(dietasModel, dietasView);
 
         dietasView.setController(dietasController);
         dietasView.launchView();
     }
 
     public void abrirConsultarCorrales() {
-        CorralesView corralesView = new CorralesView(Config.CONSULTA);
-        CorralesModel corralesModel = new CorralesModel();
-        CorralesController corralesController = new CorralesController(corralesModel, corralesView);
+        ConsultarCorralesView corralesView = new ConsultarCorralesView(Config.CONSULTA);
+        ConsultarCorralesModel corralesModel = new ConsultarCorralesModel();
+        ConsultarCorralesController corralesController = new ConsultarCorralesController(corralesModel, corralesView);
 
         corralesView.setController(corralesController);
         corralesView.launchView();
     }
     
     public void abrirConsultarAlimentos() {
-        AlimentosView alimentosView = new AlimentosView(Config.CONSULTA);
-        AlimentosModel alimentosModel = new AlimentosModel();
-        AlimentosController alimentosController = new AlimentosController(alimentosModel, alimentosView);
+        ConsultarAlimentosView alimentosView = new ConsultarAlimentosView(Config.CONSULTA);
+        ConsultarAlimentosModel alimentosModel = new ConsultarAlimentosModel();
+        ConsultarAlimentosController alimentosController = new ConsultarAlimentosController(alimentosModel, alimentosView);
 
         alimentosView.setController(alimentosController);
         alimentosView.launchView();

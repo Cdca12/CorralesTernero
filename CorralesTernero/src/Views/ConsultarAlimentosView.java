@@ -10,9 +10,9 @@ import Utils.Config;
  *
  * @author Carlos Contreras
  */
-public class AlimentosView extends JDialog {
+public class ConsultarAlimentosView extends JDialog {
 
-    private AlimentosController alimentosController;
+    private ConsultarAlimentosController alimentosController;
 
     private JTable tablaAlimentos;
     private JScrollPane scrollPane;
@@ -20,7 +20,7 @@ public class AlimentosView extends JDialog {
     private JButton btnSeleccionar, btnCancelar;
     private Config config;
 
-    public AlimentosView(Config config) {
+    public ConsultarAlimentosView(Config config) {
         setTitle("Alimentos");
         setSize(650, 350);
         setLayout(null);
@@ -36,7 +36,6 @@ public class AlimentosView extends JDialog {
         scrollPane = new JScrollPane();
         int width = 590;
         if (config == Config.SELECCION) {
-
             btnSeleccionar = new JButton("Seleccionar");
             btnSeleccionar.setBounds(525, 160, 100, 30);
             btnSeleccionar.setEnabled(false);
@@ -56,7 +55,7 @@ public class AlimentosView extends JDialog {
         setVisible(true);
     }
 
-    public void setController(AlimentosController alimentosController) {
+    public void setController(ConsultarAlimentosController alimentosController) {
         this.alimentosController = alimentosController;
         generarTablaResultados();
         addListeners();

@@ -204,18 +204,18 @@ public class AñadirCriaView extends JDialog {
 
     // Métodos para abrir las consultas
     public void abrirSeleccionDietas() {
-        DietasView dietasView = new DietasView(Config.SELECCION);
-        DietasModel dietasModel = new DietasModel();
-        DietasController dietasController = new DietasController(dietasModel, dietasView);
+        ConsultarDietasView dietasView = new ConsultarDietasView(Config.SELECCION);
+        ConsultarDietasModel dietasModel = new ConsultarDietasModel();
+        ConsultarDietasController dietasController = new ConsultarDietasController(dietasModel, dietasView);
 
         dietasView.setController(dietasController);
         dietasView.launchView();
     }
     
     public void abrirSeleccionCorrales() {
-        CorralesView corralesView = new CorralesView(Config.SELECCION);
-        CorralesModel corralesModel = new CorralesModel();
-        CorralesController corralesController = new CorralesController(corralesModel, corralesView);
+        ConsultarCorralesView corralesView = new ConsultarCorralesView(Config.SELECCION);
+        ConsultarCorralesModel corralesModel = new ConsultarCorralesModel();
+        ConsultarCorralesController corralesController = new ConsultarCorralesController(corralesModel, corralesView);
         
         corralesView.setController(corralesController);
         corralesView.launchView();

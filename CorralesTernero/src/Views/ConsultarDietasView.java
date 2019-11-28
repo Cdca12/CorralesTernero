@@ -10,9 +10,9 @@ import Utils.Config;
  *
  * @author Carlos Contreras
  */
-public class DietasView extends JDialog {
+public class ConsultarDietasView extends JDialog {
 
-    private DietasController dietasController;
+    private ConsultarDietasController dietasController;
 
     private JTable tablaDietas;
     private JScrollPane scrollPane;
@@ -20,7 +20,7 @@ public class DietasView extends JDialog {
     private JButton btnSeleccionar, btnCancelar;
     private Config config;
 
-    public DietasView(Config config) {
+    public ConsultarDietasView(Config config) {
         setTitle("Dietas");
         setSize(650, 350);
         setLayout(null);
@@ -57,7 +57,7 @@ public class DietasView extends JDialog {
         setVisible(true);
     }
 
-    public void setController(DietasController dietasController) {
+    public void setController(ConsultarDietasController dietasController) {
         this.dietasController = dietasController;
         generarTablaResultados();
         addListeners();

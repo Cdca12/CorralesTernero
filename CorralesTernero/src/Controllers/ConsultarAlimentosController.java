@@ -11,12 +11,12 @@ import javax.swing.event.ListSelectionListener;
  *
  * @author Carlos Contreras
  */
-public class AlimentosController implements ActionListener, ListSelectionListener {
+public class ConsultarAlimentosController implements ActionListener, ListSelectionListener {
     
-    private AlimentosModel alimentosModel;
-    private AlimentosView alimentosView;
+    private ConsultarAlimentosModel alimentosModel;
+    private ConsultarAlimentosView alimentosView;
 
-    public AlimentosController(AlimentosModel alimentosModel, AlimentosView alimentosView) {
+    public ConsultarAlimentosController(ConsultarAlimentosModel alimentosModel, ConsultarAlimentosView alimentosView) {
         this.alimentosView = alimentosView;
         this.alimentosModel = alimentosModel;
     }

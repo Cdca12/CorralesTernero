@@ -10,9 +10,9 @@ import java.util.Vector;
  *
  * @author Carlos Contreras
  */
-public class DietasModel {
+public class ConsultarDietasModel {
 
-    public DietasModel() {
+    public ConsultarDietasModel() {
 
     }
 

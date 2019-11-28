@@ -1,8 +1,8 @@
 package Views;
 
 import Controllers.ConsultarCriasController;
-import Controllers.CorralesController;
-import Controllers.DietasController;
+import Controllers.ConsultarCorralesController;
+import Controllers.ConsultarDietasController;
 import java.util.Arrays;
 import java.util.Vector;
 import javax.swing.*;

@@ -122,9 +122,9 @@ public class AñadirDietasView extends JDialog {
     
     // Métodos para abrir las consultas
     public void abrirSeleccionAlimentos() {
-        AlimentosView alimentosView = new AlimentosView(Config.SELECCION);
-        AlimentosModel alimentosModel = new AlimentosModel();
-        AlimentosController alimentosController = new AlimentosController(alimentosModel, alimentosView);
+        ConsultarAlimentosView alimentosView = new ConsultarAlimentosView(Config.SELECCION);
+        ConsultarAlimentosModel alimentosModel = new ConsultarAlimentosModel();
+        ConsultarAlimentosController alimentosController = new ConsultarAlimentosController(alimentosModel, alimentosView);
 
         alimentosView.setController(alimentosController);
         alimentosView.launchView();

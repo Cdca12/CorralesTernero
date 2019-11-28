@@ -10,9 +10,9 @@ import Utils.Config;
  *
  * @author Carlos Contreras
  */
-public class CorralesView extends JDialog {
+public class ConsultarCorralesView extends JDialog {
 
-    private CorralesController corralesController;
+    private ConsultarCorralesController corralesController;
 
     private JTable tablaCorrales;
     private JScrollPane scrollPane;
@@ -20,7 +20,7 @@ public class CorralesView extends JDialog {
     private JButton btnSeleccionar, btnCancelar;
     private Config config;
 
-    public CorralesView(Config config) {
+    public ConsultarCorralesView(Config config) {
         setTitle("Corrales");
         setSize(650, 350);
         setLayout(null);
@@ -57,7 +57,7 @@ public class CorralesView extends JDialog {
         setVisible(true);
     }
 
-    public void setController(CorralesController corralesController) {
+    public void setController(ConsultarCorralesController corralesController) {
         this.corralesController = corralesController;
         generarTablaResultados();
         addListeners();

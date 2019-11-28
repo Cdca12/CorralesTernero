@@ -1,6 +1,6 @@
 package Views;
 
-import Controllers.CorralesController;
+import Controllers.ConsultarCorralesController;
 import Controllers.ProcesarSalidasCriasController;
 import java.util.Arrays;
 import java.util.Vector;

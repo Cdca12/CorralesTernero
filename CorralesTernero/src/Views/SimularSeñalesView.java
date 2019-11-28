@@ -1,6 +1,6 @@
 package Views;
 
-import Controllers.CorralesController;
+import Controllers.ConsultarCorralesController;
 import Controllers.SimularSeñalesController;
 import java.awt.Font;
 import javax.swing.JButton;

@@ -1,7 +1,7 @@
 package Controllers;
 
-import Models.DietasModel;
-import Views.DietasView;
+import Models.ConsultarDietasModel;
+import Views.ConsultarDietasView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
@@ -12,12 +12,12 @@ import javax.swing.event.ListSelectionListener;
  *
  * @author Carlos Contreras
  */
-public class DietasController implements ActionListener, ListSelectionListener {
+public class ConsultarDietasController implements ActionListener, ListSelectionListener {
 
-    private DietasModel dietasModel;
-    private DietasView dietasView;
+    private ConsultarDietasModel dietasModel;
+    private ConsultarDietasView dietasView;
 
-    public DietasController(DietasModel dietasModel, DietasView dietasView) {
+    public ConsultarDietasController(ConsultarDietasModel dietasModel, ConsultarDietasView dietasView) {
         this.dietasView = dietasView;
         this.dietasModel = dietasModel;
     }
