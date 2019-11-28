@@ -6,6 +6,7 @@ import Entities.*;
 import java.awt.Font;
 import java.util.List;
 import javax.swing.*;
+import Utils.Config;
 
 /**
  *
@@ -211,8 +212,8 @@ public class AñadirCriaView extends JDialog {
         dietasView.launchView();
     }
     
-    public void abrirCorrales() {
-        CorralesView corralesView = new CorralesView();
+    public void abrirSeleccionCorrales() {
+        CorralesView corralesView = new CorralesView(Config.SELECCION);
         CorralesModel corralesModel = new CorralesModel();
         CorralesController corralesController = new CorralesController(corralesModel, corralesView);
         

@@ -4,6 +4,7 @@ import javax.swing.*;
 import Controllers.*;
 import Models.*;
 import java.awt.Image;
+import Utils.Config;
 
 /**
  *
@@ -126,6 +127,7 @@ public class MenuPrincipalView extends JFrame {
         añadirCorralesJMenuItem.addActionListener(menuPrincipalController);
         añadirAlimentosJMenuItem.addActionListener(menuPrincipalController);
         añadirDietasJMenuItem.addActionListener(menuPrincipalController);
+        consultarCorralesJMenuItem.addActionListener(menuPrincipalController);
     }
 
     // Getters
@@ -172,6 +174,12 @@ public class MenuPrincipalView extends JFrame {
     public JMenuItem getAñadirDietasJMenuItem() {
         return añadirDietasJMenuItem;
     }
+
+    public JMenuItem getConsultarCorralesJMenuItem() {
+        return consultarCorralesJMenuItem;
+    }
+    
+    
     
 
     // Métodos para abrir los menús
@@ -265,7 +273,14 @@ public class MenuPrincipalView extends JFrame {
         añadirDietasView.launchView();
     }
     
-    
+    public void abrirConsultarCorrales() {
+        CorralesView corralesView = new CorralesView(Config.CONSULTA);
+        CorralesModel corralesModel = new CorralesModel();
+        CorralesController corralesController = new CorralesController(corralesModel, corralesView);
+        
+        corralesView.setController(corralesController);
+        corralesView.launchView();
+    }
 
     public void mostrarMensajeSacrificarCrias() {
         int opcion = JOptionPane.showConfirmDialog(null, "¿Seguro que deseas clasificar crías?", "Sacrificar Crías", JOptionPane.WARNING_MESSAGE);

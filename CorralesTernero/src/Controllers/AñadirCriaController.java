@@ -38,7 +38,7 @@ public class AñadirCriaController implements ActionListener {
             return;
         }
         if (evt.getSource() == añadirCriaView.getBtnSeleccionarCorral()) {
-            añadirCriaView.abrirCorrales();
+            añadirCriaView.abrirSeleccionCorrales();
             return;
         }
         if (evt.getSource() == añadirCriaView.getBtnSeleccionarDieta()) {
