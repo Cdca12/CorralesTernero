@@ -158,7 +158,7 @@ public class MenuPrincipalView extends JFrame {
     public JMenuItem getAvanzarDiasJMenuItem() {
         return avanzarDiasJMenuItem;
     }
-    
+
     public JMenuItem getAñadirCorralesJMenuItem() {
         return añadirCorralesJMenuItem;
     }
@@ -237,6 +237,12 @@ public class MenuPrincipalView extends JFrame {
     }
 
     public void mostrarMensajeSacrificarCrias() {
-        JOptionPane.showMessageDialog(null, "Crias Sacrificadas", "Las Crías se han sacrificado correctamente", JOptionPane.INFORMATION_MESSAGE);
+        int opcion = JOptionPane.showConfirmDialog(null, "¿Seguro que deseas clasificar crías?", "Sacrificar Crías", JOptionPane.WARNING_MESSAGE);
+        if (opcion == 1) {
+            JOptionPane.showMessageDialog(null, "Las Crías se han sacrificado correctamente", "Crias Sacrificadas", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
     }
+
 }
