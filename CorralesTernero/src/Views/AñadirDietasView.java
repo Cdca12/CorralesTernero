@@ -2,7 +2,7 @@ package Views;
 
 import Controllers.*;
 import Entities.*;
-import Models.DietasModel;
+import Models.*;
 import java.awt.*;
 import java.util.*;
 import javax.swing.*;
@@ -15,8 +15,7 @@ public class AñadirDietasView extends JDialog {
     private AñadirDietasController añadirDietasController;
     
     private JLabel lbDiasTratamiento, lbAlimentoID;
-    private JTextField txtDiasTratamiento;
-    private static JTextField txtAlimentoID;
+    private static JTextField txtAlimentoID, txtDiasTratamiento;
     private JButton btnAñadir, btnLimpiar, btnSeleccionarAlimento;
     
     
@@ -46,7 +45,7 @@ public class AñadirDietasView extends JDialog {
         // TextFields
         txtAlimentoID = new JTextField();
         txtAlimentoID.setBounds(180, lbAlimentoID.getY() - 5, 90, 30);
-//        txtAlimentoID.setEditable(false);
+        txtAlimentoID.setEditable(false);
         add(txtAlimentoID);
         
         txtDiasTratamiento = new JTextField();
@@ -96,7 +95,7 @@ public class AñadirDietasView extends JDialog {
         JOptionPane.showMessageDialog(null, OK_TITLE, OK_MESSAGE, JOptionPane.INFORMATION_MESSAGE);
     }
 
-    public JTextField getTxtDiasTratamiento() {
+    public static JTextField getTxtDiasTratamiento() {
         return txtDiasTratamiento;
     }
 
@@ -116,13 +115,17 @@ public class AñadirDietasView extends JDialog {
         return btnSeleccionarAlimento;
     }
     
+    public static void setAlimentoID(String alimentoID) {
+        txtAlimentoID.setText(alimentoID);
+    }
+    
     // Métodos para abrir las consultas
     public void abrirAlimentos() {
-//        DietasView dietasView = new DietasView();
-//        DietasModel dietasModel = new DietasModel();
-//        DietasController dietasController = new DietasController(dietasModel, dietasView);
-//
-//        dietasView.setController(dietasController);
-//        dietasView.launchView();
+        AlimentosView alimentosView = new AlimentosView();
+        AlimentosModel alimentosModel = new AlimentosModel();
+        AlimentosController alimentosController = new AlimentosController(alimentosModel, alimentosView);
+
+        alimentosView.setController(alimentosController);
+        alimentosView.launchView();
     }
 }

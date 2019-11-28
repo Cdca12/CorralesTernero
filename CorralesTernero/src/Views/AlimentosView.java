@@ -9,16 +9,16 @@ import java.util.Vector;
  *
  * @author Carlos Contreras
  */
-public class CorralesView extends JDialog {
+public class AlimentosView extends JDialog {
+    
+    private AlimentosController alimentosController;
 
-    private CorralesController corralesController;
-
-    private JTable tablaCorrales;
+    private JTable tablaAlimentos;
     private JScrollPane scrollPane;
     private Vector<String> vectorNombreColumnas;
     private JButton btnSeleccionar, btnCancelar;
-
-    public CorralesView() {
+    
+    public AlimentosView() {
         setTitle("Corrales");
         setSize(650, 350);
         setLayout(null);
@@ -28,7 +28,7 @@ public class CorralesView extends JDialog {
 
         initComponents();
     }
-
+    
     private void initComponents() {
         btnSeleccionar = new JButton("Seleccionar");
         btnSeleccionar.setBounds(525, 160, 100, 30);
@@ -42,40 +42,40 @@ public class CorralesView extends JDialog {
         scrollPane = new JScrollPane();
         scrollPane.setBounds(30, 30, 475, 250);
         add(scrollPane);
-
     }
-
+    
     public void launchView() {
         setVisible(true);
     }
 
-    public void setController(CorralesController corralesController) {
-        this.corralesController = corralesController;
+    public void setController(AlimentosController alimentosController) {
+        this.alimentosController = alimentosController;
         generarTablaResultados();
         addListeners();
     }
-
+    
     private void addListeners() {
-        tablaCorrales.getSelectionModel().addListSelectionListener(corralesController);
-        btnSeleccionar.addActionListener(corralesController);
-        btnCancelar.addActionListener(corralesController);
+        tablaAlimentos.getSelectionModel().addListSelectionListener(alimentosController);
+        btnSeleccionar.addActionListener(alimentosController);
+        btnCancelar.addActionListener(alimentosController);
     }
-
+    
     private void generarTablaResultados() {
-        Vector<Vector<String>> datosTablaCorrales = corralesController.obtenerDatosTabla();
-        vectorNombreColumnas = new Vector<>(Arrays.asList("CorralID", "Estado", "Tipo"));
-        tablaCorrales = new JTable(datosTablaCorrales, vectorNombreColumnas);
-        scrollPane.setViewportView(tablaCorrales);
+        Vector<Vector<String>> datosTablaAlimentos = alimentosController.obtenerDatosTabla();
+        vectorNombreColumnas = new Vector<>(Arrays.asList("AlimentoID", "Nombre", "Cantidad"));
+        tablaAlimentos = new JTable(datosTablaAlimentos, vectorNombreColumnas);
+        scrollPane.setViewportView(tablaAlimentos);
     }
-
+    
     public void guardarId() {
-        String corralID = tablaCorrales.getValueAt(tablaCorrales.getSelectedRow(), 0).toString();
-        AñadirCriaView.setCorralID(corralID);
+        String alimentolID = tablaAlimentos.getValueAt(tablaAlimentos.getSelectedRow(), 0).toString();
+        AñadirDietasView.setAlimentoID(alimentolID);
+        AñadirDietasView.getTxtDiasTratamiento().requestFocus();
         dispose();
     }
 
-    public JTable getTablaCorrales() {
-        return tablaCorrales;
+    public JTable getTablaAlimentos() {
+        return tablaAlimentos;
     }
 
     public JButton getBtnSeleccionar() {
@@ -85,6 +85,7 @@ public class CorralesView extends JDialog {
     public JButton getBtnCancelar() {
         return btnCancelar;
     }
+    
     
     
 }
