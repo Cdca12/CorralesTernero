@@ -2,7 +2,7 @@ package Views;
 
 import Controllers.*;
 import Entities.*;
-import java.awt.Font;
+import java.awt.*;
 import java.util.List;
 import javax.swing.*;
 
@@ -83,7 +83,6 @@ public class AñadirCorralesView extends JDialog {
     }
 
     public void cargarInformacion() {
-//        cargarTiposMusculo(añadirCriaController.obtenerTiposMusculo());
         cargarTipoCorral(añadirCorralesController.obtenerTipoCorral());
         cargarEstados(añadirCorralesController.obtenerEstados());
     }
@@ -93,7 +92,7 @@ public class AñadirCorralesView extends JDialog {
         cmbTipoCorral.insertItemAt("Seleccionar una opcíón", 0);
         cmbTipoCorral.setSelectedIndex(0);
     }
-    
+
     private void cargarEstados(List<Estados> listaTipoCorral) {
         cmbEstados.setModel(new DefaultComboBoxModel(listaTipoCorral.toArray()));
         cmbEstados.insertItemAt("Seleccionar una opcíón", 0);
@@ -123,7 +122,5 @@ public class AñadirCorralesView extends JDialog {
     public JButton getBtnLimpiar() {
         return btnLimpiar;
     }
-    
-    
 
 }

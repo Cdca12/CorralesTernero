@@ -125,6 +125,7 @@ public class MenuPrincipalView extends JFrame {
         avanzarDiasJMenuItem.addActionListener(menuPrincipalController);
         añadirCorralesJMenuItem.addActionListener(menuPrincipalController);
         añadirAlimentosJMenuItem.addActionListener(menuPrincipalController);
+        añadirDietasJMenuItem.addActionListener(menuPrincipalController);
     }
 
     // Getters
@@ -166,6 +167,10 @@ public class MenuPrincipalView extends JFrame {
 
     public JMenuItem getAñadirAlimentosJMenuItem() {
         return añadirAlimentosJMenuItem;
+    }
+
+    public JMenuItem getAñadirDietasJMenuItem() {
+        return añadirDietasJMenuItem;
     }
     
 
@@ -250,6 +255,17 @@ public class MenuPrincipalView extends JFrame {
         añadirAlimentosView.setController(añadirAlimentosController);
         añadirAlimentosView.launchView();
     }
+    
+    public void abrirAñadirDietas() {
+        AñadirDietasView añadirDietasView = new AñadirDietasView();
+        AñadirDietasModel añadirDietasModel = new AñadirDietasModel();
+        AñadirDietasController añadirDietasController = new AñadirDietasController(añadirDietasModel, añadirDietasView);
+        
+        añadirDietasView.setController(añadirDietasController);
+        añadirDietasView.launchView();
+    }
+    
+    
 
     public void mostrarMensajeSacrificarCrias() {
         int opcion = JOptionPane.showConfirmDialog(null, "¿Seguro que deseas clasificar crías?", "Sacrificar Crías", JOptionPane.WARNING_MESSAGE);

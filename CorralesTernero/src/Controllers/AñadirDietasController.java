@@ -1,0 +1,54 @@
+package Controllers;
+
+import Entities.*;
+import Views.*;
+import Models.*;
+import Utils.Status;
+import java.awt.event.*;
+import java.util.List;
+
+/**
+ *
+ * @author Carlos Contreras
+ */
+public class AñadirDietasController implements ActionListener {
+    
+    private AñadirDietasModel añadirDietasModel;
+    private AñadirDietasView añadirDietasView;
+
+    public AñadirDietasController(AñadirDietasModel añadirDietasModel, AñadirDietasView añadirDietasView) {
+        this.añadirDietasView = añadirDietasView;
+        this.añadirDietasModel = añadirDietasModel;
+    }
+    
+    @Override
+    public void actionPerformed(ActionEvent evt) {
+        if (evt.getSource() == añadirDietasView.getBtnAñadir()) {
+            Dietas dieta = new Dietas();
+            dieta.setDiasTratamiento(añadirDietasView.getTxtDiasTratamiento().getText());
+            dieta.setAlimentoID(añadirDietasView.getTxtAlimentoID().getText());
+            ejecutarAccion(añadirDietasModel.añadirDieta(dieta));
+            return;
+        }
+        if (evt.getSource() == añadirDietasView.getBtnLimpiar()) {
+            añadirDietasView.limpiarCampos();
+            return;
+        }
+        if (evt.getSource() == añadirDietasView.getBtnSeleccionarAlimento()) {
+            añadirDietasView.abrirAlimentos();
+            return;
+        }
+    }
+    
+    private void ejecutarAccion(int statusAccion) {
+        switch (statusAccion) {
+            case Status.ERROR_INSERT:
+                añadirDietasView.showErrorMessage(Status.ERROR_INSERT_TITLE, Status.ERROR_INSERT_MESSAGE);
+                break;
+            case Status.OK_INSERT:
+                añadirDietasView.showOkMessage(Status.OK_INSERT_TITLE, Status.OK_INSERT_MESSAGE);
+                añadirDietasView.limpiarCampos();
+                break;
+        }
+    }
+}
