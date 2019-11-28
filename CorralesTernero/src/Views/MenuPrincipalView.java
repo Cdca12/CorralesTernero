@@ -129,6 +129,7 @@ public class MenuPrincipalView extends JFrame {
         añadirDietasJMenuItem.addActionListener(menuPrincipalController);
         consultarCorralesJMenuItem.addActionListener(menuPrincipalController);
         consultarDietasJMenuItem.addActionListener(menuPrincipalController);
+        consultarAlimentosJMenuItem.addActionListener(menuPrincipalController);
     }
 
     // Getters
@@ -182,6 +183,10 @@ public class MenuPrincipalView extends JFrame {
 
     public JMenuItem getConsultarDietasJMenuItem() {
         return consultarDietasJMenuItem;
+    }
+
+    public JMenuItem getConsultarAlimentosJMenuItem() {
+        return consultarAlimentosJMenuItem;
     }
     
 
@@ -292,6 +297,15 @@ public class MenuPrincipalView extends JFrame {
 
         corralesView.setController(corralesController);
         corralesView.launchView();
+    }
+    
+    public void abrirConsultarAlimentos() {
+        AlimentosView alimentosView = new AlimentosView(Config.CONSULTA);
+        AlimentosModel alimentosModel = new AlimentosModel();
+        AlimentosController alimentosController = new AlimentosController(alimentosModel, alimentosView);
+
+        alimentosView.setController(alimentosController);
+        alimentosView.launchView();
     }
 
     public void mostrarMensajeSacrificarCrias() {

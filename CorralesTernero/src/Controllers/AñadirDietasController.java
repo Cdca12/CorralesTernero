@@ -35,7 +35,7 @@ public class AñadirDietasController implements ActionListener {
             return;
         }
         if (evt.getSource() == añadirDietasView.getBtnSeleccionarAlimento()) {
-            añadirDietasView.abrirAlimentos();
+            añadirDietasView.abrirSeleccionAlimentos();
             return;
         }
     }
