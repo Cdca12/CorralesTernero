@@ -1,5 +1,10 @@
 package Entities;
 
+import DataAccesor.SQLConnectionHelper;
+import Utils.Status;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 /**
  *
  * @author Carlos Contreras
@@ -38,6 +43,21 @@ public class Alimentos {
     }
     
     // Métodos CRUD
-    // TODO:
+    public static synchronized int añadirAlimento(Alimentos alimento) {
+        Statement conexion = SQLConnectionHelper.getConnection();
+        if (conexion == null) {
+            return Status.ERROR_CONNECTION;
+        }
+        try {
+            conexion.execute(
+                    "INSERT INTO Alimentos (Nombre, Cantidad) "
+                    + "VALUES ("
+                    + "'" + alimento.Nombre + "'" + ", "
+                    + alimento.Cantidad + ");");
+        } catch (SQLException e) {
+            return Status.ERROR_INSERT;
+        }
+        return Status.OK_INSERT;
+    }
     
 }

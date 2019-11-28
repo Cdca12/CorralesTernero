@@ -32,4 +32,17 @@ public class SQLConnectionHelper {
         } catch (SQLException E) {
         }
     }
+
+    static synchronized public Connection getConn() {
+        if (statement == null) {
+            url = "jdbc:sqlserver://127.0.0.1\\MSSQLSERVER01:8731;databaseName=CorralesTernero;user=desarrollo;password=desarrollo;";
+            try {
+                conn = DriverManager.getConnection(url);
+            } catch (SQLException e) {
+                return null;
+            }
+        }
+        return conn;
+    }
+
 }

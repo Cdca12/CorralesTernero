@@ -1,6 +1,8 @@
 package Models;
 
 import DataAccesor.SQLConnectionHelper;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -23,8 +25,7 @@ public class ConsultarCriasModel {
             return null;
         }
         try {
-            ResultSet resultQuery = conexion.executeQuery(
-                    "SELECT * FROM ConsultarCriasView");
+            ResultSet resultQuery = conexion.executeQuery("SELECT * FROM ConsultarCriasView");
             Vector<String> row;
             while (resultQuery.next()) {
                 row = new Vector();

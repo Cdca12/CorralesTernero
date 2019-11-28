@@ -61,6 +61,10 @@ public class MenuPrincipalController implements ActionListener {
             menuPrincipalView.abrirAñadirCorrales();
             return;
         }
+        if (evt.getSource() == menuPrincipalView.getAñadirAlimentosJMenuItem()) {
+            menuPrincipalView.abrirAñadirAlimentos();
+            return;
+        }
         
     }
     

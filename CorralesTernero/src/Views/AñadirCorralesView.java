@@ -1,6 +1,6 @@
 package Views;
 
-import Controllers.AñadirCorralesController;
+import Controllers.*;
 import Entities.*;
 import java.awt.Font;
 import java.util.List;
@@ -29,7 +29,7 @@ public class AñadirCorralesView extends JDialog {
         initComponents();
     }
 
-    public void initComponents() {
+    private void initComponents() {
         // Labels
         lbTipoCorral = new JLabel("Tipo Corral");
         lbTipoCorral.setFont(new Font("Arial", Font.PLAIN, 14));

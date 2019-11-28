@@ -124,6 +124,7 @@ public class MenuPrincipalView extends JFrame {
         simularSeñalesJMenuItem.addActionListener(menuPrincipalController);
         avanzarDiasJMenuItem.addActionListener(menuPrincipalController);
         añadirCorralesJMenuItem.addActionListener(menuPrincipalController);
+        añadirAlimentosJMenuItem.addActionListener(menuPrincipalController);
     }
 
     // Getters
@@ -162,6 +163,11 @@ public class MenuPrincipalView extends JFrame {
     public JMenuItem getAñadirCorralesJMenuItem() {
         return añadirCorralesJMenuItem;
     }
+
+    public JMenuItem getAñadirAlimentosJMenuItem() {
+        return añadirAlimentosJMenuItem;
+    }
+    
 
     // Métodos para abrir los menús
     public void abrirAñadirCria() {
@@ -234,6 +240,15 @@ public class MenuPrincipalView extends JFrame {
 
         añadirCorralesView.setController(añadirCorralesController);
         añadirCorralesView.launchView();
+    }
+    
+    public void abrirAñadirAlimentos() {
+        AñadirAlimentosView añadirAlimentosView = new AñadirAlimentosView();
+        AñadirAlimentosModel añadirAlimentosModel = new AñadirAlimentosModel();
+        AñadirAlimentosController añadirAlimentosController = new AñadirAlimentosController(añadirAlimentosModel, añadirAlimentosView);
+        
+        añadirAlimentosView.setController(añadirAlimentosController);
+        añadirAlimentosView.launchView();
     }
 
     public void mostrarMensajeSacrificarCrias() {
