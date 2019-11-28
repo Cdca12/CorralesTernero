@@ -20,7 +20,7 @@ private ConsultarCriasController consultarCriasController;
     private Vector<String> vectorNombreColumnas;
 
     public ConsultarCriasView() {
-        setTitle("Corrales");
+        setTitle("Crias");
         setSize(1400, 600);
         setLayout(null);
         setLocationRelativeTo(null);

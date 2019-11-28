@@ -73,6 +73,10 @@ public class MenuPrincipalController implements ActionListener {
             menuPrincipalView.abrirConsultarCorrales();
             return;
         }
+        if (evt.getSource() == menuPrincipalView.getConsultarDietasJMenuItem()) {
+            menuPrincipalView.abrirConsultarDietas();
+            return;
+        }
         
     }
     

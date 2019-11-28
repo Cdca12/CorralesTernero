@@ -4,6 +4,7 @@ import javax.swing.*;
 import Controllers.*;
 import java.util.Arrays;
 import java.util.Vector;
+import Utils.Config;
 
 /**
  *
@@ -17,31 +18,37 @@ public class DietasView extends JDialog {
     private JScrollPane scrollPane;
     private Vector<String> vectorNombreColumnas;
     private JButton btnSeleccionar, btnCancelar;
+    private Config config;
 
-    public DietasView() {
+    public DietasView(Config config) {
         setTitle("Dietas");
         setSize(650, 350);
         setLayout(null);
         setLocationRelativeTo(null);
         setResizable(false);
         setModal(true);
+        this.config = config;
 
         initComponents();
 
     }
 
     private void initComponents() {
-        btnSeleccionar = new JButton("Seleccionar");
-        btnSeleccionar.setBounds(525, 160, 100, 30);
-        btnSeleccionar.setEnabled(false);
-        add(btnSeleccionar);
-
-        btnCancelar = new JButton("Cancelar");
-        btnCancelar.setBounds(btnSeleccionar.getX(), btnSeleccionar.getY() + 40, 100, 30);
-        add(btnCancelar);
-
         scrollPane = new JScrollPane();
-        scrollPane.setBounds(30, 30, 475, 250);
+        int width = 590;
+        if (config == Config.SELECCION) {
+            btnSeleccionar = new JButton("Seleccionar");
+            btnSeleccionar.setBounds(525, 160, 100, 30);
+            btnSeleccionar.setEnabled(false);
+            add(btnSeleccionar);
+
+            btnCancelar = new JButton("Cancelar");
+            btnCancelar.setBounds(btnSeleccionar.getX(), btnSeleccionar.getY() + 40, 100, 30);
+            add(btnCancelar);
+
+            width = 475;
+        }
+        scrollPane.setBounds(30, 30, width, 250);
         add(scrollPane);
 
     }
@@ -59,8 +66,10 @@ public class DietasView extends JDialog {
 
     private void addListeners() {
         tablaDietas.getSelectionModel().addListSelectionListener(dietasController);
-        btnSeleccionar.addActionListener(dietasController);
-        btnCancelar.addActionListener(dietasController);
+        if (config == Config.SELECCION) {
+            btnSeleccionar.addActionListener(dietasController);
+            btnCancelar.addActionListener(dietasController);
+        }
     }
 
     private void generarTablaResultados() {
@@ -87,8 +96,5 @@ public class DietasView extends JDialog {
     public JTable getTablaDietas() {
         return tablaDietas;
     }
-    
-    
-    
-    
+
 }

@@ -203,8 +203,8 @@ public class AñadirCriaView extends JDialog {
     }
 
     // Métodos para abrir las consultas
-    public void abrirDietas() {
-        DietasView dietasView = new DietasView();
+    public void abrirSeleccionDietas() {
+        DietasView dietasView = new DietasView(Config.SELECCION);
         DietasModel dietasModel = new DietasModel();
         DietasController dietasController = new DietasController(dietasModel, dietasView);
 

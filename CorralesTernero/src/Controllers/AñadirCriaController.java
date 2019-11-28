@@ -42,7 +42,7 @@ public class AñadirCriaController implements ActionListener {
             return;
         }
         if (evt.getSource() == añadirCriaView.getBtnSeleccionarDieta()) {
-            añadirCriaView.abrirDietas();
+            añadirCriaView.abrirSeleccionDietas();
             return;
         }
 

@@ -128,6 +128,7 @@ public class MenuPrincipalView extends JFrame {
         añadirAlimentosJMenuItem.addActionListener(menuPrincipalController);
         añadirDietasJMenuItem.addActionListener(menuPrincipalController);
         consultarCorralesJMenuItem.addActionListener(menuPrincipalController);
+        consultarDietasJMenuItem.addActionListener(menuPrincipalController);
     }
 
     // Getters
@@ -178,8 +179,10 @@ public class MenuPrincipalView extends JFrame {
     public JMenuItem getConsultarCorralesJMenuItem() {
         return consultarCorralesJMenuItem;
     }
-    
-    
+
+    public JMenuItem getConsultarDietasJMenuItem() {
+        return consultarDietasJMenuItem;
+    }
     
 
     // Métodos para abrir los menús
@@ -254,30 +257,39 @@ public class MenuPrincipalView extends JFrame {
         añadirCorralesView.setController(añadirCorralesController);
         añadirCorralesView.launchView();
     }
-    
+
     public void abrirAñadirAlimentos() {
         AñadirAlimentosView añadirAlimentosView = new AñadirAlimentosView();
         AñadirAlimentosModel añadirAlimentosModel = new AñadirAlimentosModel();
         AñadirAlimentosController añadirAlimentosController = new AñadirAlimentosController(añadirAlimentosModel, añadirAlimentosView);
-        
+
         añadirAlimentosView.setController(añadirAlimentosController);
         añadirAlimentosView.launchView();
     }
-    
+
     public void abrirAñadirDietas() {
         AñadirDietasView añadirDietasView = new AñadirDietasView();
         AñadirDietasModel añadirDietasModel = new AñadirDietasModel();
         AñadirDietasController añadirDietasController = new AñadirDietasController(añadirDietasModel, añadirDietasView);
-        
+
         añadirDietasView.setController(añadirDietasController);
         añadirDietasView.launchView();
     }
-    
+
+    public void abrirConsultarDietas() {
+        DietasView dietasView = new DietasView(Config.CONSULTA);
+        DietasModel dietasModel = new DietasModel();
+        DietasController dietasController = new DietasController(dietasModel, dietasView);
+
+        dietasView.setController(dietasController);
+        dietasView.launchView();
+    }
+
     public void abrirConsultarCorrales() {
         CorralesView corralesView = new CorralesView(Config.CONSULTA);
         CorralesModel corralesModel = new CorralesModel();
         CorralesController corralesController = new CorralesController(corralesModel, corralesView);
-        
+
         corralesView.setController(corralesController);
         corralesView.launchView();
     }

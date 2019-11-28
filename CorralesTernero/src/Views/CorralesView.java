@@ -64,11 +64,11 @@ public class CorralesView extends JDialog {
     }
 
     private void addListeners() {
+        tablaCorrales.getSelectionModel().addListSelectionListener(corralesController);
         if (config == Config.SELECCION) {
             btnSeleccionar.addActionListener(corralesController);
             btnCancelar.addActionListener(corralesController);
         }
-        tablaCorrales.getSelectionModel().addListSelectionListener(corralesController);
     }
 
     private void generarTablaResultados() {

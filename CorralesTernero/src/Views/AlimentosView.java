@@ -19,7 +19,7 @@ public class AlimentosView extends JDialog {
     private JButton btnSeleccionar, btnCancelar;
     
     public AlimentosView() {
-        setTitle("Corrales");
+        setTitle("Alimentos");
         setSize(650, 350);
         setLayout(null);
         setLocationRelativeTo(null);
