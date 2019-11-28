@@ -41,14 +41,14 @@ public class AñadirDietasController implements ActionListener {
     }
     
     private void ejecutarAccion(int statusAccion) {
-        switch (statusAccion) {
-            case Status.ERROR_INSERT:
-                añadirDietasView.showErrorMessage(Status.ERROR_INSERT_TITLE, Status.ERROR_INSERT_MESSAGE);
-                break;
-            case Status.OK_INSERT:
-                añadirDietasView.showOkMessage(Status.OK_INSERT_TITLE, Status.OK_INSERT_MESSAGE);
-                añadirDietasView.limpiarCampos();
-                break;
+        if (statusAccion == Status.ERROR_INSERT.CODE) {
+            añadirDietasView.showErrorMessage(Status.ERROR_INSERT.TITLE, Status.ERROR_INSERT.MESSAGE);
+            return;
+        }
+        if (statusAccion == Status.OK_INSERT.CODE) {
+            añadirDietasView.showOkMessage(Status.OK_INSERT.TITLE, Status.OK_INSERT.MESSAGE);
+            añadirDietasView.limpiarCampos();
+            return;
         }
     }
 }

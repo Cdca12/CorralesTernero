@@ -52,7 +52,7 @@ public class Corrales {
     public static synchronized int añadirCorral(Corrales corral) {
         Statement conexion = SQLConnectionHelper.getConnection();
         if (conexion == null) {
-            return Status.ERROR_CONNECTION;
+            return Status.ERROR_CONNECTION.CODE;
         }
         try {
             conexion.execute(
@@ -61,9 +61,9 @@ public class Corrales {
                     + "'" + corral.EstadoID + "'" + ", "
                     + corral.TipoCorralID + ");");
         } catch (SQLException e) {
-            return Status.ERROR_INSERT;
+            return Status.ERROR_INSERT.CODE;
         }
-        return Status.OK_INSERT;
+        return Status.OK_INSERT.CODE;
     }
 
     

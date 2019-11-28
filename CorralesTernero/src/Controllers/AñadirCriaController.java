@@ -49,14 +49,14 @@ public class AñadirCriaController implements ActionListener {
     }
 
     private void ejecutarAccion(int statusAccion) {
-        switch (statusAccion) {
-            case Status.ERROR_INSERT:
-                añadirCriaView.showErrorMessage(Status.ERROR_INSERT_TITLE, Status.ERROR_INSERT_MESSAGE);
-                break;
-            case Status.OK_INSERT:
-                añadirCriaView.showOkMessage(Status.OK_INSERT_TITLE, Status.OK_INSERT_MESSAGE);
-                añadirCriaView.limpiarCampos();
-                break;
+        if (statusAccion == Status.ERROR_INSERT.CODE) {
+            añadirCriaView.showErrorMessage(Status.ERROR_INSERT.TITLE, Status.ERROR_INSERT.MESSAGE);
+            return;
+        }
+        if (statusAccion == Status.OK_INSERT.CODE) {
+            añadirCriaView.showOkMessage(Status.OK_INSERT.TITLE, Status.OK_INSERT.MESSAGE);
+            añadirCriaView.limpiarCampos();
+            return;
         }
     }
 

@@ -3,7 +3,7 @@ package Controllers;
 import Entities.*;
 import Views.*;
 import Models.*;
-import Utils.OtroStatus;
+import Utils.Status;
 import java.awt.event.*;
 import java.util.List;
 
@@ -37,12 +37,12 @@ public class AñadirAlimentosController implements ActionListener {
     }
 
     private void ejecutarAccion(int statusAccion) {
-        if (statusAccion == OtroStatus.ERROR_INSERT.CODE) {
-            añadirAlimentosView.showErrorMessage(OtroStatus.ERROR_INSERT.TITLE, OtroStatus.ERROR_INSERT.MESSAGE);
+        if (statusAccion == Status.ERROR_INSERT.CODE) {
+            añadirAlimentosView.showErrorMessage(Status.ERROR_INSERT.TITLE, Status.ERROR_INSERT.MESSAGE);
             return;
         }
-        if (statusAccion == OtroStatus.OK_INSERT.CODE) {
-            añadirAlimentosView.showOkMessage(OtroStatus.OK_INSERT.TITLE, OtroStatus.OK_INSERT.MESSAGE);
+        if (statusAccion == Status.OK_INSERT.CODE) {
+            añadirAlimentosView.showOkMessage(Status.OK_INSERT.TITLE, Status.OK_INSERT.MESSAGE);
             añadirAlimentosView.limpiarCampos();
             return;
         }

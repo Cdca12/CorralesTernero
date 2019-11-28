@@ -51,7 +51,7 @@ public class Dietas {
     public static synchronized int añadirDieta(Dietas dieta) {
         Statement conexion = SQLConnectionHelper.getConnection();
         if (conexion == null) {
-            return Status.ERROR_CONNECTION;
+            return Status.ERROR_CONNECTION.CODE;
         }
         try {
             conexion.execute(
@@ -60,8 +60,8 @@ public class Dietas {
                     + dieta.DiasTratamiento + ", "
                     + dieta.AlimentoID + ");");
         } catch (SQLException e) {
-            return Status.ERROR_INSERT;
+            return Status.ERROR_INSERT.CODE;
         }
-        return Status.OK_INSERT;
+        return Status.OK_INSERT.CODE;
     }
 }

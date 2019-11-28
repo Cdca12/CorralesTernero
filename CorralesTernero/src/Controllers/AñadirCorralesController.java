@@ -38,21 +38,21 @@ public class AñadirCorralesController implements ActionListener {
     }
 
     private void ejecutarAccion(int statusAccion) {
-        switch (statusAccion) {
-            case Status.ERROR_INSERT:
-                añadirCorralesView.showErrorMessage(Status.ERROR_INSERT_TITLE, Status.ERROR_INSERT_MESSAGE);
-                break;
-            case Status.OK_INSERT:
-                añadirCorralesView.showOkMessage(Status.OK_INSERT_TITLE, Status.OK_INSERT_MESSAGE);
-                añadirCorralesView.limpiarCampos();
-                break;
+        if (statusAccion == Status.ERROR_INSERT.CODE) {
+            añadirCorralesView.showErrorMessage(Status.ERROR_INSERT.TITLE, Status.ERROR_INSERT.MESSAGE);
+            return;
+        }
+        if (statusAccion == Status.OK_INSERT.CODE) {
+            añadirCorralesView.showOkMessage(Status.OK_INSERT.TITLE, Status.OK_INSERT.MESSAGE);
+            añadirCorralesView.limpiarCampos();
+            return;
         }
     }
 
     public List<TipoCorral> obtenerTipoCorral() {
         return añadirCorralesModel.obtenerTipoCorral();
     }
-    
+
     public List<Estados> obtenerEstados() {
         return añadirCorralesModel.obtenerEstados();
     }
