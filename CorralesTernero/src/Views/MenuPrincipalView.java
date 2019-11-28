@@ -28,7 +28,7 @@ public class MenuPrincipalView extends JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        
+
         ImageIcon isotipo = new ImageIcon("./src/Resources/isotipo.png");
         setIconImage(isotipo.getImage());
 
@@ -123,6 +123,7 @@ public class MenuPrincipalView extends JFrame {
         sacrificarCriasJMenuItem.addActionListener(menuPrincipalController);
         simularSeñalesJMenuItem.addActionListener(menuPrincipalController);
         avanzarDiasJMenuItem.addActionListener(menuPrincipalController);
+        añadirCorralesJMenuItem.addActionListener(menuPrincipalController);
     }
 
     // Getters
@@ -156,6 +157,10 @@ public class MenuPrincipalView extends JFrame {
 
     public JMenuItem getAvanzarDiasJMenuItem() {
         return avanzarDiasJMenuItem;
+    }
+    
+    public JMenuItem getAñadirCorralesJMenuItem() {
+        return añadirCorralesJMenuItem;
     }
 
     // Métodos para abrir los menús
@@ -220,6 +225,15 @@ public class MenuPrincipalView extends JFrame {
 
         avanzarDiasView.setController(avanzarDiasController);
         avanzarDiasView.launchView();
+    }
+
+    public void abrirAñadirCorrales() {
+        AñadirCorralesView añadirCorralesView = new AñadirCorralesView();
+        AñadirCorralesModel añadirCorralesModel = new AñadirCorralesModel();
+        AñadirCorralesController añadirCorralesController = new AñadirCorralesController(añadirCorralesModel, añadirCorralesView);
+
+        añadirCorralesView.setController(añadirCorralesController);
+        añadirCorralesView.launchView();
     }
 
     public void mostrarMensajeSacrificarCrias() {

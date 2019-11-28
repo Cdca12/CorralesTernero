@@ -28,6 +28,11 @@ public class Estados {
         this.Nombre = Nombre;
     }
     
+    @Override
+    public String toString() {
+        return Nombre;
+    }
+    
     // Métodos CRUD
     // TODO:
     

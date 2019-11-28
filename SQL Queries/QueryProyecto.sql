@@ -1,4 +1,6 @@
 --Creación Base de Datos
+USE master;
+GO
 CREATE DATABASE CorralesTernero;
 GO
 
@@ -45,7 +47,7 @@ CREATE TABLE Estados (
 );
 
 CREATE TABLE Corrales (
-	CorralID int PRIMARY KEY,
+	CorralID int IDENTITY PRIMARY KEY ,
 	EstadoID char(2) FOREIGN KEY REFERENCES Estados NOT NULL,
 	TipoCorralID int FOREIGN KEY REFERENCES TipoCorral NOT NULL,
 );
@@ -481,7 +483,7 @@ AS
 	SELECT TC.CriaID, C.CorralID, TC.Peso, TC.Grasa, 
 	G.Tipo as GrasaCobertura, M.ColorMusculo as TipoMusculo, 
 	E.Descripcion as EstadoCria, TC.DiasEdad FROM 
-	(SELECT * FROM Crias WHERE EstadoCriaID = 1 AND DiasEdad >= 150 AND) AS TC
+	(SELECT * FROM Crias WHERE EstadoCriaID = 1 AND DiasEdad >= 150) AS TC
 	INNER JOIN Corrales C ON TC.CorralID = C.CorralID
 	INNER JOIN GrasaCobertura G ON TC.GrasaCoberturaID = G.GrasaCoberturaID
 	INNER JOIN Musculo M ON TC.MusculoID = M.MusculoID
@@ -549,8 +551,8 @@ VALUES
 	
 INSERT INTO Corrales
 VALUES
-	(1, (SELECT EstadoID FROM Estados WHERE Nombre = 'Sinaloa'), (SELECT TipoCorralID FROM TipoCorral WHERE Descripcion = 'Sanos')),
-	(2, (SELECT EstadoID FROM Estados WHERE Nombre = 'Ciudad de México'), (SELECT TipoCorralID FROM TipoCorral WHERE Descripcion = 'Enfermos'));
+	((SELECT EstadoID FROM Estados WHERE Nombre = 'Sinaloa'), (SELECT TipoCorralID FROM TipoCorral WHERE Descripcion = 'Sanos')),
+	((SELECT EstadoID FROM Estados WHERE Nombre = 'Ciudad de México'), (SELECT TipoCorralID FROM TipoCorral WHERE Descripcion = 'Enfermos'));
 
 
 --Insertar Crias Test

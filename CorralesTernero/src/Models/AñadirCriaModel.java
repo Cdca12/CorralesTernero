@@ -2,7 +2,6 @@ package Models;
 
 import DataAccesor.SQLConnectionHelper;
 import Entities.*;
-import Utils.Status;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -22,29 +21,6 @@ public class AñadirCriaModel {
         return Crias.añadirCria(cria);
     }
     
-    public List<Corrales> obtenerCorrales() {
-        List<Corrales> listaCorrales = new ArrayList();
-        Statement conexion = SQLConnectionHelper.getConnection();
-        if (conexion == null) {
-            return null;
-        }
-        try {
-            ResultSet resultQuery = conexion.executeQuery("SELECT * FROM Corrales;");
-            Corrales corral;
-            while (resultQuery.next()) {
-                corral = new Corrales();
-                corral.setCorralID(resultQuery.getString("CorralID"));
-                corral.setEstadoID(resultQuery.getString("EstadoID"));
-                corral.setTipoCorralID(resultQuery.getString("TipoCorralID"));
-                listaCorrales.add(corral);
-            }
-        } catch (SQLException e) {
-            return null;
-        }
-        return listaCorrales;
-    }
-
-
     public List<GrasaCobertura> obtenerGrasasCobertura() {
         List<GrasaCobertura> listaGrasasCobertura = new ArrayList();
         Statement conexion = SQLConnectionHelper.getConnection();

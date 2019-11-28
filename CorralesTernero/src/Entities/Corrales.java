@@ -1,5 +1,10 @@
 package Entities;
 
+import DataAccesor.SQLConnectionHelper;
+import Utils.Status;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 /**
  *
  * @author Carlos Contreras
@@ -44,7 +49,22 @@ public class Corrales {
     
     
     // Métodos CRUD
-    // TODO:
+    public static synchronized int añadirCorral(Corrales corral) {
+        Statement conexion = SQLConnectionHelper.getConnection();
+        if (conexion == null) {
+            return Status.ERROR_CONNECTION;
+        }
+        try {
+            conexion.execute(
+                    "INSERT INTO Corrales (EstadoID, TipoCorralID) "
+                    + "VALUES ("
+                    + "'" + corral.EstadoID + "'" + ", "
+                    + corral.TipoCorralID + ");");
+        } catch (SQLException e) {
+            return Status.ERROR_INSERT;
+        }
+        return Status.OK_INSERT;
+    }
 
     
 }

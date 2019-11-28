@@ -5,12 +5,12 @@ package Entities;
  * @author Carlos Contreras
  */
 public class TipoCorral {
-    
-   private String TipoCorralID;
-   private String Descripcion;
-   
-   public TipoCorral() {
-   }
+
+    private String TipoCorralID;
+    private String Descripcion;
+
+    public TipoCorral() {
+    }
 
     public String getTipoCorralID() {
         return TipoCorralID;
@@ -27,8 +27,12 @@ public class TipoCorral {
     public void setDescripcion(String Descripcion) {
         this.Descripcion = Descripcion;
     }
-   
+
+    @Override
+    public String toString() {
+        return Descripcion;
+    }
+
     // Métodos CRUD
     // TODO
-    
 }

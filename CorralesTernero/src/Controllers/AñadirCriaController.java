@@ -4,8 +4,7 @@ import Entities.*;
 import Views.*;
 import Models.*;
 import Utils.Status;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.util.List;
 
 /**
@@ -59,10 +58,6 @@ public class AñadirCriaController implements ActionListener {
                 añadirCriaView.limpiarCampos();
                 break;
         }
-    }
-
-    public List<Corrales> obtenerCorrales() {
-        return añadirCriaModel.obtenerCorrales();
     }
 
     public List<GrasaCobertura> obtenerGrasasCobertura() {
