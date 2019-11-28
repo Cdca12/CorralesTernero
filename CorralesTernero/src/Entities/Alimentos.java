@@ -1,7 +1,7 @@
 package Entities;
 
 import DataAccesor.SQLConnectionHelper;
-import Utils.Status;
+import Utils.OtroStatus;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -46,7 +46,7 @@ public class Alimentos {
     public static synchronized int añadirAlimento(Alimentos alimento) {
         Statement conexion = SQLConnectionHelper.getConnection();
         if (conexion == null) {
-            return Status.ERROR_CONNECTION;
+            return OtroStatus.ERROR_CONNECTION.CODE;
         }
         try {
             conexion.execute(
@@ -55,9 +55,9 @@ public class Alimentos {
                     + "'" + alimento.Nombre + "'" + ", "
                     + alimento.Cantidad + ");");
         } catch (SQLException e) {
-            return Status.ERROR_INSERT;
+            return OtroStatus.ERROR_INSERT.CODE;
         }
-        return Status.OK_INSERT;
+        return OtroStatus.OK_INSERT.CODE;
     }
     
 }

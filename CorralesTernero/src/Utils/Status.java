@@ -6,6 +6,7 @@ package Utils;
  */
 public final class Status {
     
+    
     public final static int OK_CONNECTION = 0;
     public final static String OK_CONNECTION_TITLE = "OK: Conexión SI realizada";
     public final static String OK_CONNECTION_MESSAGE = "Conexión a la base de datos realizada correctamente.";
