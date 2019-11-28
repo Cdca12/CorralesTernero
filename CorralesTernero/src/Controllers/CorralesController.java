@@ -42,6 +42,7 @@ public class CorralesController implements ActionListener, ListSelectionListener
     public void valueChanged(ListSelectionEvent lse) {
         if(lse.getSource() == corralesView.getTablaCorrales().getSelectionModel()) {
             corralesView.getBtnSeleccionar().setEnabled(true);
+            corralesView.getBtnSeleccionar().requestFocus();
             return;
         }
     }

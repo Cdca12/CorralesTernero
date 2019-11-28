@@ -41,6 +41,7 @@ public class AlimentosController implements ActionListener, ListSelectionListene
     public void valueChanged(ListSelectionEvent lse) {
         if(lse.getSource() == alimentosView.getTablaAlimentos().getSelectionModel()) {
             alimentosView.getBtnSeleccionar().setEnabled(true);
+            alimentosView.getBtnSeleccionar().requestFocus();
             return;
         }
     }

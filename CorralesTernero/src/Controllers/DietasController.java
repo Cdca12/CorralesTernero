@@ -42,6 +42,7 @@ public class DietasController implements ActionListener, ListSelectionListener {
     public void valueChanged(ListSelectionEvent lse) {
         if(lse.getSource() == dietasView.getTablaDietas().getSelectionModel()) {
             dietasView.getBtnSeleccionar().setEnabled(true);
+            dietasView.getBtnSeleccionar().requestFocus();
             return;
         }
     }
