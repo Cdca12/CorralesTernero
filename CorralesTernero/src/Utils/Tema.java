@@ -8,7 +8,11 @@ import javax.swing.plaf.nimbus.NimbusLookAndFeel;
  *
  * @author Carlos Contreras
  */
-public class Tema {
+public final class Tema {
+    
+    private Tema() {
+        // Hacer clase no instanciable
+    }
 
     public static void cambiarTema() {
         try {
@@ -18,3 +22,4 @@ public class Tema {
         }
     }
 }
+

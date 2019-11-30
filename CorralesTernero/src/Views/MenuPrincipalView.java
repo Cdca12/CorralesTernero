@@ -309,9 +309,9 @@ public class MenuPrincipalView extends JFrame {
     }
 
     public void mostrarMensajeSacrificarCrias() {
-        int opcion = JOptionPane.showConfirmDialog(null, "¿Seguro que deseas clasificar crías?", "Sacrificar Crías", JOptionPane.WARNING_MESSAGE);
+        int opcion = JOptionPane.showConfirmDialog(null, "¿Seguro que deseas sacrificar crías?", "Sacrificar Crías", JOptionPane.WARNING_MESSAGE);
         if (opcion == 1) {
-            JOptionPane.showMessageDialog(null, "Las Crías se han sacrificado correctamente", "Crias Sacrificadas", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Las crías se han sacrificado correctamente", "Crias Sacrificadas", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
 

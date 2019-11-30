@@ -14,7 +14,9 @@ public class SQLConnectionHelper {
 
     static synchronized public Statement getConnection() {
         if (statement == null) {
-            url = "jdbc:sqlserver://127.0.0.1\\MSSQLSERVER01:8731;databaseName=CorralesTernero;user=desarrollo;password=desarrollo;";
+//            url = "jdbc:sqlserver://localhost\\MSSQLSERVER01:1433;databaseName=CorralesTernero;user=desarrollo;password=desarrollo;";
+//            url = "jdbc:sqlserver://187.149.41.181\\MSSQLSERVER01;databaseName=CorralesTernero;user=desarrollo;password=desarrollo;";
+            url = "jdbc:sqlserver://pruebascdca.database.windows.net:1433;database=CorralesTernero;user=Cdca;password=Corrales$123";
             try {
                 conn = DriverManager.getConnection(url);
                 statement = conn.createStatement();
