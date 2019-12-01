@@ -44,12 +44,11 @@ public class ConsultarCorralesView extends JDialog {
             btnCancelar = new JButton("Cancelar");
             btnCancelar.setBounds(btnSeleccionar.getX(), btnSeleccionar.getY() + 40, 100, 30);
             add(btnCancelar);
-            
+
             width = 475; // Cambiar ancho tabla
         }
         scrollPane.setBounds(30, 30, width, 250);
         add(scrollPane);
-
 
     }
 
@@ -64,8 +63,8 @@ public class ConsultarCorralesView extends JDialog {
     }
 
     private void addListeners() {
-        tablaCorrales.getSelectionModel().addListSelectionListener(corralesController);
         if (config == Config.SELECCION) {
+            tablaCorrales.getSelectionModel().addListSelectionListener(corralesController);
             btnSeleccionar.addActionListener(corralesController);
             btnCancelar.addActionListener(corralesController);
         }

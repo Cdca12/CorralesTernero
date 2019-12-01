@@ -49,7 +49,7 @@ private ConsultarCriasController consultarCriasController;
     }
 
     private void addListeners() {
-
+            
     }
 
     private void generarTablaResultados() {

@@ -62,8 +62,8 @@ public class ConsultarAlimentosView extends JDialog {
     }
 
     private void addListeners() {
-        tablaAlimentos.getSelectionModel().addListSelectionListener(alimentosController);
         if (config == Config.SELECCION) {
+            tablaAlimentos.getSelectionModel().addListSelectionListener(alimentosController);
             btnSeleccionar.addActionListener(alimentosController);
             btnCancelar.addActionListener(alimentosController);
         }
