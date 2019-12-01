@@ -307,6 +307,15 @@ public class MenuPrincipalView extends JFrame {
         alimentosView.setController(alimentosController);
         alimentosView.launchView();
     }
+    
+    public void abrirConsultarCriasASacrificar() {
+        ConsultarCriasASacrificarView consultarAlimentosView = new ConsultarCriasASacrificarView();
+        ConsultarCriasASacrificarModel consultarAlimentosModel = new ConsultarCriasASacrificarModel();
+        ConsultarCriasASacrificarController consultarAlimentosController = new ConsultarCriasASacrificarController(consultarAlimentosModel, consultarAlimentosView);
+
+        consultarAlimentosView.setController(consultarAlimentosController);
+        consultarAlimentosView.launchView();
+    }
 
     public void mostrarMensajeSacrificarCrias() {
         int opcion = JOptionPane.showConfirmDialog(null, "¿Seguro que deseas sacrificar crías?", "Sacrificar Crías", JOptionPane.WARNING_MESSAGE);

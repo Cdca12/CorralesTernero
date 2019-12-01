@@ -1,6 +1,5 @@
 package Views;
 
-import Controllers.ConsultarCorralesController;
 import Controllers.ReporteCriasEnfermasController;
 import java.util.Arrays;
 import java.util.Vector;
