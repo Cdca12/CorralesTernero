@@ -5,16 +5,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
+
 /**
  *
  * @author Carlos Contreras
  */
 public class ConsultarCriasASacrificarModel {
-    
+
     public ConsultarCriasASacrificarModel() {
-        
+
     }
-    
+
     public Vector<Vector<String>> obtenerDatosTabla() {
         Vector<Vector<String>> datosTablaCriasASacrificar = new Vector<>();
 
@@ -41,5 +42,19 @@ public class ConsultarCriasASacrificarModel {
         }
         return datosTablaCriasASacrificar;
     }
-    
+
+    public void sacrificarCria(String criaID) {
+        Statement conexion = SQLConnectionHelper.getConnection();
+        if (conexion == null) {
+            return;
+        }
+        try {
+            conexion.execute("EXECUTE spSacrificarCrias " + criaID);
+        } catch (SQLException e) {
+            System.out.println("Error sacrificar cría");
+            return;
+        }
+
+    }
+
 }

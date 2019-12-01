@@ -31,26 +31,24 @@ public class ConsultarCriasASacrificarController implements ActionListener, List
     public void actionPerformed(ActionEvent evt) {
         // Nada...
         if (evt.getSource() == consultarCriasASacrificarView.getBtnSacrificar()) {
-
-            Statement conexion = SQLConnectionHelper.getConnection();
-            if (conexion == null) {
-                return;
-            }
-            try {
-                conexion.execute("EXECUTE spSacrificarCrias");
-            } catch (SQLException e) {
-                return;
-            }
+            int row = consultarCriasASacrificarView.getTablaCriasASacrificar().getSelectedRow();
+            String criaID = consultarCriasASacrificarView.getTablaCriasASacrificar().getModel().getValueAt(row, 2).toString();
+            System.out.println("CriaID: " + criaID);
+            consultarCriasASacrificarModel.sacrificarCria(criaID);
+            return;
         }
         if (evt.getSource() == consultarCriasASacrificarView.getBtnCancelar()) {
             consultarCriasASacrificarView.dispose();
-            return;
         }
     }
 
     @Override
     public void valueChanged(ListSelectionEvent lse) {
-        // Nada...
+        if (lse.getSource() == consultarCriasASacrificarView.getTablaCriasASacrificar().getSelectionModel()) {
+            consultarCriasASacrificarView.getBtnSacrificar().setEnabled(true);
+            System.out.println("Value changed");
+            return;
+        }
     }
 
 }

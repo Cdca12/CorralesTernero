@@ -1,4 +1,5 @@
 CREATE PROCEDURE spSacrificarCrias
+	@CriaID int
 AS
 
 	DECLARE @CriasIDASacrificar TABLE (
@@ -9,14 +10,10 @@ AS
 	BEGIN TRY
 		BEGIN TRAN
 
+
 		INSERT INTO @CriasIDASacrificar 
-		SELECT CriaID, Transaccion FROM TrasladosCrias
-		WHERE CorralID IN (
-			SELECT CorralID FROM Corrales
-			WHERE TipoCorralID = 2 --Corrales Enfermos
-		)
-		AND FechaEgreso IS NULL
-		AND DiasEnCorral >= 40
+		SELECT CriaID, Transaccion FROM ConsultarCriasASacrificarView
+		WHERE CriaID = @CriaID
 	
 		--Poner CorralID null o dejar historial del ultimo corral (?
 		UPDATE Crias
@@ -40,3 +37,4 @@ AS
 		ROLLBACK TRAN
 
 	END CATCH
+

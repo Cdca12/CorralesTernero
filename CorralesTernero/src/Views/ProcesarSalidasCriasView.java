@@ -79,7 +79,9 @@ public class ProcesarSalidasCriasView extends JDialog {
                 "DiasEdad"
         ));
         tablaProcesarSalidasCrias = new JTable(datosTablaProcesarSalidasCrias, vectorNombreColumnas);
+        
         scrollPane.setViewportView(tablaProcesarSalidasCrias);
+        
     }
 
     public JTable getTablaProcesarSalidasCrias() {

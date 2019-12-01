@@ -12,8 +12,8 @@ import javax.swing.*;
  * @author Carlos Contreras
  */
 public class ConsultarCriasView extends JDialog {
-    
-private ConsultarCriasController consultarCriasController;
+
+    private ConsultarCriasController consultarCriasController;
 
     private JTable tablaCrias;
     private JScrollPane scrollPane;
@@ -49,7 +49,7 @@ private ConsultarCriasController consultarCriasController;
     }
 
     private void addListeners() {
-            
+
     }
 
     private void generarTablaResultados() {
@@ -67,6 +67,8 @@ private ConsultarCriasController consultarCriasController;
                 "DiasEdad"
         ));
         tablaCrias = new JTable(datosTablaCrias, vectorNombreColumnas);
+        tablaCrias.setRowSelectionAllowed(true);
+        tablaCrias.setColumnSelectionAllowed(false);
         scrollPane.setViewportView(tablaCrias);
     }
 

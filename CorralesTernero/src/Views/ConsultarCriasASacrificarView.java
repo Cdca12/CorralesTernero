@@ -40,6 +40,7 @@ public class ConsultarCriasASacrificarView extends JDialog {
         
         btnSacrificar = new JButton("Sacrificar");
         btnSacrificar.setBounds(640, 300, 100, 30);
+        btnSacrificar.setEnabled(false);
         add(btnSacrificar);
 
         btnCancelar = new JButton("Cancelar");
