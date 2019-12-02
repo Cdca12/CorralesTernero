@@ -2,31 +2,23 @@ CREATE PROCEDURE spSacrificarCrias
 	@CriaID int
 AS
 
-	DECLARE @CriasIDASacrificar TABLE (
-		CriaID int,
-		Transaccion int
-	)
-
 	BEGIN TRY
 		BEGIN TRAN
 
-
-		INSERT INTO @CriasIDASacrificar 
-		SELECT CriaID, Transaccion FROM ConsultarCriasASacrificarView
-		WHERE CriaID = @CriaID
-	
-		--Poner CorralID null o dejar historial del ultimo corral (?
+		DECLARE @Transaccion int = (
+			SELECT Transaccion FROM ConsultarCriasASacrificarView
+			WHERE CriaID = @CriaID
+		)
+		
+		--Actualiza estado de la Cria
 		UPDATE Crias
 		SET EstadoCriaID = 3
-		WHERE CriaID IN (
-			SELECT CriaID FROM @CriasIDASacrificar
-		)
+		WHERE CriaID = @CriaID
 
+		--Actualiza historial
 		UPDATE TrasladosCrias
 		SET FechaEgreso = GETDATE()
-		WHERE Transaccion IN (
-			SELECT Transaccion FROM @CriasIDASacrificar
-		)
+		WHERE Transaccion = @Transaccion
 
 		COMMIT TRAN
 

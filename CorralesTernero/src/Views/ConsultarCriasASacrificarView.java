@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+
 /**
  *
  * @author Carlos Contreras
@@ -20,39 +21,40 @@ public class ConsultarCriasASacrificarView extends JDialog {
     private JScrollPane scrollPane;
     private Vector<String> vectorNombreColumnas;
     
-    private JButton btnSacrificar, btnCancelar;
+    private JButton btnSacrificar, btnSacrificarAll;
     
     public ConsultarCriasASacrificarView() {
         setTitle("Consultar Crias A Sacrificar");
-        setSize(750, 500);
+        setSize(680, 500);
         setLayout(null);
         setLocationRelativeTo(null);
         setResizable(false);
         setModal(true);
-
+        
         initComponents();
     }
     
     private void initComponents() {
         scrollPane = new JScrollPane();
-        scrollPane.setBounds(30, 30, 600, 400);
+        scrollPane.setBounds(30, 30, 600, 380);
         add(scrollPane);
         
+        btnSacrificarAll = new JButton("Sacrificar todos");
+        btnSacrificarAll.setBounds(220, 420, 120, 30);
+        btnSacrificarAll.setEnabled(false);
+        add(btnSacrificarAll);
+        
         btnSacrificar = new JButton("Sacrificar");
-        btnSacrificar.setBounds(640, 300, 100, 30);
+        btnSacrificar.setBounds(btnSacrificarAll.getX() + 130, btnSacrificarAll.getY(), 100, 30);
         btnSacrificar.setEnabled(false);
         add(btnSacrificar);
-
-        btnCancelar = new JButton("Cancelar");
-        btnCancelar.setBounds(btnSacrificar.getX(), btnSacrificar.getY() + 40, 100, 30);
-        add(btnCancelar);
         
     }
-
+    
     public void launchView() {
         setVisible(true);
     }
-
+    
     public void setController(ConsultarCriasASacrificarController consultarCriasASacrificarController) {
         this.consultarCriasASacrificarController = consultarCriasASacrificarController;
         generarTablaResultados();
@@ -62,7 +64,7 @@ public class ConsultarCriasASacrificarView extends JDialog {
     private void addListeners() {
         tablaCriasASacrificar.getSelectionModel().addListSelectionListener(consultarCriasASacrificarController);
         btnSacrificar.addActionListener(consultarCriasASacrificarController);
-        btnCancelar.addActionListener(consultarCriasASacrificarController);
+        btnSacrificarAll.addActionListener(consultarCriasASacrificarController);
     }
     
     private void generarTablaResultados() {
@@ -73,12 +75,15 @@ public class ConsultarCriasASacrificarView extends JDialog {
                 "CriaID",
                 "FechaIngreso",
                 "FechaEgreso",
-                "DiaesEnCorral"
+                "DiasEnCorral"
         ));
-        tablaCriasASacrificar= new JTable(datosTablaCriasASacrificar, vectorNombreColumnas);
+        tablaCriasASacrificar = new JTable(datosTablaCriasASacrificar, vectorNombreColumnas);
         scrollPane.setViewportView(tablaCriasASacrificar);
+        if (tablaCriasASacrificar.getRowCount() > 0) {
+            btnSacrificarAll.setEnabled(true);
+        }
     }
-
+    
     public JTable getTablaCriasASacrificar() {
         return tablaCriasASacrificar;
     }
@@ -87,8 +92,8 @@ public class ConsultarCriasASacrificarView extends JDialog {
         return btnSacrificar;
     }
     
-    public JButton getBtnCancelar() {
-        return btnCancelar;
+    public JButton getBtnSacrificarAll() {
+        return btnSacrificarAll;
     }
     
 }

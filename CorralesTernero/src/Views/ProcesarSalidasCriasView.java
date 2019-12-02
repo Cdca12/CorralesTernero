@@ -37,6 +37,7 @@ public class ProcesarSalidasCriasView extends JDialog {
     private void initComponents() {
         btnProcesarAll = new JButton("Procesar todas");
         btnProcesarAll.setBounds(430, 300, 130, 30);
+        btnProcesarAll.setEnabled(false);
         add(btnProcesarAll);
         
         btnProcesar = new JButton("Procesar cría");
@@ -57,7 +58,6 @@ public class ProcesarSalidasCriasView extends JDialog {
     public void setController(ProcesarSalidasCriasController procesarSalidasCriasController) {
         this.procesarSalidasCriasController = procesarSalidasCriasController;
         generarTablaResultados();
-        validarBotonProcesar();
         addListeners();
     }
 
@@ -80,8 +80,10 @@ public class ProcesarSalidasCriasView extends JDialog {
                 "DiasEdad"
         ));
         tablaProcesarSalidasCrias = new JTable(datosTablaProcesarSalidasCrias, vectorNombreColumnas);
-        
         scrollPane.setViewportView(tablaProcesarSalidasCrias);
+        if (tablaProcesarSalidasCrias.getRowCount() > 0) {
+            btnProcesarAll.setEnabled(true);
+        }
         
     }
 
@@ -97,11 +99,4 @@ public class ProcesarSalidasCriasView extends JDialog {
         return btnProcesarAll;
     }
     
-    private void validarBotonProcesar() {
-        if (tablaProcesarSalidasCrias.getRowCount() == 0) {
-            btnProcesar.setEnabled(false);
-            btnProcesarAll.setEnabled(false);
-            return;
-        }
-    }
 }

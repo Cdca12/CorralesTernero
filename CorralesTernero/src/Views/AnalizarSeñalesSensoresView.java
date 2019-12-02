@@ -17,7 +17,6 @@ public class AnalizarSeñalesSensoresView extends JDialog {
     private JScrollPane scrollPane;
     private Vector<String> vectorNombreColumnas;
     private JButton btnCriasPropensasEnfermarse, btnAñadirCuarentena, btnAñadirCuarentenaAll;
-    public boolean isChanged;
 
     public AnalizarSeñalesSensoresView() {
         setTitle("Analizar Señales Sensores");
@@ -26,7 +25,6 @@ public class AnalizarSeñalesSensoresView extends JDialog {
         setLocationRelativeTo(null);
         setResizable(false);
         setModal(true);
-        isChanged = false;
 
         initComponents();
     }
@@ -81,6 +79,9 @@ public class AnalizarSeñalesSensoresView extends JDialog {
         tablaSeñalesSensores = new JTable(datosTablaPropensasEnfermarse, vectorNombreColumnas);
         tablaSeñalesSensores.getSelectionModel().addListSelectionListener(analizarSeñalesSensoresController);
         scrollPane.setViewportView(tablaSeñalesSensores);
+        if (tablaSeñalesSensores.getRowCount() > 0) {
+            btnAñadirCuarentenaAll.setEnabled(true);
+        }
     }
 
     public void actualizarTablaPropensosEnfermarse() {

@@ -54,7 +54,21 @@ public class ConsultarCriasASacrificarModel {
             System.out.println("Error sacrificar cría");
             return;
         }
-
     }
+        
+    public void sacrificarCriaAll() {
+        Statement conexion = SQLConnectionHelper.getConnection();
+        if (conexion == null) {
+            return;
+        }
+        try {
+            conexion.execute("EXECUTE spSacrificarCriasAll");
+        } catch (SQLException e) {
+            System.out.println("Error sacrificar cría");
+            return;
+        }
+    }
+
+    
 
 }

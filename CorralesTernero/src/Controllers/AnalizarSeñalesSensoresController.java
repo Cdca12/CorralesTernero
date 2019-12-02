@@ -35,7 +35,6 @@ public class AnalizarSeñalesSensoresController implements ActionListener, ListS
     public void actionPerformed(ActionEvent evt) {
         if (evt.getSource() == analizarSeñalesSensoresView.getBtnCriasPropensasEnfermarse()) {
             analizarSeñalesSensoresView.actualizarTablaPropensosEnfermarse();
-            analizarSeñalesSensoresView.isChanged = true;
             return;
         }
         if (evt.getSource() == analizarSeñalesSensoresView.getBtnAñadirCuarentena()) {
@@ -54,9 +53,7 @@ public class AnalizarSeñalesSensoresController implements ActionListener, ListS
 
 @Override
     public void valueChanged(ListSelectionEvent lse) {
-        if (lse.getSource() == analizarSeñalesSensoresView.getTablaSeñalesSensores().getSelectionModel()
-                && analizarSeñalesSensoresView.isChanged) {
-            analizarSeñalesSensoresView.getBtnAñadirCuarentena().setEnabled(true);
+        if (lse.getSource() == analizarSeñalesSensoresView.getTablaSeñalesSensores().getSelectionModel()) {
             analizarSeñalesSensoresView.getBtnAñadirCuarentenaAll().setEnabled(true);
             return;
         }

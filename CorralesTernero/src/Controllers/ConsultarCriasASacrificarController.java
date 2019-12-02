@@ -35,8 +35,9 @@ public class ConsultarCriasASacrificarController implements ActionListener, List
             consultarCriasASacrificarModel.sacrificarCria(criaID);
             return;
         }
-        if (evt.getSource() == consultarCriasASacrificarView.getBtnCancelar()) {
-            consultarCriasASacrificarView.dispose();
+        if (evt.getSource() == consultarCriasASacrificarView.getBtnSacrificarAll()) {
+            consultarCriasASacrificarModel.sacrificarCriaAll();
+            return;
         }
     }
 
