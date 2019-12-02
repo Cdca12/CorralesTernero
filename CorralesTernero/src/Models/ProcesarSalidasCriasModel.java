@@ -45,13 +45,26 @@ public class ProcesarSalidasCriasModel {
         return datosTabla;
     }
 
-    public void procesarSalidas() {
+    public void procesarSalidas(String criaID) {
         Statement conexion = SQLConnectionHelper.getConnection();
         if (conexion == null) {
             return;
         }
         try {
-            conexion.executeQuery("EXECUTE spProcesarSalidasCrias");
+            conexion.execute("EXECUTE spProcesarSalidasCrias " + criaID);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return;
+        }
+    }
+
+    public void procesarSalidasAll() {
+        Statement conexion = SQLConnectionHelper.getConnection();
+        if (conexion == null) {
+            return;
+        }
+        try {
+            conexion.execute("EXECUTE spProcesarSalidasCriasAll");
         } catch (SQLException e) {
             return;
         }

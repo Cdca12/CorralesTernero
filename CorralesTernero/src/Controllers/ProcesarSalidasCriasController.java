@@ -29,12 +29,13 @@ public class ProcesarSalidasCriasController implements ActionListener, ListSelec
     @Override
     public void actionPerformed(ActionEvent evt) {
         if(evt.getSource() == procesarSalidasCriasView.getBtnProcesar()) {
-            procesarSalidasCriasModel.procesarSalidas();
-            
+            int row = procesarSalidasCriasView.getTablaProcesarSalidasCrias().getSelectedRow();
+            String criaID = procesarSalidasCriasView.getTablaProcesarSalidasCrias().getModel().getValueAt(row, 0).toString();
+            procesarSalidasCriasModel.procesarSalidas(criaID);
             return;
         }
-        if(evt.getSource() == procesarSalidasCriasView.getBtnCancelar()) {
-            procesarSalidasCriasView.dispose();
+        if(evt.getSource() == procesarSalidasCriasView.getBtnProcesarAll()) {
+            procesarSalidasCriasModel.procesarSalidasAll();
             return;
         }
     }
@@ -42,7 +43,7 @@ public class ProcesarSalidasCriasController implements ActionListener, ListSelec
     @Override
     public void valueChanged(ListSelectionEvent lse) {
         if(lse.getSource() == procesarSalidasCriasView.getTablaProcesarSalidasCrias().getSelectionModel()) {
-            // TODO: 
+            procesarSalidasCriasView.getBtnProcesar().setEnabled(true);
             return;
         }
     }

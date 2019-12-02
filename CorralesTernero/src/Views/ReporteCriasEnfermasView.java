@@ -62,7 +62,7 @@ public class ReporteCriasEnfermasView extends JDialog {
                 "EstadoCria",
                 "DietaID",
                 "SensorID",
-                "VecesEnTratamiento"
+                "DiasEdad"
         ));
         tablaCriasEnfermas = new JTable(datosTablaCriasEnfermas, vectorNombreColumnas);
         scrollPane.setViewportView(tablaCriasEnfermas);

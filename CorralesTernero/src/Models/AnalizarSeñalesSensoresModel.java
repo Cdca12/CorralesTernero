@@ -29,8 +29,6 @@ public class AnalizarSeñalesSensoresModel {
         try {
             ResultSet resultQuery = conexion.executeQuery(
                     "SELECT * FROM SeñalesSensores");
-            // TODO
-            // Hacer un top x tuplas y con el buscador ya mostrar todas las señales, o preguntar cuantas señales y con un boton hacer la busqueda
             Vector<String> row;
             while (resultQuery.next()) {
                 row = new Vector();
@@ -47,6 +45,7 @@ public class AnalizarSeñalesSensoresModel {
         }
         return datosTablaSeñalesSensores;
     }
+
     public Vector<Vector<String>> obtenerDatosTablaPropensosEnfermarse() {
         Vector<Vector<String>> datosTablaPropensosEnfermarse = new Vector<>();
 
@@ -75,13 +74,26 @@ public class AnalizarSeñalesSensoresModel {
         return datosTablaPropensosEnfermarse;
     }
 
-    public void añadirCuarentena() {
+    public void añadirCuarentena(String criaID) {
         Statement conexion = SQLConnectionHelper.getConnection();
         if (conexion == null) {
             return;
         }
         try {
-                conexion.execute("EXECUTE spAñadirCuarentena");
+            conexion.execute("EXECUTE spAñadirCuarentena " + criaID);
+        } catch (SQLException e) {
+            System.out.println("Error sp");
+            return;
+        }
+    }
+
+    public void añadirCuarentenaAll() {
+        Statement conexion = SQLConnectionHelper.getConnection();
+        if (conexion == null) {
+            return;
+        }
+        try {
+            conexion.execute("EXECUTE spAñadirCuarentenaAll");
         } catch (SQLException e) {
             System.out.println("Error sp");
             return;

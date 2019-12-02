@@ -13,7 +13,7 @@ import javax.swing.event.ListSelectionListener;
  *
  * @author Carlos Contreras
  */
-public class AnalizarSeñalesSensoresController implements ActionListener {
+public class AnalizarSeñalesSensoresController implements ActionListener, ListSelectionListener {
 
     private AnalizarSeñalesSensoresModel analizarSeñalesSensoresModel;
     private AnalizarSeñalesSensoresView analizarSeñalesSensoresView;
@@ -35,24 +35,31 @@ public class AnalizarSeñalesSensoresController implements ActionListener {
     public void actionPerformed(ActionEvent evt) {
         if (evt.getSource() == analizarSeñalesSensoresView.getBtnCriasPropensasEnfermarse()) {
             analizarSeñalesSensoresView.actualizarTablaPropensosEnfermarse();
+            analizarSeñalesSensoresView.isChanged = true;
             return;
         }
         if (evt.getSource() == analizarSeñalesSensoresView.getBtnAñadirCuarentena()) {
-            analizarSeñalesSensoresModel.añadirCuarentena();
+            int row = analizarSeñalesSensoresView.getTablaSeñalesSensores().getSelectedRow();
+            String criaID = analizarSeñalesSensoresView.getTablaSeñalesSensores().getModel().getValueAt(row, 6).toString();
+            analizarSeñalesSensoresModel.añadirCuarentena(criaID);
+            return;
+        }
+        if (evt.getSource() == analizarSeñalesSensoresView.getBtnAñadirCuarentenaAll()) {
+            analizarSeñalesSensoresModel.añadirCuarentenaAll();
             return;
         }
     }
     
  
 
-//    @Override
-//    public void valueChanged(ListSelectionEvent lse) {
-//        if (!lse.getValueIsAdjusting()) {
-//            JTable tablaSensores = analizarSeñalesSensoresView.getTablaSeñalesSensores();
-//            int selectedRow = tablaSensores.getSelectedRow();
-//            String sensorID = tablaSensores.getValueAt(selectedRow, 1).toString();
-//            analizarSeñalesSensoresModel.sensoresID.add(sensorID);
-//        }
-//    }
+@Override
+    public void valueChanged(ListSelectionEvent lse) {
+        if (lse.getSource() == analizarSeñalesSensoresView.getTablaSeñalesSensores().getSelectionModel()
+                && analizarSeñalesSensoresView.isChanged) {
+            analizarSeñalesSensoresView.getBtnAñadirCuarentena().setEnabled(true);
+            analizarSeñalesSensoresView.getBtnAñadirCuarentenaAll().setEnabled(true);
+            return;
+        }
+    }
 
 }

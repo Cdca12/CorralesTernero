@@ -29,11 +29,9 @@ public class ConsultarCriasASacrificarController implements ActionListener, List
 
     @Override
     public void actionPerformed(ActionEvent evt) {
-        // Nada...
         if (evt.getSource() == consultarCriasASacrificarView.getBtnSacrificar()) {
             int row = consultarCriasASacrificarView.getTablaCriasASacrificar().getSelectedRow();
             String criaID = consultarCriasASacrificarView.getTablaCriasASacrificar().getModel().getValueAt(row, 2).toString();
-            System.out.println("CriaID: " + criaID);
             consultarCriasASacrificarModel.sacrificarCria(criaID);
             return;
         }
@@ -46,7 +44,6 @@ public class ConsultarCriasASacrificarController implements ActionListener, List
     public void valueChanged(ListSelectionEvent lse) {
         if (lse.getSource() == consultarCriasASacrificarView.getTablaCriasASacrificar().getSelectionModel()) {
             consultarCriasASacrificarView.getBtnSacrificar().setEnabled(true);
-            System.out.println("Value changed");
             return;
         }
     }

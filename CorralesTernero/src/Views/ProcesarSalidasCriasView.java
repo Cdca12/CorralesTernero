@@ -21,11 +21,11 @@ public class ProcesarSalidasCriasView extends JDialog {
     private JScrollPane scrollPane;
     private Vector<String> vectorNombreColumnas;
 
-    private JButton btnProcesar, btnCancelar;
+    private JButton btnProcesar, btnProcesarAll;
 
     public ProcesarSalidasCriasView() {
         setTitle("Procesar Salidas");
-        setSize(1300, 350);
+        setSize(1120, 390);
         setLayout(null);
         setLocationRelativeTo(null);
         setResizable(false);
@@ -35,13 +35,14 @@ public class ProcesarSalidasCriasView extends JDialog {
     }
 
     private void initComponents() {
-        btnProcesar = new JButton("Procesar");
-        btnProcesar.setBounds(1135, 160, 100, 30);
+        btnProcesarAll = new JButton("Procesar todas");
+        btnProcesarAll.setBounds(430, 300, 130, 30);
+        add(btnProcesarAll);
+        
+        btnProcesar = new JButton("Procesar cría");
+        btnProcesar.setBounds(btnProcesarAll.getX() + 140, btnProcesarAll.getY(), 130, 30);
+        btnProcesar.setEnabled(false);
         add(btnProcesar);
-
-        btnCancelar = new JButton("Cancelar");
-        btnCancelar.setBounds(btnProcesar.getX(), btnProcesar.getY() + 40, 100, 30);
-        add(btnCancelar);
 
         scrollPane = new JScrollPane();
         scrollPane.setBounds(30, 30, 1050, 250);
@@ -63,7 +64,7 @@ public class ProcesarSalidasCriasView extends JDialog {
     private void addListeners() {
         tablaProcesarSalidasCrias.getSelectionModel().addListSelectionListener(procesarSalidasCriasController);
         btnProcesar.addActionListener(procesarSalidasCriasController);
-        btnCancelar.addActionListener(procesarSalidasCriasController);
+        btnProcesarAll.addActionListener(procesarSalidasCriasController);
     }
 
     private void generarTablaResultados() {
@@ -92,13 +93,15 @@ public class ProcesarSalidasCriasView extends JDialog {
         return btnProcesar;
     }
 
-    public JButton getBtnCancelar() {
-        return btnCancelar;
+    public JButton getBtnProcesarAll() {
+        return btnProcesarAll;
     }
     
     private void validarBotonProcesar() {
         if (tablaProcesarSalidasCrias.getRowCount() == 0) {
             btnProcesar.setEnabled(false);
+            btnProcesarAll.setEnabled(false);
+            return;
         }
     }
 }
