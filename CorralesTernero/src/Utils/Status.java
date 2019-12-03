@@ -9,7 +9,8 @@ public enum Status {
     OK_CONNECTION(0, "OK: Conexión SI realizada", "Conexión a la base de datos realizada correctamente."),
     ERROR_CONNECTION(1, "ERROR: Conexión NO realizada", "No se pudo conectar a la base de datos. Compruebe su conexión a internet."),
     OK_INSERT(2, "ÉXITO", "Inserción realizada correctamente."),
-    ERROR_INSERT(3, "ERROR: No se pudo insertar", "Error de inserción. Verifique que los datos sean correctos.");
+    ERROR_INSERT(3, "ERROR: No se pudo insertar", "Error de inserción. Verifique que los datos sean correctos."),
+    ERROR_LOGIN(4, "Usuario o contraseña incorrectos", "Error al ingresar");
         
     public final int CODE;
     public final String TITLE;
