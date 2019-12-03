@@ -71,7 +71,7 @@ public class ConsultarCorralesView extends JDialog {
     }
 
     private void generarTablaResultados() {
-        Vector<Vector<String>> datosTablaCorrales = corralesController.obtenerDatosTabla();
+        Vector<Vector<String>> datosTablaCorrales = corralesController.obtenerDatosTabla(config);
         vectorNombreColumnas = new Vector<>(Arrays.asList("CorralID", "Estado", "Tipo"));
         tablaCorrales = new JTable(datosTablaCorrales, vectorNombreColumnas);
         scrollPane.setViewportView(tablaCorrales);

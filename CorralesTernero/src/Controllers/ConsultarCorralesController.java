@@ -2,6 +2,7 @@ package Controllers;
 
 import Views.ConsultarCorralesView;
 import Models.ConsultarCorralesModel;
+import Utils.Config;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
@@ -22,8 +23,8 @@ public class ConsultarCorralesController implements ActionListener, ListSelectio
         this.corralesModel = corralesModel;
     }
     
-    public Vector<Vector<String>> obtenerDatosTabla() {
-        return corralesModel.obtenerDatosTabla();
+    public Vector<Vector<String>> obtenerDatosTabla(Config config) {
+        return corralesModel.obtenerDatosTabla(config);
     }
 
     @Override
