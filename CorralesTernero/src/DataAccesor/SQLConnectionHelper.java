@@ -21,6 +21,12 @@ public class SQLConnectionHelper {
         token = tkn;
     }
 
+    public static synchronized Token getToken() {
+        return token;
+    }
+    
+    
+
     static synchronized public Statement getConnection() {
         if (statement == null) {
             // Base de Datos en Azure

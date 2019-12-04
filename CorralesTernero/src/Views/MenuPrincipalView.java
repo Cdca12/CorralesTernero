@@ -32,7 +32,7 @@ public class MenuPrincipalView extends JFrame {
 
         ImageIcon isotipo = new ImageIcon("./src/Resources/isotipo.png");
         setIconImage(isotipo.getImage());
-
+        
         initComponents();
     }
 

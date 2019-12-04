@@ -4,8 +4,7 @@ package Utils;
  *
  * @author Carlos Contreras
  */
-public enum Config {
-    SELECCION,
-    CONSULTA,
+public enum Users {
+    TRABAJADOR()
     
 }

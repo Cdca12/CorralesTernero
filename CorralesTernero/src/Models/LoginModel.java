@@ -18,14 +18,14 @@ public class LoginModel {
     public boolean login(String username, String password) {
         Token token = new Token(username, password);
         SQLConnectionHelper.setToken(token);
-        
+
         Statement conexion = SQLConnectionHelper.getConnection();
         if (conexion == null) {
             return false;
         }
         try {
+            // Test bd
             conexion.execute("SELECT (1)");
-            
         } catch (SQLException e) {
             return false;
         }
