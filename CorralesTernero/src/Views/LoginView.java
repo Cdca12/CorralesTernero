@@ -24,7 +24,6 @@ public class LoginView extends JDialog {
     private JLabel lbPassword;
     private JButton btnLogin;
     private JButton btnSalir;
-    private static boolean isLogged;
 
     public LoginView() {
         setTitle("Iniciar sesión");
@@ -87,14 +86,6 @@ public class LoginView extends JDialog {
 
     public JButton getBtnSalir() {
         return btnSalir;
-    }
-
-    public static boolean isIsLogged() {
-        return isLogged;
-    }
-
-    public void setIsLogged(boolean isLogged) {
-        this.isLogged = isLogged;
     }
 
     public JTextField getTxtUsername() {

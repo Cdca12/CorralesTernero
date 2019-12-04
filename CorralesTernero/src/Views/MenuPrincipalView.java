@@ -5,6 +5,10 @@ import Controllers.*;
 import Models.*;
 import java.awt.Image;
 import Utils.Config;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -22,6 +26,15 @@ public class MenuPrincipalView extends JFrame {
             añadirCorralesJMenuItem, consultarCorralesJMenuItem,
             añadirDietasJMenuItem, consultarDietasJMenuItem;
     private JLabel imagotipo;
+    
+    private ArrayList<JMenuItem> arrayJMenu; // Depende de los permisos del usuario
+//    private ArrayList<JMenuItem> arrayJMenu; // Depende de los permisos del usuario
+    
+    private ArrayList<Map<JMenuItem, String>> arrayTest = new ArrayList<>();
+    
+    
+    
+    private ArrayList<String> array = new ArrayList<String>(Arrays.asList("A", "B", "C"));
 
     public MenuPrincipalView() {
         super("Corrales Ternero");
@@ -32,7 +45,7 @@ public class MenuPrincipalView extends JFrame {
 
         ImageIcon isotipo = new ImageIcon("./src/Resources/isotipo.png");
         setIconImage(isotipo.getImage());
-        
+
         initComponents();
     }
 
@@ -43,6 +56,9 @@ public class MenuPrincipalView extends JFrame {
         imagotipo = new JLabel(tmpIcon);
         imagotipo.setBounds(getWidth() / 2, getHeight() / 2, 200, 200);
         add(imagotipo);
+        
+        // JMenuItems
+        arrayJMenu = new ArrayList<>(Arrays.asList(añadirCriaJMenuItem));
 
         menuBar = new JMenuBar();
         menuBar.setSize(100, 100);

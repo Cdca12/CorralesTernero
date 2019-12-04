@@ -19,6 +19,7 @@ public final class Configuracion {
     private static Map<Integer, String> MenuItem;
 
     public Configuracion(Token tk) {
+
         // Obtener configuración
         Statement conexion = SQLConnectionHelper.getConnection();
         if (conexion == null) {
@@ -26,12 +27,12 @@ public final class Configuracion {
         }
         String SQL = "EXECUTE spObtenerConfiguracion '" + tk.getUser() + "'";
         ResultSet resultQuery;
-        Menu = new HashMap<Integer, String>();
-        MenuItem = new HashMap<Integer, String>();
+        Menu = new HashMap<>();
+        MenuItem = new HashMap<>();
         try {
+
             // Obtenemos todos los JMenu
-            SQL += ", 'Menu'";
-            resultQuery = conexion.executeQuery(SQL);
+            resultQuery = conexion.executeQuery(SQL + ", 'Menu'");
             int MenuID;
             String MenuName;
             for (int i = 0; resultQuery.next(); i++) {
@@ -41,8 +42,7 @@ public final class Configuracion {
             }
 
             // Obtenemos todos los JMenuItem
-            SQL += ", 'MenuItem'";
-            resultQuery = conexion.executeQuery(SQL);
+            resultQuery = conexion.executeQuery(SQL + ", 'MenuItem'");
             int MenuItemID;
             String MenuItemName;
             for (int i = 0; resultQuery.next(); i++) {
@@ -56,22 +56,12 @@ public final class Configuracion {
         }
     }
 
-    public static Map<Integer, String> getMenu() {
+    public static Map<Integer, String> getMenuConfiguration() {
         return Menu;
     }
 
-    public static void setMenu(Map<Integer, String> Menu) {
-        Configuracion.Menu = Menu;
-    }
-
-    public static Map<Integer, String> getMenuItem() {
+    public static Map<Integer, String> getMenuItemConfiguration() {
         return MenuItem;
     }
-
-    public static void setMenuItem(Map<Integer, String> MenuItem) {
-        Configuracion.MenuItem = MenuItem;
-    }
-
-    
 
 }

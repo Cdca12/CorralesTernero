@@ -7,6 +7,7 @@ package Utils;
 public class Token {
 
     private String user, pass;
+    private static boolean isValid;
 
     public Token(String user, String pass) {
         this.user = user;
@@ -20,6 +21,20 @@ public class Token {
     public String getPass() {
         return pass;
     }
+    
+    public static void expireToken() {
+        isValid = false;
+    }
+    
+    public static void refreshToken() {
+        isValid = true;
+    }
+
+    public static boolean checkValidation() {
+        return isValid;
+    }
+    
+    
     
     
 }

@@ -5,6 +5,7 @@ import Controllers.MenuPrincipalController;
 import DataAccesor.SQLConnectionHelper;
 import Utils.Tema;
 import Models.*;
+import Utils.Configuracion;
 import Utils.Token;
 import Views.*;
 import java.awt.Dialog;
@@ -22,12 +23,19 @@ public class Main {
     public static void main(String[] args) {
         Tema.cambiarTema();
 
-        loginTerminal();
-            
-        if (!LoginView.isIsLogged()) {
-            return;
-        }
+//        loginTerminal();
+//            
+//        if (!Token.checkValidation()) {
+//            return;
+//        }
+        
+        // BEGIN Test
+        Token token = new Token("usrAdministrador", "administrador$123");
+        SQLConnectionHelper.setToken(token);
+        // END Test
 
+        Configuracion config = new Configuracion(SQLConnectionHelper.getToken());
+        
         MenuPrincipalView menuPrincipalView = new MenuPrincipalView();
         MenuPrincipalModel menuPrincipalModel = new MenuPrincipalModel();
         MenuPrincipalController menuPrincipalController = new MenuPrincipalController(menuPrincipalModel, menuPrincipalView);
