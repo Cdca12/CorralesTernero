@@ -6,6 +6,5 @@ package Utils;
  */
 public enum Config {
     SELECCION,
-    CONSULTA,
-    
+    CONSULTA;
 }

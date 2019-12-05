@@ -5,6 +5,7 @@ import Controllers.*;
 import Models.*;
 import java.awt.Image;
 import Utils.Config;
+import Utils.Configuracion;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -19,22 +20,9 @@ public class MenuPrincipalView extends JFrame {
     private MenuPrincipalController menuPrincipalController;
 
     private JMenuBar menuBar;
-    private JMenu criasJMenu, sensoresJMenu, simulacionesJMenu, alimentosJMenu, corralesJMenu, dietasJMenu;
-    private JMenuItem añadirCriaJMenuItem, consultarCriasJMenuItem, reporteCriasEnfermasJMenuItem, procesarSalidasCriasJMenuItem,
-            analizarSeñalesSensoresJMenuItem, sacrificarCriasJMenuItem, simularSeñalesJMenuItem, avanzarDiasJMenuItem,
-            añadirAlimentosJMenuItem, consultarAlimentosJMenuItem,
-            añadirCorralesJMenuItem, consultarCorralesJMenuItem,
-            añadirDietasJMenuItem, consultarDietasJMenuItem;
+    public JMenu[] arregloJMenu;
+    public JMenuItem[] arregloJMenuItem;
     private JLabel imagotipo;
-    
-    private ArrayList<JMenuItem> arrayJMenu; // Depende de los permisos del usuario
-//    private ArrayList<JMenuItem> arrayJMenu; // Depende de los permisos del usuario
-    
-    private ArrayList<Map<JMenuItem, String>> arrayTest = new ArrayList<>();
-    
-    
-    
-    private ArrayList<String> array = new ArrayList<String>(Arrays.asList("A", "B", "C"));
 
     public MenuPrincipalView() {
         super("Corrales Ternero");
@@ -56,69 +44,17 @@ public class MenuPrincipalView extends JFrame {
         imagotipo = new JLabel(tmpIcon);
         imagotipo.setBounds(getWidth() / 2, getHeight() / 2, 200, 200);
         add(imagotipo);
-        
-        // JMenuItems
-        arrayJMenu = new ArrayList<>(Arrays.asList(añadirCriaJMenuItem));
 
         menuBar = new JMenuBar();
         menuBar.setSize(100, 100);
         setJMenuBar(menuBar);
 
-        // Menu
-        criasJMenu = new JMenu("Crías");
-        sensoresJMenu = new JMenu("Sensores");
-        simulacionesJMenu = new JMenu("Simulaciones");
-        alimentosJMenu = new JMenu("Alimentos");
-        corralesJMenu = new JMenu("Corrales");
-        dietasJMenu = new JMenu("Dietas");
+        // Cargar ventanas Configuración
+        arregloJMenu = new JMenu[14];
+        arregloJMenuItem = new JMenuItem[14];
 
-        // MenuItem
-        añadirCriaJMenuItem = new JMenuItem("Añadir Crías");
-        consultarCriasJMenuItem = new JMenuItem("Consultar Crias");
-        reporteCriasEnfermasJMenuItem = new JMenuItem("Reporte Crías Enfermas");
-        procesarSalidasCriasJMenuItem = new JMenuItem("Procesar Salidas");
-        sacrificarCriasJMenuItem = new JMenuItem("Sacrificar Crias");
-
-        añadirAlimentosJMenuItem = new JMenuItem("Añadir Alimentos");
-        consultarAlimentosJMenuItem = new JMenuItem("Consultar Alimentos");
-
-        añadirCorralesJMenuItem = new JMenuItem("Añadir Corrales");
-        consultarCorralesJMenuItem = new JMenuItem("Consultar Corrales");
-
-        añadirDietasJMenuItem = new JMenuItem("Añadir Dietas");
-        consultarDietasJMenuItem = new JMenuItem("Consultar Dietas");
-
-        analizarSeñalesSensoresJMenuItem = new JMenuItem("Analizar Señales");
-
-        simularSeñalesJMenuItem = new JMenuItem("Simular Señales");
-        avanzarDiasJMenuItem = new JMenuItem("Avanzar Días");
-
-        criasJMenu.add(añadirCriaJMenuItem);
-        criasJMenu.add(consultarCriasJMenuItem);
-        criasJMenu.add(reporteCriasEnfermasJMenuItem);
-        criasJMenu.add(procesarSalidasCriasJMenuItem);
-        criasJMenu.add(sacrificarCriasJMenuItem);
-
-        sensoresJMenu.add(analizarSeñalesSensoresJMenuItem);
-
-        alimentosJMenu.add(añadirAlimentosJMenuItem);
-        alimentosJMenu.add(consultarAlimentosJMenuItem);
-
-        corralesJMenu.add(añadirCorralesJMenuItem);
-        corralesJMenu.add(consultarCorralesJMenuItem);
-
-        dietasJMenu.add(añadirDietasJMenuItem);
-        dietasJMenu.add(consultarDietasJMenuItem);
-
-        simulacionesJMenu.add(simularSeñalesJMenuItem);
-        simulacionesJMenu.add(avanzarDiasJMenuItem);
-
-        menuBar.add(criasJMenu);
-        menuBar.add(corralesJMenu);
-        menuBar.add(alimentosJMenu);
-        menuBar.add(dietasJMenu);
-        menuBar.add(sensoresJMenu);
-        menuBar.add(simulacionesJMenu);
+        cargarJMenu();
+        cargarJMenuItem();
     }
 
     public void launchView() {
@@ -132,79 +68,12 @@ public class MenuPrincipalView extends JFrame {
     }
 
     private void addListeners() {
-        añadirCriaJMenuItem.addActionListener(menuPrincipalController);
-        consultarCriasJMenuItem.addActionListener(menuPrincipalController);
-        reporteCriasEnfermasJMenuItem.addActionListener(menuPrincipalController);
-        procesarSalidasCriasJMenuItem.addActionListener(menuPrincipalController);
-        analizarSeñalesSensoresJMenuItem.addActionListener(menuPrincipalController);
-        sacrificarCriasJMenuItem.addActionListener(menuPrincipalController);
-        simularSeñalesJMenuItem.addActionListener(menuPrincipalController);
-        avanzarDiasJMenuItem.addActionListener(menuPrincipalController);
-        añadirCorralesJMenuItem.addActionListener(menuPrincipalController);
-        añadirAlimentosJMenuItem.addActionListener(menuPrincipalController);
-        añadirDietasJMenuItem.addActionListener(menuPrincipalController);
-        consultarCorralesJMenuItem.addActionListener(menuPrincipalController);
-        consultarDietasJMenuItem.addActionListener(menuPrincipalController);
-        consultarAlimentosJMenuItem.addActionListener(menuPrincipalController);
+        for (int i = 0; i < arregloJMenuItem.length; i++) {
+//            if (arregloJMenuItem[i] != null) {
+                arregloJMenuItem[i].addActionListener(menuPrincipalController);
+//            }
+        }
     }
-
-    // Getters
-    public JMenuItem getAñadirCriaJMenu() {
-        return añadirCriaJMenuItem;
-    }
-
-    public JMenuItem getReporteCriasEnfermasJMenu() {
-        return reporteCriasEnfermasJMenuItem;
-    }
-
-    public JMenuItem getProcesarSalidasCriasJMenu() {
-        return procesarSalidasCriasJMenuItem;
-    }
-
-    public JMenuItem getSimularSeñalesJMenuItem() {
-        return simularSeñalesJMenuItem;
-    }
-
-    public JMenuItem getAnalizarSeñalesSensoresJMenuItem() {
-        return analizarSeñalesSensoresJMenuItem;
-    }
-
-    public JMenuItem getSacrificarCriasJMenuItem() {
-        return sacrificarCriasJMenuItem;
-    }
-
-    public JMenuItem getConsultarCriasJMenuItem() {
-        return consultarCriasJMenuItem;
-    }
-
-    public JMenuItem getAvanzarDiasJMenuItem() {
-        return avanzarDiasJMenuItem;
-    }
-
-    public JMenuItem getAñadirCorralesJMenuItem() {
-        return añadirCorralesJMenuItem;
-    }
-
-    public JMenuItem getAñadirAlimentosJMenuItem() {
-        return añadirAlimentosJMenuItem;
-    }
-
-    public JMenuItem getAñadirDietasJMenuItem() {
-        return añadirDietasJMenuItem;
-    }
-
-    public JMenuItem getConsultarCorralesJMenuItem() {
-        return consultarCorralesJMenuItem;
-    }
-
-    public JMenuItem getConsultarDietasJMenuItem() {
-        return consultarDietasJMenuItem;
-    }
-
-    public JMenuItem getConsultarAlimentosJMenuItem() {
-        return consultarAlimentosJMenuItem;
-    }
-    
 
     // Métodos para abrir los menús
     public void abrirAñadirCria() {
@@ -314,7 +183,7 @@ public class MenuPrincipalView extends JFrame {
         corralesView.setController(corralesController);
         corralesView.launchView();
     }
-    
+
     public void abrirConsultarAlimentos() {
         ConsultarAlimentosView alimentosView = new ConsultarAlimentosView(Config.CONSULTA);
         ConsultarAlimentosModel alimentosModel = new ConsultarAlimentosModel();
@@ -323,7 +192,7 @@ public class MenuPrincipalView extends JFrame {
         alimentosView.setController(alimentosController);
         alimentosView.launchView();
     }
-    
+
     public void abrirConsultarCriasASacrificar() {
         ConsultarCriasASacrificarView consultarAlimentosView = new ConsultarCriasASacrificarView();
         ConsultarCriasASacrificarModel consultarAlimentosModel = new ConsultarCriasASacrificarModel();
@@ -333,13 +202,30 @@ public class MenuPrincipalView extends JFrame {
         consultarAlimentosView.launchView();
     }
 
-    public void mostrarMensajeSacrificarCrias() {
-        int opcion = JOptionPane.showConfirmDialog(null, "¿Seguro que deseas sacrificar crías?", "Sacrificar Crías", JOptionPane.WARNING_MESSAGE);
-        if (opcion == 1) {
-            JOptionPane.showMessageDialog(null, "Las crías se han sacrificado correctamente", "Crias Sacrificadas", JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
+    private void cargarJMenu() {
+        ArrayList<Integer> MenuID = Configuracion.JMenu.getMenuID();
+        ArrayList<String> MenuName = Configuracion.JMenu.getMenuName();
 
+        // Inicializar JMenu
+        for (int i = 0; i < MenuID.size(); i++) {
+            arregloJMenu[MenuID.get(i) - 1] = new JMenu(MenuName.get(i));
+            menuBar.add(arregloJMenu[i]);
+        }
+    }
+
+    private void cargarJMenuItem() {
+        ArrayList<Integer> MenuID = Configuracion.JMenuItem.getMenuID();
+        ArrayList<String> MenuName = Configuracion.JMenuItem.getMenuName();
+        ArrayList<Integer> MenuItemID = Configuracion.JMenuItem.getMenuItemID();
+        ArrayList<String> MenuItemName = Configuracion.JMenuItem.getMenuItemName();
+
+        // Inicializar JMenuItem
+        for (int i = 0; i < MenuItemID.size(); i++) {
+            arregloJMenuItem[MenuItemID.get(i) - 1] = new JMenuItem(MenuItemName.get(i));
+
+            // Enlazar JMenuItem a su JMenu correspondiente
+            arregloJMenu[MenuID.get(i) - 1].add(arregloJMenuItem[MenuItemID.get(i) - 1]);
+        }
     }
 
 }

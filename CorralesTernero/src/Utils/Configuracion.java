@@ -15,53 +15,102 @@ import java.util.Map;
  */
 public final class Configuracion {
 
-    private static Map<Integer, String> Menu;
-    private static Map<Integer, String> MenuItem;
+    public static class JMenu {
 
+        private static ArrayList<Integer> MenuID;
+        private static ArrayList<String> MenuName;
+
+        public static ArrayList<Integer> getMenuID() {
+            return MenuID;
+        }
+
+        public static ArrayList<String> getMenuName() {
+            return MenuName;
+        }
+        
+    }
+    
+    public static class JMenuItem {
+
+        private static ArrayList<Integer> MenuID;
+        private static ArrayList<String> MenuName;
+        private static ArrayList<Integer> MenuItemID;
+        private static ArrayList<String> MenuItemName;
+
+        public static ArrayList<Integer> getMenuID() {
+            return MenuID;
+        }
+
+        public static ArrayList<String> getMenuName() {
+            return MenuName;
+        }
+
+        public static ArrayList<Integer> getMenuItemID() {
+            return MenuItemID;
+        }
+
+        public static ArrayList<String> getMenuItemName() {
+            return MenuItemName;
+        }
+
+    }
+
+    private static boolean configured = false;
+    
     public Configuracion(Token tk) {
+        // Ya se configuró, salir
+        if (configured) {
+            return;
+        }
+        String SQL;
+        ResultSet resultQuery;
 
         // Obtener configuración
         Statement conexion = SQLConnectionHelper.getConnection();
         if (conexion == null) {
             return;
         }
-        String SQL = "EXECUTE spObtenerConfiguracion '" + tk.getUser() + "'";
-        ResultSet resultQuery;
-        Menu = new HashMap<>();
-        MenuItem = new HashMap<>();
-        try {
 
+        SQL = "SELECT MenuID, MenuName FROM ObtenerConfiguracionView "
+                + "WHERE Username = '" + tk.getUser() + "' "
+                + "GROUP BY MenuID, MenuName";
+        JMenu.MenuID = new ArrayList<>();
+        JMenu.MenuName = new ArrayList<>();
+
+        try {
             // Obtenemos todos los JMenu
-            resultQuery = conexion.executeQuery(SQL + ", 'Menu'");
-            int MenuID;
-            String MenuName;
-            for (int i = 0; resultQuery.next(); i++) {
-                MenuID = resultQuery.getInt(1);
-                MenuName = resultQuery.getString(2);
-                Menu.put(MenuID, MenuName);
+            resultQuery = conexion.executeQuery(SQL);
+            while (resultQuery.next()) {
+                JMenu.MenuID.add(resultQuery.getInt(1));
+                JMenu.MenuName.add(resultQuery.getString(2));
             }
+
+            SQL = "SELECT MenuID, MenuName, MenuItemID, MenuItemName FROM ObtenerConfiguracionView "
+                    + "WHERE Username = '" + tk.getUser() + "'";
+            JMenuItem.MenuID = new ArrayList<>();
+            JMenuItem.MenuName = new ArrayList<>();
+            JMenuItem.MenuItemID = new ArrayList<>();
+            JMenuItem.MenuItemName = new ArrayList<>();
 
             // Obtenemos todos los JMenuItem
-            resultQuery = conexion.executeQuery(SQL + ", 'MenuItem'");
-            int MenuItemID;
-            String MenuItemName;
-            for (int i = 0; resultQuery.next(); i++) {
-                MenuItemID = resultQuery.getInt(1);
-                MenuItemName = resultQuery.getString(2);
-                MenuItem.put(MenuItemID, MenuItemName);
+            resultQuery = conexion.executeQuery(SQL);
+            while (resultQuery.next()) {
+                JMenuItem.MenuID.add(resultQuery.getInt(1));
+                JMenuItem.MenuName.add(resultQuery.getString(2));
+                JMenuItem.MenuItemID.add(resultQuery.getInt(3));
+                JMenuItem.MenuItemName.add(resultQuery.getString(4));
             }
+            configured = true; // Configuración obtenida
         } catch (SQLException e) {
             e.printStackTrace();
             return;
         }
     }
-
-    public static Map<Integer, String> getMenuConfiguration() {
-        return Menu;
-    }
-
-    public static Map<Integer, String> getMenuItemConfiguration() {
-        return MenuItem;
-    }
+    
+    
+    
+    
+    
+    
 
 }

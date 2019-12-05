@@ -9,78 +9,91 @@ import java.awt.event.*;
  * @author Carlos Contreras
  */
 public class MenuPrincipalController implements ActionListener {
-    
+
     private MenuPrincipalModel menuPrincipalModel;
     private MenuPrincipalView menuPrincipalView;
-    
+
     public MenuPrincipalController(MenuPrincipalModel menuPrincipalModel, MenuPrincipalView menuPrincipalView) {
         this.menuPrincipalModel = menuPrincipalModel;
         this.menuPrincipalView = menuPrincipalView;
     }
-    
+
     public void probarConexionBaseDeDatos() {
         menuPrincipalModel.pruebaConexionBaseDeDatos();
     }
 
     @Override
     public void actionPerformed(ActionEvent evt) {
-        if (evt.getSource() == menuPrincipalView.getAñadirCriaJMenu()) {
+        // Añadir Crias
+        if (evt.getSource() == menuPrincipalView.arregloJMenuItem[0]) {
             menuPrincipalView.abrirAñadirCria();
             return;
         }
-        if (evt.getSource() == menuPrincipalView.getConsultarCriasJMenuItem()) {
+        // Consultar Crias
+        if (evt.getSource() == menuPrincipalView.arregloJMenuItem[1]) {
             menuPrincipalView.abrirConsultarCrias();
             return;
         }
-        if (evt.getSource() == menuPrincipalView.getReporteCriasEnfermasJMenu()) {
+        // Reporte Crias Enfermas
+        if (evt.getSource() == menuPrincipalView.arregloJMenuItem[2]) {
             menuPrincipalView.abrirReporteCriasEnfermas();
             return;
         }
-        if (evt.getSource() == menuPrincipalView.getProcesarSalidasCriasJMenu()) {
+        // Procesar Salidas
+        if (evt.getSource() == menuPrincipalView.arregloJMenuItem[3]) {
             menuPrincipalView.abrirProcesarSalidasCrias();
             return;
         }
-        if (evt.getSource() == menuPrincipalView.getAnalizarSeñalesSensoresJMenuItem()) {
-            menuPrincipalView.abrirAnalizarSeñalesSensores();
+        // Sacrificar Crias
+        if (evt.getSource() == menuPrincipalView.arregloJMenuItem[4]) {
+            menuPrincipalView.abrirConsultarCriasASacrificar();
             return;
         }
-        if (evt.getSource() == menuPrincipalView.getSacrificarCriasJMenuItem()) {
-              menuPrincipalView.abrirConsultarCriasASacrificar();
-            return;
-        }
-        if (evt.getSource() == menuPrincipalView.getSimularSeñalesJMenuItem()) {
-            menuPrincipalView.abrirSimularSeñales();
-            return;
-        }
-        if (evt.getSource() == menuPrincipalView.getAvanzarDiasJMenuItem()) {
-            menuPrincipalView.abrirAvanzarDias();
-            return;
-        }
-        if (evt.getSource() == menuPrincipalView.getAñadirCorralesJMenuItem()) {
+        // Añadir Corrales
+        if (evt.getSource() == menuPrincipalView.arregloJMenuItem[5]) {
             menuPrincipalView.abrirAñadirCorrales();
             return;
         }
-        if (evt.getSource() == menuPrincipalView.getAñadirAlimentosJMenuItem()) {
-            menuPrincipalView.abrirAñadirAlimentos();
-            return;
-        }
-        if (evt.getSource() == menuPrincipalView.getAñadirDietasJMenuItem()) {
-            menuPrincipalView.abrirAñadirDietas();
-            return;
-        }
-        if (evt.getSource() == menuPrincipalView.getConsultarCorralesJMenuItem()) {
+        // Consultar Corrales
+        if (evt.getSource() == menuPrincipalView.arregloJMenuItem[6]) {
             menuPrincipalView.abrirConsultarCorrales();
             return;
         }
-        if (evt.getSource() == menuPrincipalView.getConsultarDietasJMenuItem()) {
-            menuPrincipalView.abrirConsultarDietas();
+        // Añadir Alimentos
+        if (evt.getSource() == menuPrincipalView.arregloJMenuItem[7]) {
+            menuPrincipalView.abrirAñadirAlimentos();
             return;
         }
-        if (evt.getSource() == menuPrincipalView.getConsultarAlimentosJMenuItem()) {
+        // Consultar Alimentos
+        if (evt.getSource() == menuPrincipalView.arregloJMenuItem[8]) {
             menuPrincipalView.abrirConsultarAlimentos();
             return;
         }
-        
+        // Añadir Dietas
+        if (evt.getSource() == menuPrincipalView.arregloJMenuItem[9]) {
+            menuPrincipalView.abrirAñadirDietas();
+            return;
+        }
+        // Consultar Dietas
+        if (evt.getSource() == menuPrincipalView.arregloJMenuItem[10]) {
+            menuPrincipalView.abrirConsultarDietas();
+            return;
+        }
+        // Analizar Sensores
+        if (evt.getSource() == menuPrincipalView.arregloJMenuItem[11]) {
+            menuPrincipalView.abrirAnalizarSeñalesSensores();
+            return;
+        }
+        // Simular Señales
+        if (evt.getSource() == menuPrincipalView.arregloJMenuItem[12]) {
+            menuPrincipalView.abrirSimularSeñales();
+            return;
+        }
+        // Avanzar Días
+        if (evt.getSource() == menuPrincipalView.arregloJMenuItem[13]) {
+            menuPrincipalView.abrirAvanzarDias();
+            return;
+        }
     }
-    
+
 }
