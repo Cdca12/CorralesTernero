@@ -13,10 +13,24 @@ AS
 		SET FechaEgreso = GETDATE()
 		WHERE CriaID = @CriaID
 
-		--Actualizamos datos de la cria, poniendo su EstadoCriaID a Procesado
+		DECLARE @SensorID int = (
+		--Sin necesidad de candado porque selecciona una única tupla directo
+			SELECT SensorID FROM Crias
+			WHERE CriaID = @CriaID
+		)
+
+		--Actualizamos datos de la cria, 
 		UPDATE Crias
-		SET CorralID = NULL, EstadoCriaID = 4
+		SET CorralID = NULL,	--Quitamos del Corral
+			EstadoCriaID = 4,	--Dejamos su su EstadoCriaID a Procesado
+			SensorID = NULL		--Quitamos SensorID
 		WHERE CriaID = @CriaID
+
+
+		--Quitamos el Sensor, lo dejamos disponible
+		UPDATE Sensores
+		SET CriaID = NULL
+		WHERE SensorID = @SensorID
 	
 		COMMIT TRAN	
 

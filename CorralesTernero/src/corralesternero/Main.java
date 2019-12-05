@@ -23,13 +23,21 @@ public class Main {
     public static void main(String[] args) {
         Tema.cambiarTema();
 
-        loginTerminal();
-            
-        // Checar si el token es válido para iniciar sesión
-        if (!Token.checkValidation()) {
-            return;
-        }
+//        loginTerminal();
+//            
+//        // Checar si el token es válido para iniciar sesión
+//        if (!Token.checkValidation()) {
+//            return;
+//        }
         
+        // BEGIN Test
+        Token token = new Token("usrAdministrador", "administrador$123");
+        token.refreshToken();
+//        Token token = new Token("usrEncargado", "encargado$123");
+//        Token token = new Token("usrVeterinario", "veterinario$123");
+        SQLConnectionHelper.setToken(token);
+        // END Test
+
         Configuracion config = new Configuracion(SQLConnectionHelper.getToken());
         
         MenuPrincipalView menuPrincipalView = new MenuPrincipalView();

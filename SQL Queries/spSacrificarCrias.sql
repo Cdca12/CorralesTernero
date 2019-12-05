@@ -2,11 +2,17 @@ CREATE PROCEDURE spSacrificarCrias
 	@CriaID int
 AS
 
+
 	BEGIN TRY
 		BEGIN TRAN
 
 		DECLARE @Transaccion int = (
 			SELECT Transaccion FROM ConsultarCriasASacrificarView
+			WHERE CriaID = @CriaID
+		)
+
+		DECLARE @SensorID int = (
+			SELECT SensorID FROM Crias
 			WHERE CriaID = @CriaID
 		)
 		
@@ -20,6 +26,11 @@ AS
 		SET FechaEgreso = GETDATE()
 		WHERE Transaccion = @Transaccion
 
+		--Quitamos el Sensor, lo dejamos disponible
+		UPDATE Sensores
+		SET CriaID = NULL
+		WHERE SensorID = @SensorID
+
 		COMMIT TRAN
 
 	END TRY
@@ -29,4 +40,3 @@ AS
 		ROLLBACK TRAN
 
 	END CATCH
-
