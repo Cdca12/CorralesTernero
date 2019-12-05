@@ -4,7 +4,7 @@ import javax.swing.*;
 import Controllers.*;
 import Models.*;
 import java.awt.Image;
-import Utils.Config;
+import Utils.Tipo;
 import Utils.Configuracion;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -167,7 +167,7 @@ public class MenuPrincipalView extends JFrame {
     }
 
     public void abrirConsultarDietas() {
-        ConsultarDietasView dietasView = new ConsultarDietasView(Config.CONSULTA);
+        ConsultarDietasView dietasView = new ConsultarDietasView(Tipo.CONSULTA);
         ConsultarDietasModel dietasModel = new ConsultarDietasModel();
         ConsultarDietasController dietasController = new ConsultarDietasController(dietasModel, dietasView);
 
@@ -176,7 +176,7 @@ public class MenuPrincipalView extends JFrame {
     }
 
     public void abrirConsultarCorrales() {
-        ConsultarCorralesView corralesView = new ConsultarCorralesView(Config.CONSULTA);
+        ConsultarCorralesView corralesView = new ConsultarCorralesView(Tipo.CONSULTA);
         ConsultarCorralesModel corralesModel = new ConsultarCorralesModel();
         ConsultarCorralesController corralesController = new ConsultarCorralesController(corralesModel, corralesView);
 
@@ -185,7 +185,7 @@ public class MenuPrincipalView extends JFrame {
     }
 
     public void abrirConsultarAlimentos() {
-        ConsultarAlimentosView alimentosView = new ConsultarAlimentosView(Config.CONSULTA);
+        ConsultarAlimentosView alimentosView = new ConsultarAlimentosView(Tipo.CONSULTA);
         ConsultarAlimentosModel alimentosModel = new ConsultarAlimentosModel();
         ConsultarAlimentosController alimentosController = new ConsultarAlimentosController(alimentosModel, alimentosView);
 

@@ -3,7 +3,7 @@ package Views;
 import Controllers.*;
 import Entities.*;
 import Models.*;
-import Utils.Config;
+import Utils.Tipo;
 import java.awt.*;
 import java.util.*;
 import javax.swing.*;
@@ -122,7 +122,7 @@ public class AñadirDietasView extends JDialog {
     
     // Métodos para abrir las consultas
     public void abrirSeleccionAlimentos() {
-        ConsultarAlimentosView alimentosView = new ConsultarAlimentosView(Config.SELECCION);
+        ConsultarAlimentosView alimentosView = new ConsultarAlimentosView(Tipo.SELECCION);
         ConsultarAlimentosModel alimentosModel = new ConsultarAlimentosModel();
         ConsultarAlimentosController alimentosController = new ConsultarAlimentosController(alimentosModel, alimentosView);
 

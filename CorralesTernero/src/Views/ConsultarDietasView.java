@@ -4,7 +4,7 @@ import javax.swing.*;
 import Controllers.*;
 import java.util.Arrays;
 import java.util.Vector;
-import Utils.Config;
+import Utils.Tipo;
 
 /**
  *
@@ -18,9 +18,9 @@ public class ConsultarDietasView extends JDialog {
     private JScrollPane scrollPane;
     private Vector<String> vectorNombreColumnas;
     private JButton btnSeleccionar, btnCancelar;
-    private Config config;
+    private Tipo config;
 
-    public ConsultarDietasView(Config config) {
+    public ConsultarDietasView(Tipo config) {
         setTitle("Dietas");
         setSize(650, 350);
         setLayout(null);
@@ -36,7 +36,7 @@ public class ConsultarDietasView extends JDialog {
     private void initComponents() {
         scrollPane = new JScrollPane();
         int width = 590;
-        if (config == Config.SELECCION) {
+        if (config == Tipo.SELECCION) {
             btnSeleccionar = new JButton("Seleccionar");
             btnSeleccionar.setBounds(525, 160, 100, 30);
             btnSeleccionar.setEnabled(false);
@@ -65,7 +65,7 @@ public class ConsultarDietasView extends JDialog {
     }
 
     private void addListeners() {
-        if (config == Config.SELECCION) {
+        if (config == Tipo.SELECCION) {
             tablaDietas.getSelectionModel().addListSelectionListener(dietasController);
             btnSeleccionar.addActionListener(dietasController);
             btnCancelar.addActionListener(dietasController);

@@ -4,7 +4,7 @@ import javax.swing.*;
 import Controllers.*;
 import java.util.Arrays;
 import java.util.Vector;
-import Utils.Config;
+import Utils.Tipo;
 
 /**
  *
@@ -18,9 +18,9 @@ public class ConsultarCorralesView extends JDialog {
     private JScrollPane scrollPane;
     private Vector<String> vectorNombreColumnas;
     private JButton btnSeleccionar, btnCancelar;
-    private Config config;
+    private Tipo config;
 
-    public ConsultarCorralesView(Config config) {
+    public ConsultarCorralesView(Tipo config) {
         setTitle("Corrales");
         setSize(650, 350);
         setLayout(null);
@@ -35,7 +35,7 @@ public class ConsultarCorralesView extends JDialog {
     private void initComponents() {
         scrollPane = new JScrollPane();
         int width = 590;
-        if (config == Config.SELECCION) {
+        if (config == Tipo.SELECCION) {
             btnSeleccionar = new JButton("Seleccionar");
             btnSeleccionar.setBounds(525, 160, 100, 30);
             btnSeleccionar.setEnabled(false);
@@ -63,7 +63,7 @@ public class ConsultarCorralesView extends JDialog {
     }
 
     private void addListeners() {
-        if (config == Config.SELECCION) {
+        if (config == Tipo.SELECCION) {
             tablaCorrales.getSelectionModel().addListSelectionListener(corralesController);
             btnSeleccionar.addActionListener(corralesController);
             btnCancelar.addActionListener(corralesController);

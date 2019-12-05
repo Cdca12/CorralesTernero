@@ -16,7 +16,6 @@ public class SQLConnectionHelper {
 
     // Base de Datos local
     //url = "jdbc:sqlserver://localhost\\MSSQLSERVER01:1433;databaseName=CorralesTernero;user=desarrollo;password=desarrollo;";
-    
     static synchronized public void setToken(Token tkn) {
         token = tkn;
     }
@@ -30,7 +29,8 @@ public class SQLConnectionHelper {
             // Base de Datos en Azure
             url = "jdbc:sqlserver://pruebascdca.database.windows.net:1433;database=CorralesTernero;"
                     + "user=" + token.getUser()
-                    + ";password=" + token.getPass();
+                    + ";password=" + token.getPass()
+                    + ";encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
             try {
                 conn = DriverManager.getConnection(url);
                 statement = conn.createStatement();

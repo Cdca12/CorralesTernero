@@ -6,7 +6,7 @@ import Entities.*;
 import java.awt.Font;
 import java.util.List;
 import javax.swing.*;
-import Utils.Config;
+import Utils.Tipo;
 
 /**
  *
@@ -204,7 +204,7 @@ public class AñadirCriaView extends JDialog {
 
     // Métodos para abrir las consultas
     public void abrirSeleccionDietas() {
-        ConsultarDietasView dietasView = new ConsultarDietasView(Config.SELECCION);
+        ConsultarDietasView dietasView = new ConsultarDietasView(Tipo.SELECCION);
         ConsultarDietasModel dietasModel = new ConsultarDietasModel();
         ConsultarDietasController dietasController = new ConsultarDietasController(dietasModel, dietasView);
 
@@ -213,7 +213,7 @@ public class AñadirCriaView extends JDialog {
     }
     
     public void abrirSeleccionCorrales() {
-        ConsultarCorralesView corralesView = new ConsultarCorralesView(Config.SELECCION);
+        ConsultarCorralesView corralesView = new ConsultarCorralesView(Tipo.SELECCION);
         ConsultarCorralesModel corralesModel = new ConsultarCorralesModel();
         ConsultarCorralesController corralesController = new ConsultarCorralesController(corralesModel, corralesView);
         

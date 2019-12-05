@@ -1,7 +1,7 @@
 package Models;
 
 import DataAccesor.SQLConnectionHelper;
-import Utils.Config;
+import Utils.Tipo;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -17,7 +17,7 @@ public class ConsultarCorralesModel {
         
     }
     
-    public Vector<Vector<String>> obtenerDatosTabla(Config config) {
+    public Vector<Vector<String>> obtenerDatosTabla(Tipo config) {
         Vector<Vector<String>> datosTablaCorrales = new Vector<>();
         Statement conexion = SQLConnectionHelper.getConnection();
         if (conexion == null) {
@@ -25,7 +25,7 @@ public class ConsultarCorralesModel {
         }
         try {
             String subConsulta = "TipoCorral";
-            if (config == Config.SELECCION) {
+            if (config == Tipo.SELECCION) {
                 subConsulta = "(SELECT * FROM TipoCorral WHERE TipoCorralID = 1)"; // Obtener Corrales Sanos solamente
             }
             String SQL = "SELECT C.CorralID, E.Nombre as Estado, T.Descripcion as Tipo FROM Corrales C "
