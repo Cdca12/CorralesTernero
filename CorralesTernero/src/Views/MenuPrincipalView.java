@@ -212,7 +212,12 @@ public class MenuPrincipalView extends JFrame {
     }
     
     public void abrirConsultarSensores() {
-        System.out.println("Se abre ConsultarSensores");
+        ConsultarSensoresView consultarSensoresView = new ConsultarSensoresView();
+        ConsultarSensoresModel consultarSensoresModel = new ConsultarSensoresModel();
+        ConsultarSensoresController consultarSensoresController = new ConsultarSensoresController(consultarSensoresModel, consultarSensoresView);
+
+        consultarSensoresView.setController(consultarSensoresController);
+        consultarSensoresView.launchView();
     }
 
     private void cargarJMenu() {
