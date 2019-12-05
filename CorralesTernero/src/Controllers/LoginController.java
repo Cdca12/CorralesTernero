@@ -34,13 +34,11 @@ public class LoginController implements ActionListener {
             String password = loginView.getTxtPassword().getText();
             
             if (!loginModel.login(new Token(username, password))) {
-                Token.expireToken();
                 loginView.mostrarMensajeError();
                 loginView.getTxtUsername().setText("");
                 loginView.getTxtPassword().setText("");
                 return;
             }
-            Token.refreshToken();
             loginView.dispose();
             return;
         }

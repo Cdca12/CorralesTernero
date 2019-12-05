@@ -25,8 +25,10 @@ public class LoginModel {
             // Test bd
             conexion.execute("SELECT (1)");
         } catch (SQLException e) {
+            Token.expireToken();
             return false;
         }
+        Token.refreshToken();
         return true;
     }
 

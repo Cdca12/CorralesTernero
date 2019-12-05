@@ -23,17 +23,13 @@ public class Main {
     public static void main(String[] args) {
         Tema.cambiarTema();
 
-//        loginTerminal();
-//            
-//        if (!Token.checkValidation()) {
-//            return;
-//        }
+        loginTerminal();
+            
+        // Checar si el token es válido para iniciar sesión
+        if (!Token.checkValidation()) {
+            return;
+        }
         
-        // BEGIN Test
-        Token token = new Token("usrAdministrador", "administrador$123");
-        SQLConnectionHelper.setToken(token);
-        // END Test
-
         Configuracion config = new Configuracion(SQLConnectionHelper.getToken());
         
         MenuPrincipalView menuPrincipalView = new MenuPrincipalView();
@@ -52,7 +48,6 @@ public class Main {
 
         loginView.setController(loginController);
         loginView.launchView();
-        
     }
 
 

@@ -24,8 +24,6 @@ public class SQLConnectionHelper {
     public static synchronized Token getToken() {
         return token;
     }
-    
-    
 
     static synchronized public Statement getConnection() {
         if (statement == null) {
