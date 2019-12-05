@@ -69,9 +69,9 @@ public class MenuPrincipalView extends JFrame {
 
     private void addListeners() {
         for (int i = 0; i < arregloJMenuItem.length; i++) {
-//            if (arregloJMenuItem[i] != null) {
+            if (arregloJMenuItem[i] != null) {
                 arregloJMenuItem[i].addActionListener(menuPrincipalController);
-//            }
+            }
         }
     }
 

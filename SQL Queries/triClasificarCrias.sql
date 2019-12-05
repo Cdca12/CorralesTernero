@@ -27,8 +27,8 @@ DECLARE
 				WHEN @Grasa > 20 THEN 3
 			END 
 		END
-		
-		IF @Peso BETWEEN 50 AND 70
+	
+		ELSE IF @Peso BETWEEN 50 AND 70
 		BEGIN
 			SELECT @GrasaCoberturaID =
 			CASE
@@ -38,7 +38,7 @@ DECLARE
 				WHEN @Grasa > 25 THEN 3
 			END
 		END
-		IF @Peso > 70
+		ELSE IF @Peso > 70
 		BEGIN	
 			SELECT @GrasaCoberturaID =
 			CASE
@@ -64,7 +64,7 @@ DECLARE
 			END 
 		END
 
-		IF @Peso BETWEEN 60 AND 80
+		ELSE IF @Peso BETWEEN 60 AND 80
 		BEGIN
 			SELECT @GrasaCoberturaID =
 			CASE	
@@ -75,7 +75,7 @@ DECLARE
 			END
 		END
 
-		IF @Peso > 80
+		ELSE IF @Peso > 80
 		BEGIN	
 			SELECT @GrasaCoberturaID =
 			CASE

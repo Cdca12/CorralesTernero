@@ -9,8 +9,7 @@ AS
 		--Por el momento te manda al 2do corral, de Enfermos
 		DECLARE @CorralID int = 2
 
-		--Ciclo
-		
+		--Bloqueamos lectura de la tabla, por si alguien en algún reporte quiere leer, no obtener algún dato incorrecto
 		DECLARE @Transaccion int = (
 			SELECT Transaccion FROM TrasladosCrias WITH(updlock)
 			WHERE CriaID = @CriaID

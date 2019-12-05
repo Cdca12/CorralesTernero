@@ -49,7 +49,7 @@ AS
 			INSERT INTO TrasladosCrias(CorralID, CriaID)
 			VALUES (@CorralID, @CriaID)
 
-			--Obtener info de la Cria, no es necesario el control de concurrencia
+			--Obtener info de la Cria, no es necesario el control de concurrencia ya que se va por ID
 			DECLARE @DietaID int = (SELECT DietaID FROM Crias WHERE CriaID = @CriaID)
 			DECLARE @AlimentoID int = (SELECT AlimentoID FROM Dietas WHERE DietaID = @DietaID)
 			DECLARE @NombreAlimentoDieta varchar(max) = (SELECT Nombre FROM Alimentos WHERE AlimentoID = @AlimentoID)

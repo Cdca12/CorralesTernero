@@ -8,6 +8,7 @@ AS
 		BEGIN TRAN
 
 		--Añadimos fecha de egreso a esas crías
+		--Candado escritura implícito, no permite lecturas
 		UPDATE TrasladosCrias
 		SET FechaEgreso = GETDATE()
 		WHERE CriaID = @CriaID

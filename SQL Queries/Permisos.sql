@@ -1,6 +1,4 @@
- 
-
-CREATE TABLE Menu (
+ CREATE TABLE Menu (
 	MenuID int IDENTITY PRIMARY KEY,
 	Name varchar(max)
 )
@@ -71,7 +69,6 @@ WHERE MenuItemID IN (
 GO
 
 
-
 CREATE VIEW ObtenerConfiguracionView
 AS
 
@@ -83,21 +80,29 @@ AS
 GO
 
 
-CREATE PROCEDURE spObtenerConfiguracion
-	@Username varchar(max),
-	@Component varchar(max)
-AS
+--CREATE PROCEDURE spObtenerConfiguracion
+--	@Username varchar(max),
+--	@Component varchar(max)
+--AS
 
-	--Armar el nombre de columnas dinámicamente
-	DECLARE @ComponentID varchar(max) = @Component + 'ID'
-	DECLARE @ComponentName varchar(max) = @Component + 'Name'
+--	--Armar el nombre de columnas dinámicamente
+--	DECLARE @ComponentID varchar(max) = @Component + 'ID'
+--	DECLARE @ComponentName varchar(max) = @Component + 'Name'
 
-	--Ejecutar SQL dinámico
-	DECLARE @SQL varchar(max) = 'SELECT DISTINCT ' + @ComponentID + ', ' + @ComponentName + ' FROM ObtenerConfiguracionView WHERE Username = ''' + @Username + ' '' '
-	EXECUTE(@SQL)
+--	--Ejecutar SQL dinámico
+--	DECLARE @SQL varchar(max) = 'SELECT DISTINCT ' + @ComponentID + ', ' + @ComponentName + ' FROM ObtenerConfiguracionView WHERE Username = ''' + @Username + ' '' '
+--	EXECUTE(@SQL)
 	
-GO
+--GO
 
 --Test
---SELECT * FROM ObtenerConfiguracionView
---EXECUTE spObtenerConfiguracion 'usrVeterinario', 'Menu'
+--SELECT MenuID, MenuName FROM ObtenerConfiguracionView 
+----WHERE Username = 'usrAdministrador'
+--WHERE Username = 'usrVeterinario'
+--GROUP BY MenuID, MenuName
+
+
+
+
+
+
