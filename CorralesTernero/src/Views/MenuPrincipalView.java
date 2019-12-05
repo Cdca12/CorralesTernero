@@ -50,8 +50,8 @@ public class MenuPrincipalView extends JFrame {
         setJMenuBar(menuBar);
 
         // Cargar ventanas Configuración
-        arregloJMenu = new JMenu[14];
-        arregloJMenuItem = new JMenuItem[14];
+        arregloJMenu = new JMenu[16];
+        arregloJMenuItem = new JMenuItem[16];
 
         cargarJMenu();
         cargarJMenuItem();
@@ -200,6 +200,19 @@ public class MenuPrincipalView extends JFrame {
 
         consultarAlimentosView.setController(consultarAlimentosController);
         consultarAlimentosView.launchView();
+    }
+    
+    public void abrirAñadirSensores() {
+        AñadirSensoresView añadirSensoresView = new AñadirSensoresView();
+        AñadirSensoresModel añadirSensoresModel = new AñadirSensoresModel();
+        AñadirSensoresController añadirSensoresController = new AñadirSensoresController(añadirSensoresModel, añadirSensoresView);
+
+        añadirSensoresView.setController(añadirSensoresController);
+        añadirSensoresView.launchView();
+    }
+    
+    public void abrirConsultarSensores() {
+        System.out.println("Se abre ConsultarSensores");
     }
 
     private void cargarJMenu() {

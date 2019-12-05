@@ -12,6 +12,10 @@ public class SeñalesSensores {
     private String Respiracion;
     private String Pulso;
     private String Temperatura;
+    
+    public SeñalesSensores() {
+        
+    }
 
     public String getSeñal() {
         return Señal;

@@ -79,18 +79,29 @@ public class MenuPrincipalController implements ActionListener {
             menuPrincipalView.abrirConsultarDietas();
             return;
         }
-        // Analizar Sensores
+        // Añadir Sensores
         if (evt.getSource() == menuPrincipalView.arregloJMenuItem[11]) {
+            menuPrincipalView.abrirAñadirSensores();
+            return;
+        }
+        // Consultar Sensores
+        if (evt.getSource() == menuPrincipalView.arregloJMenuItem[12]) {
+            menuPrincipalView.abrirConsultarSensores();
+            return;
+        }
+        // Analizar Sensores
+        if (evt.getSource() == menuPrincipalView.arregloJMenuItem[13]) {
             menuPrincipalView.abrirAnalizarSeñalesSensores();
             return;
         }
         // Simular Señales
-        if (evt.getSource() == menuPrincipalView.arregloJMenuItem[12]) {
+        if (evt.getSource() == menuPrincipalView.arregloJMenuItem[14]) {
             menuPrincipalView.abrirSimularSeñales();
             return;
         }
         // Avanzar Días
-        if (evt.getSource() == menuPrincipalView.arregloJMenuItem[13]) {
+        if (evt.getSource() == menuPrincipalView.arregloJMenuItem[15
+                ]) {
             menuPrincipalView.abrirAvanzarDias();
             return;
         }

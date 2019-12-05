@@ -1,27 +1,21 @@
 package Entities;
 
+import DataAccesor.SQLConnectionHelper;
+import Utils.Status;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 /**
  *
  * @author Carlos Contreras
  */
 public class Sensores {
-    
-    private String Señal;
+
     private String SensorID;
-    private String PresionArterial;
-    private String Respiracion;
-    private String Pulso;
-    private String Temperatura;
-    
+    private String Marca;
+    private String CriaID;
+
     public Sensores() {
-    }
-
-    public String getSeñal() {
-        return Señal;
-    }
-
-    public void setSeñal(String Señal) {
-        this.Señal = Señal;
     }
 
     public String getSensorID() {
@@ -32,39 +26,53 @@ public class Sensores {
         this.SensorID = SensorID;
     }
 
-    public String getPresionArterial() {
-        return PresionArterial;
+    public String getMarca() {
+        return Marca;
     }
 
-    public void setPresionArterial(String PresionArterial) {
-        this.PresionArterial = PresionArterial;
+    public void setMarca(String Marca) {
+        this.Marca = Marca;
     }
 
-    public String getRespiracion() {
-        return Respiracion;
+    public String getCriaID() {
+        return CriaID;
     }
 
-    public void setRespiracion(String Respiracion) {
-        this.Respiracion = Respiracion;
+    public void setCriaID(String CriaID) {
+        this.CriaID = CriaID;
     }
 
-    public String getPulso() {
-        return Pulso;
-    }
-
-    public void setPulso(String Pulso) {
-        this.Pulso = Pulso;
-    }
-
-    public String getTemperatura() {
-        return Temperatura;
-    }
-
-    public void setTemperatura(String Temperatura) {
-        this.Temperatura = Temperatura;
-    }
-    
     // Métodos CRUD
-    // TODO:
+    public static synchronized int añadirSensor(Sensores sensor) {
+        Statement conexion = SQLConnectionHelper.getConnection();
+        if (conexion == null) {
+            return Status.ERROR_CONNECTION.CODE;
+        }
+        try {
+            String SQL = "INSERT INTO Sensores "
+                    + "VALUES ("
+                    + "'" + sensor.Marca + "')";
+            conexion.execute(SQL);
+        } catch (SQLException e) {
+            return Status.ERROR_INSERT.CODE;
+        }
+        return Status.OK_INSERT.CODE;
+    }
     
+    public static synchronized int añadirSensor(Sensores sensor, int cantidad) {
+        Statement conexion = SQLConnectionHelper.getConnection();
+        if (conexion == null) {
+            return Status.ERROR_CONNECTION.CODE;
+        }
+        try {
+            String SQL = "INSERT INTO Sensores "
+                    + "VALUES ("
+                    + "'" + sensor.Marca + "')";
+            for (int i = 0; i < cantidad; conexion.execute(SQL), i++); // iterar cantidad
+        } catch (SQLException e) {
+            return Status.ERROR_INSERT.CODE;
+        }
+        return Status.OK_INSERT.CODE;
+    }
+
 }
