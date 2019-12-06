@@ -15,16 +15,19 @@ AS
 			SELECT SensorID FROM Crias
 			WHERE CriaID = @CriaID
 		)
-		
-		--Actualiza estado de la Cria
-		UPDATE Crias
-		SET EstadoCriaID = 3
-		WHERE CriaID = @CriaID
 
 		--Actualiza historial
 		UPDATE TrasladosCrias
 		SET FechaEgreso = GETDATE()
 		WHERE Transaccion = @Transaccion
+		
+		--Actualiza estado de la Cria
+		UPDATE Crias
+		SET CorralID = NULL,		--Quitamos del Corral
+		EstadoCriaID = 3,			--Dejamos su su EstadoCriaID a Sacrificado
+		SensorID = NULL			--Quitamos SensorID
+		WHERE CriaID = @CriaID
+		
 
 		--Quitamos el Sensor, lo dejamos disponible
 		UPDATE Sensores

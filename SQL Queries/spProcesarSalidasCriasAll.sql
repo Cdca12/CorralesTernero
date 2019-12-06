@@ -1,5 +1,5 @@
 --Procesar salidas de crias
-ALTER PROCEDURE spProcesarSalidasCriasAll
+CREATE PROCEDURE spProcesarSalidasCriasAll
 	
 AS
 
@@ -13,16 +13,6 @@ AS
 		INSERT INTO #CriasAProcesar
 		SELECT CriaID FROM ReporteCriasProcesarSalidaView
 
-		DECLARE @SensoresID TABLE (
-			SensorID int
-		)
-
-		--Obtenemos Sensores de esas Crias
-		INSERT INTO @SensoresID
-		SELECT SensorID FROM Sensores
-		WHERE CriaID IN (
-			SELECT CriaID FROM #CriasAProcesar
-		)
 
 		BEGIN TRY
 
@@ -35,24 +25,16 @@ AS
 			WHERE CriaID IN (
 				SELECT CriaID FROM #CriasAProcesar
 			)
-
+			
 
 			--Actualizamos datos de la cria, poniendo su EstadoCriaID a Procesado
 			UPDATE Crias
 			SET CorralID = NULL,	--Quitamos del Corral
-				EstadoCriaID = 4,	--Dejamos su su EstadoCriaID a Procesado
-				SensorID = NULL		--Quitamos SensorID
+				EstadoCriaID = 4	--Dejamos su su EstadoCriaID a Procesado
+				--SensorID = NULL		--Quitamos SensorID
 			WHERE CriaID IN (
 				SELECT CriaID FROM #CriasAProcesar
 			)
-
-			--Quitamos el Sensor, lo dejamos disponible
-			UPDATE Sensores
-			SET CriaID = NULL
-			WHERE SensorID IN (
-				SELECT SensorID FROM @SensoresID
-			)
-
 	
 			COMMIT TRAN	
 

@@ -55,7 +55,7 @@ CREATE TABLE Corrales (
 CREATE TABLE Sensores (
 	SensorID int IDENTITY PRIMARY KEY,
 	Marca varchar(255),
-	CriaID int NULL
+	CriaID int NULL --No es FK por el momento ya que no está creada Crías
 )
 
 CREATE TABLE Crias (
@@ -70,6 +70,11 @@ CREATE TABLE Crias (
 	EstadoCriaID int FOREIGN KEY REFERENCES EstadoCria DEFAULT 1,
 	DiasEdad int NOT NULL DEFAULT 0
 );
+
+
+--Añadir FOREIGN KEY a Sensores
+ALTER TABLE Sensores
+ADD FOREIGN KEY (CriaID) REFERENCES Crias
 
 
 CREATE TABLE SeñalesSensores (
@@ -435,24 +440,13 @@ AS
 		SET FechaEgreso = GETDATE()
 		WHERE CriaID = @CriaID
 
-		DECLARE @SensorID int = (
-		--Sin necesidad de candado porque selecciona una única tupla directo
-			SELECT SensorID FROM Crias
-			WHERE CriaID = @CriaID
-		)
-
 		--Actualizamos datos de la cria, 
 		UPDATE Crias
 		SET CorralID = NULL,	--Quitamos del Corral
-			EstadoCriaID = 4,	--Dejamos su su EstadoCriaID a Procesado
-			SensorID = NULL		--Quitamos SensorID
+			EstadoCriaID = 4	--Dejamos su su EstadoCriaID a Procesado
+			--SensorID = NULL		--Quitamos SensorID
 		WHERE CriaID = @CriaID
 
-
-		--Quitamos el Sensor, lo dejamos disponible
-		UPDATE Sensores
-		SET CriaID = NULL
-		WHERE SensorID = @SensorID
 	
 		COMMIT TRAN	
 
@@ -480,16 +474,6 @@ AS
 		INSERT INTO #CriasAProcesar
 		SELECT CriaID FROM ReporteCriasProcesarSalidaView
 
-		DECLARE @SensoresID TABLE (
-			SensorID int
-		)
-
-		--Obtenemos Sensores de esas Crias
-		INSERT INTO @SensoresID
-		SELECT SensorID FROM Sensores
-		WHERE CriaID IN (
-			SELECT CriaID FROM #CriasAProcesar
-		)
 
 		BEGIN TRY
 
@@ -507,19 +491,11 @@ AS
 			--Actualizamos datos de la cria, poniendo su EstadoCriaID a Procesado
 			UPDATE Crias
 			SET CorralID = NULL,	--Quitamos del Corral
-				EstadoCriaID = 4,	--Dejamos su su EstadoCriaID a Procesado
-				SensorID = NULL		--Quitamos SensorID
+				EstadoCriaID = 4	--Dejamos su su EstadoCriaID a Procesado
+				--SensorID = NULL		--Quitamos SensorID
 			WHERE CriaID IN (
 				SELECT CriaID FROM #CriasAProcesar
 			)
-
-			--Quitamos el Sensor, lo dejamos disponible
-			UPDATE Sensores
-			SET CriaID = NULL
-			WHERE SensorID IN (
-				SELECT SensorID FROM @SensoresID
-			)
-
 	
 			COMMIT TRAN	
 
@@ -550,16 +526,21 @@ AS
 			WHERE CriaID = @CriaID
 		)
 		
-		--Actualiza estado de la Cria
-		UPDATE Crias
-		SET EstadoCriaID = 3
-		WHERE CriaID = @CriaID
-
 		--Actualiza historial
+		--Añadimos fecha de egreso a esas crías
+		--Candado escritura implícito, no permite lecturas
 		UPDATE TrasladosCrias
 		SET FechaEgreso = GETDATE()
 		WHERE Transaccion = @Transaccion
 
+		--Actualiza estado de la Cria
+		UPDATE Crias
+		SET CorralID = NULL,		--Quitamos del Corral
+		EstadoCriaID = 3,		--Dejamos su su EstadoCriaID a Sacrificado
+		SensorID = NULL			--Quitamos SensorID
+		WHERE CriaID = @CriaID
+
+	
 		--Quitamos el Sensor, lo dejamos disponible
 		UPDATE Sensores
 		SET CriaID = NULL
@@ -1077,6 +1058,15 @@ INSERT INTO Usuarios
 SELECT 3, 'usrVeterinario', MenuItemID FROM MenuItem
 WHERE MenuItemID IN (
 	2, 3, 7, 8, 9, 10, 11, 14
+)
+
+SELECT * FROM MenuItem
+
+--Añadir permiso a otro usuario
+INSERT INTO Usuarios
+SELECT 4, 'usrtrabajador', MenuItemID FROM MenuItem
+WHERE Name IN (
+	
 )
 
 GO
