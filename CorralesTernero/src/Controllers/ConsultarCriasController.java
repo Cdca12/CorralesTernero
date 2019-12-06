@@ -62,6 +62,9 @@ public class ConsultarCriasController implements ActionListener, KeyListener {
             consultarCriasView.getCmbFiltro().setSelectedIndex(0);
             return;
         }
+        if (evt.getSource() == consultarCriasView.getBtnImprimir()) {
+            consultarCriasView.imprimirTabla();
+        }
     }
 
     @Override

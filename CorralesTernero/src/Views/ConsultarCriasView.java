@@ -3,9 +3,13 @@ package Views;
 import Controllers.ConsultarCriasController;
 import Controllers.ConsultarCorralesController;
 import Controllers.ConsultarDietasController;
+import Utils.Status;
 import java.awt.Font;
+import java.awt.print.PrinterException;
 import java.util.Arrays;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
@@ -19,10 +23,9 @@ public class ConsultarCriasView extends JDialog {
     private JTable tablaCrias;
     private JScrollPane scrollPane;
     private Vector<String> vectorNombreColumnas;
-    private JLabel lbConsultar;
     private JComboBox cmbFiltro;
     private JTextField txtConsultar;
-    private JButton btnConsultar, btnConsultarTodas;
+    private JButton btnConsultar, btnConsultarTodas, btnImprimir;
 
     public ConsultarCriasView() {
         setTitle("Crias");
@@ -31,23 +34,17 @@ public class ConsultarCriasView extends JDialog {
         setLocationRelativeTo(null);
         setResizable(false);
         setModal(true);
-
         initComponents();
 
     }
 
     private void initComponents() {
-        lbConsultar = new JLabel("Consultar por");
-        lbConsultar.setFont(new Font("Arial", Font.PLAIN, 14));
-        lbConsultar.setBounds(35, 15, 100, 20);
-        add(lbConsultar);
-
         String[] filtros = {"CriaID", "CorralID", "Peso", "Grasa", "GrasaCobertura",
             "TipoMusculo", "SensorID", "DietaID", "EstadoCria", "DiasEdad"};
         cmbFiltro = new JComboBox(filtros);
         cmbFiltro.insertItemAt("Seleccione filtro", 0);
         cmbFiltro.setSelectedIndex(0);
-        cmbFiltro.setBounds(lbConsultar.getX() - 5, lbConsultar.getY() + 25, 185, 30);
+        cmbFiltro.setBounds(35, 15, 185, 30);
         add(cmbFiltro);
 
         txtConsultar = new JTextField();
@@ -63,6 +60,10 @@ public class ConsultarCriasView extends JDialog {
         btnConsultarTodas = new JButton("Consultar todas");
         btnConsultarTodas.setBounds(btnConsultar.getX() + btnConsultar.getWidth() + 10, btnConsultar.getY(), 130, 30);
         add(btnConsultarTodas);
+
+        btnImprimir = new JButton("Imprimir");
+        btnImprimir.setBounds(getWidth() - 125, btnConsultar.getY(), 100, 30);
+        add(btnImprimir);
 
         generarTabla();
     }
@@ -80,6 +81,7 @@ public class ConsultarCriasView extends JDialog {
     private void addListeners() {
         btnConsultar.addActionListener(consultarCriasController);
         btnConsultarTodas.addActionListener(consultarCriasController);
+        btnImprimir.addActionListener(consultarCriasController);
         cmbFiltro.addActionListener(consultarCriasController);
         txtConsultar.addKeyListener(consultarCriasController);
     }
@@ -100,7 +102,7 @@ public class ConsultarCriasView extends JDialog {
         tablaCrias = new JTable(null, vectorNombreColumnas);
 
         scrollPane = new JScrollPane();
-        scrollPane.setBounds(30, 80, 1350, 400);
+        scrollPane.setBounds(30, 60, 1350, 480);
         add(scrollPane);
         scrollPane.setViewportView(tablaCrias);
     }
@@ -109,6 +111,7 @@ public class ConsultarCriasView extends JDialog {
         tablaCrias = new JTable(datosTablaCrias, vectorNombreColumnas);
         scrollPane.setViewportView(tablaCrias);
         tablaCrias.updateUI();
+
     }
 
     public JTable getTablaCrias() {
@@ -129,6 +132,20 @@ public class ConsultarCriasView extends JDialog {
 
     public JButton getBtnConsultarTodas() {
         return btnConsultarTodas;
+    }
+
+    public JButton getBtnImprimir() {
+        return btnImprimir;
+    }
+
+    public void imprimirTabla() {
+        try {
+            if (tablaCrias.print()) {
+                JOptionPane.showMessageDialog(null, Status.OK_PRINT.MESSAGE, Status.OK_PRINT.TITLE, JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (PrinterException ex) {
+            JOptionPane.showMessageDialog(null, Status.ERROR_PRINT.MESSAGE, Status.ERROR_PRINT.TITLE, JOptionPane.ERROR_MESSAGE);
+        }
     }
 
 }
