@@ -37,14 +37,14 @@ public class AñadirCorralesController implements ActionListener {
 
     }
 
-    private void ejecutarAccion(int statusAccion) {
-        if (statusAccion == Status.ERROR_INSERT.CODE) {
-            añadirCorralesView.showErrorMessage(Status.ERROR_INSERT.TITLE, Status.ERROR_INSERT.MESSAGE);
+    private void ejecutarAccion(Status s) {
+        if (s.CODE == Status.OK_INSERT_CORRAL.CODE) {
+            añadirCorralesView.showOkMessage(s.MESSAGE, s.TITLE);
+            añadirCorralesView.limpiarCampos();
             return;
         }
-        if (statusAccion == Status.OK_INSERT.CODE) {
-            añadirCorralesView.showOkMessage(Status.OK_INSERT.TITLE, Status.OK_INSERT.MESSAGE);
-            añadirCorralesView.limpiarCampos();
+        if (s.CODE == Status.ERROR_INSERT_CORRAL.CODE) {
+            añadirCorralesView.showErrorMessage(s.MESSAGE, s.TITLE);
             return;
         }
     }

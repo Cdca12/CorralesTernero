@@ -38,14 +38,14 @@ public class AñadirSensoresController implements ActionListener {
         }
     }
     
-    private void ejecutarAccion(int statusAccion) {
-        if (statusAccion == Status.ERROR_INSERT.CODE) {
-            añadirSensoresView.showErrorMessage(Status.ERROR_INSERT.TITLE, Status.ERROR_INSERT.MESSAGE);
+    private void ejecutarAccion(Status s) {
+        if (s.CODE == Status.OK_INSERT_SENSOR.CODE) {
+            añadirSensoresView.showOkMessage(s.MESSAGE, s.TITLE);
+            añadirSensoresView.limpiarCampos();
             return;
         }
-        if (statusAccion == Status.OK_INSERT.CODE) {
-            añadirSensoresView.showOkMessage(Status.OK_INSERT.TITLE, Status.OK_INSERT.MESSAGE);
-            añadirSensoresView.limpiarCampos();
+        if (s.CODE == Status.ERROR_INSERT_SENSOR.CODE) {
+            añadirSensoresView.showErrorMessage(s.MESSAGE, s.TITLE);
             return;
         }
     }

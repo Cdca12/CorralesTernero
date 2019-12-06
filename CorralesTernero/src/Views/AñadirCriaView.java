@@ -1,4 +1,4 @@
-    package Views;
+package Views;
 
 import Models.*;
 import Controllers.*;
@@ -54,12 +54,12 @@ public class AñadirCriaView extends JDialog {
         lbPeso.setFont(new Font("Arial", Font.PLAIN, 14));
         lbPeso.setBounds(200, lbTipoMusculo.getY() + 40, 150, 20);
         add(lbPeso);
-        
+
         JLabel lbKgPeso = new JLabel("kg");
         lbKgPeso.setFont(new Font("Arial", Font.PLAIN, 14));
         lbKgPeso.setBounds(370, lbPeso.getY(), 150, 20);
         add(lbKgPeso);
-        
+
         lbGrasa = new JLabel("Grasa");
         lbGrasa.setFont(new Font("Arial", Font.PLAIN, 14));
         lbGrasa.setBounds(195, lbPeso.getY() + 40, 150, 20);
@@ -69,7 +69,7 @@ public class AñadirCriaView extends JDialog {
         lbKgGrasa.setFont(new Font("Arial", Font.PLAIN, 14));
         lbKgGrasa.setBounds(370, lbGrasa.getY(), 150, 20);
         add(lbKgGrasa);
-        
+
         // TextFields
         txtCorral = new JTextField();
         txtCorral.setBounds(270, 145, 90, 30);
@@ -84,7 +84,7 @@ public class AñadirCriaView extends JDialog {
         txtPeso = new JTextField();
         txtPeso.setBounds(270, txtDieta.getY() + 80, 90, 30);
         add(txtPeso);
-        
+
         txtGrasa = new JTextField();
         txtGrasa.setBounds(270, txtPeso.getY() + 40, 90, 30);
         add(txtGrasa);
@@ -149,14 +149,6 @@ public class AñadirCriaView extends JDialog {
         cmbTipoMusculo.setSelectedIndex(0);
     }
 
-    public void showErrorMessage(String ERROR_MESSAGE, String ERROR_TITLE) {
-        JOptionPane.showMessageDialog(null, ERROR_MESSAGE, ERROR_TITLE, JOptionPane.ERROR_MESSAGE);
-    }
-
-    public void showOkMessage(String OK_MESSAGE, String OK_TITLE) {
-        JOptionPane.showMessageDialog(null, OK_MESSAGE, OK_TITLE, JOptionPane.INFORMATION_MESSAGE);
-    }
-
     // Getters y Setters
     public JButton getBtnAñadir() {
         return btnAñadir;
@@ -173,7 +165,7 @@ public class AñadirCriaView extends JDialog {
     public JButton getBtnSeleccionarCorral() {
         return btnSeleccionarCorral;
     }
-    
+
     public JTextField getTxtCorral() {
         return txtCorral;
     }
@@ -189,7 +181,7 @@ public class AñadirCriaView extends JDialog {
     public JTextField getTxtGrasa() {
         return txtGrasa;
     }
-    
+
     public JComboBox getCmbTipoMusculo() {
         return cmbTipoMusculo;
     }
@@ -211,14 +203,22 @@ public class AñadirCriaView extends JDialog {
         dietasView.setController(dietasController);
         dietasView.launchView();
     }
-    
+
     public void abrirSeleccionCorrales() {
         ConsultarCorralesView corralesView = new ConsultarCorralesView(Tipo.SELECCION);
         ConsultarCorralesModel corralesModel = new ConsultarCorralesModel();
         ConsultarCorralesController corralesController = new ConsultarCorralesController(corralesModel, corralesView);
-        
+
         corralesView.setController(corralesController);
         corralesView.launchView();
+    }
+
+    public void showErrorMessage(String ERROR_MESSAGE, String ERROR_TITLE) {
+        JOptionPane.showMessageDialog(null, ERROR_MESSAGE, ERROR_TITLE, JOptionPane.ERROR_MESSAGE);
+    }
+
+    public void showOkMessage(String OK_MESSAGE, String OK_TITLE) {
+        JOptionPane.showMessageDialog(null, OK_MESSAGE, OK_TITLE, JOptionPane.INFORMATION_MESSAGE);
     }
 
 }

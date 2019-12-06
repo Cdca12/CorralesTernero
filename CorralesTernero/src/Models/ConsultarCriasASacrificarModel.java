@@ -1,6 +1,7 @@
 package Models;
 
 import DataAccesor.SQLConnectionHelper;
+import Utils.Status;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -43,32 +44,30 @@ public class ConsultarCriasASacrificarModel {
         return datosTablaCriasASacrificar;
     }
 
-    public void sacrificarCria(String criaID) {
+    public synchronized Status sacrificarCria(String criaID) {
         Statement conexion = SQLConnectionHelper.getConnection();
         if (conexion == null) {
-            return;
+            return Status.ERROR_CONNECTION;
         }
         try {
             conexion.execute("EXECUTE spSacrificarCrias " + criaID);
         } catch (SQLException e) {
-            System.out.println("Error sacrificar cría");
-            return;
+            return Status.ERROR_SACRIFICAR;
         }
+        return Status.OK_SACRIFICAR;
     }
-        
-    public void sacrificarCriaAll() {
+
+    public synchronized Status sacrificarCriaAll() {
         Statement conexion = SQLConnectionHelper.getConnection();
         if (conexion == null) {
-            return;
+            return Status.ERROR_CONNECTION;
         }
         try {
             conexion.execute("EXECUTE spSacrificarCriasAll");
         } catch (SQLException e) {
-            System.out.println("Error sacrificar cría");
-            return;
+            return Status.ERROR_SACRIFICAR_ALL;
         }
+        return Status.OK_SACRIFICAR_ALL;
     }
-
-    
 
 }

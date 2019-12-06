@@ -1,6 +1,7 @@
 package Models;
 
 import DataAccesor.SQLConnectionHelper;
+import Utils.Status;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -14,17 +15,17 @@ public class AvanzarDiasModel {
 
     }
 
-    public void avanzarDias(int numeroDias) {
+    public synchronized Status avanzarDias(int numeroDias) {
         Statement conexion = SQLConnectionHelper.getConnection();
         if (conexion == null) {
-            return;
+            return Status.ERROR_CONNECTION;
         }
         try {
             conexion.execute("EXECUTE spAvanzarDias " + numeroDias);
         } catch (SQLException e) {
-            System.out.println("Error");
-            return;
+            return Status.ERROR_AVANZAR_DIAS;
         }
+        return Status.OK_AVANZAR_DIAS;
     }
 
 }

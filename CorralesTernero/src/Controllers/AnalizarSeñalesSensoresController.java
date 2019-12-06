@@ -1,6 +1,7 @@
 package Controllers;
 
 import Models.AnalizarSeñalesSensoresModel;
+import Utils.Status;
 import Views.AnalizarSeñalesSensoresView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,7 +27,7 @@ public class AnalizarSeñalesSensoresController implements ActionListener, ListS
     public Vector<Vector<String>> obtenerDatosTabla() {
         return analizarSeñalesSensoresModel.obtenerDatosTabla();
     }
-    
+
     public Vector<Vector<String>> obtenerDatosTablaPropensosEnfermarse() {
         return analizarSeñalesSensoresModel.obtenerDatosTablaPropensosEnfermarse();
     }
@@ -41,25 +42,47 @@ public class AnalizarSeñalesSensoresController implements ActionListener, ListS
         if (evt.getSource() == analizarSeñalesSensoresView.getBtnAñadirCuarentena()) {
             int row = analizarSeñalesSensoresView.getTablaSeñalesSensores().getSelectedRow();
             String criaID = analizarSeñalesSensoresView.getTablaSeñalesSensores().getModel().getValueAt(row, 6).toString();
-            analizarSeñalesSensoresModel.añadirCuarentena(criaID);
+            ejecutarAccion(analizarSeñalesSensoresModel.añadirCuarentena(criaID));
             return;
         }
         if (evt.getSource() == analizarSeñalesSensoresView.getBtnAñadirCuarentenaAll()) {
-            analizarSeñalesSensoresModel.añadirCuarentenaAll();
+            ejecutarAccion(analizarSeñalesSensoresModel.añadirCuarentenaAll());
             return;
         }
-        if(evt.getSource() == analizarSeñalesSensoresView.getBtnImprimir()) {
+        if (evt.getSource() == analizarSeñalesSensoresView.getBtnImprimir()) {
             analizarSeñalesSensoresView.imprimirTabla();
             return;
         }
     }
-    
- 
 
-@Override
+    @Override
     public void valueChanged(ListSelectionEvent lse) {
         if (lse.getSource() == analizarSeñalesSensoresView.getTablaSeñalesSensores().getSelectionModel()) {
             analizarSeñalesSensoresView.getBtnAñadirCuarentena().setEnabled(true);
+            return;
+        }
+    }
+
+    private void ejecutarAccion(Status s) {
+        if (s.CODE == Status.OK_ADD_CUARENTENA.CODE) {
+            analizarSeñalesSensoresView.showOkMessage(s.MESSAGE, s.TITLE);
+            analizarSeñalesSensoresView.generarTablaPropensasEnfermarse();
+            analizarSeñalesSensoresView.getTablaSeñalesSensores().updateUI();
+            return;
+        }
+        if (s.CODE == Status.ERROR_ADD_CUARENTENA.CODE) {
+            analizarSeñalesSensoresView.showErrorMessage(s.MESSAGE, s.TITLE);
+            return;
+        }
+
+        if (s.CODE == Status.OK_ADD_CUARENTENA_ALL.CODE) {
+            analizarSeñalesSensoresView.showOkMessage(s.MESSAGE, s.TITLE);
+            analizarSeñalesSensoresView.generarTablaPropensasEnfermarse();
+            analizarSeñalesSensoresView.getTablaSeñalesSensores().updateUI();
+            return;
+        }
+        if (s.CODE == Status.ERROR_ADD_CUARENTENA_ALL.CODE) {
+            analizarSeñalesSensoresView.showErrorMessage(s.MESSAGE, s.TITLE);
             return;
         }
     }

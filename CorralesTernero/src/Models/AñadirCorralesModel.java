@@ -2,6 +2,7 @@ package Models;
 
 import DataAccesor.SQLConnectionHelper;
 import Entities.*;
+import Utils.Status;
 import java.sql.*;
 import java.util.*;
 
@@ -15,7 +16,7 @@ public class AñadirCorralesModel {
 
     }
 
-    public synchronized int añadirCorral(Corrales corral) {
+    public synchronized Status añadirCorral(Corrales corral) {
         return Corrales.añadirCorral(corral);
     }
 

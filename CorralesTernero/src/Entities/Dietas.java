@@ -48,10 +48,10 @@ public class Dietas {
     }
 
     // Métodos CRUD
-    public static synchronized int añadirDieta(Dietas dieta) {
+    public static synchronized Status añadirDieta(Dietas dieta) {
         Statement conexion = SQLConnectionHelper.getConnection();
         if (conexion == null) {
-            return Status.ERROR_CONNECTION.CODE;
+            return Status.ERROR_CONNECTION;
         }
         try {
             conexion.execute(
@@ -60,8 +60,8 @@ public class Dietas {
                     + dieta.DiasTratamiento + ", "
                     + dieta.AlimentoID + ");");
         } catch (SQLException e) {
-            return Status.ERROR_INSERT.CODE;
+            return Status.ERROR_INSERT_DIETA;
         }
-        return Status.OK_INSERT.CODE;
+        return Status.OK_INSERT_DIETA;
     }
 }

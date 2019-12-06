@@ -43,10 +43,10 @@ public class Sensores {
     }
 
     // Métodos CRUD
-    public static synchronized int añadirSensor(Sensores sensor) {
+    public static synchronized Status añadirSensor(Sensores sensor) {
         Statement conexion = SQLConnectionHelper.getConnection();
         if (conexion == null) {
-            return Status.ERROR_CONNECTION.CODE;
+            return Status.ERROR_CONNECTION;
         }
         try {
             String SQL = "INSERT INTO Sensores "
@@ -54,25 +54,26 @@ public class Sensores {
                     + "'" + sensor.Marca + "')";
             conexion.execute(SQL);
         } catch (SQLException e) {
-            return Status.ERROR_INSERT.CODE;
+            return Status.ERROR_INSERT_SENSOR;
         }
-        return Status.OK_INSERT.CODE;
+        return Status.OK_INSERT_SENSOR;
     }
     
-    public static synchronized int añadirSensor(Sensores sensor, int cantidad) {
+    // Insercion masiva
+    public static synchronized Status añadirSensor(Sensores sensor, int cantidad) {
         Statement conexion = SQLConnectionHelper.getConnection();
         if (conexion == null) {
-            return Status.ERROR_CONNECTION.CODE;
+            return Status.ERROR_CONNECTION;
         }
         try {
             String SQL = "INSERT INTO Sensores "
                     + "VALUES ("
-                    + "'" + sensor.Marca + "')";
+                    + "'" + sensor.Marca + "', NULL)";
             for (int i = 0; i < cantidad; conexion.execute(SQL), i++); // iterar cantidad
         } catch (SQLException e) {
-            return Status.ERROR_INSERT.CODE;
+            return Status.ERROR_INSERT_SENSOR;
         }
-        return Status.OK_INSERT.CODE;
+        return Status.OK_INSERT_SENSOR;
     }
 
 }

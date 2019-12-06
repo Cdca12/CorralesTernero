@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -14,12 +15,12 @@ import javax.swing.JTextField;
  * @author Carlos Contreras
  */
 public class SimularSeñalesView extends JDialog {
-    
+
     private SimularSeñalesController simularSeñalesController;
     private JLabel lbSensorID, lbNumeroSimulaciones;
     private JTextField txtSensorID, txtNumeroSimulaciones;
     private JButton btnIniciarSimulacion;
-    
+
     public SimularSeñalesView() {
         setTitle("Simular Señales");
         setSize(300, 200);
@@ -42,27 +43,27 @@ public class SimularSeñalesView extends JDialog {
         lbNumeroSimulaciones.setFont(new Font("Arial", Font.PLAIN, 14));
         lbNumeroSimulaciones.setBounds(35, lbSensorID.getY() + 40, 150, 20);
         add(lbNumeroSimulaciones);
-        
+
         // TextFields
         txtSensorID = new JTextField();
-        txtSensorID.setBounds(150, lbSensorID.getY() -5 , 100, 30);
+        txtSensorID.setBounds(150, lbSensorID.getY() - 5, 100, 30);
         add(txtSensorID);
 
         txtNumeroSimulaciones = new JTextField();
         txtNumeroSimulaciones.setBounds(txtSensorID.getX(), lbNumeroSimulaciones.getY() - 5, 100, 30);
         add(txtNumeroSimulaciones);
-        
+
         // Buttons
         btnIniciarSimulacion = new JButton("Iniciar Simulación");
         btnIniciarSimulacion.setBounds(50, 120, 200, 30);
         add(btnIniciarSimulacion);
 
     }
-    
+
     public void launchView() {
         setVisible(true);
     }
-    
+
     public void setController(SimularSeñalesController simularSeñalesController) {
         this.simularSeñalesController = simularSeñalesController;
         addListeners();
@@ -83,12 +84,19 @@ public class SimularSeñalesView extends JDialog {
     public JButton getBtnIniciarSimulacion() {
         return btnIniciarSimulacion;
     }
-    
+
     public void limpiarCampos() {
         txtSensorID.setText("");
         txtNumeroSimulaciones.setText("");
         txtSensorID.requestFocus();
     }
-    
-    
+
+    public void showErrorMessage(String ERROR_MESSAGE, String ERROR_TITLE) {
+        JOptionPane.showMessageDialog(null, ERROR_MESSAGE, ERROR_TITLE, JOptionPane.ERROR_MESSAGE);
+    }
+
+    public void showOkMessage(String OK_MESSAGE, String OK_TITLE) {
+        JOptionPane.showMessageDialog(null, OK_MESSAGE, OK_TITLE, JOptionPane.INFORMATION_MESSAGE);
+    }
+
 }

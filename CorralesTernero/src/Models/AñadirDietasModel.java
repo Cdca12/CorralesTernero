@@ -1,6 +1,7 @@
 package Models;
 
 import Entities.*;
+import Utils.Status;
 /**
  *
  * @author Carlos Contreras
@@ -11,7 +12,7 @@ public class AñadirDietasModel {
         
     }
     
-    public synchronized int añadirDieta(Dietas dieta) {
+    public synchronized Status añadirDieta(Dietas dieta) {
         return Dietas.añadirDieta(dieta);
     }
 }

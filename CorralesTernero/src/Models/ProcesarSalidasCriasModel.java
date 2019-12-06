@@ -54,9 +54,9 @@ public class ProcesarSalidasCriasModel {
         try {
             conexion.execute("EXECUTE spProcesarSalidasCrias " + criaID);
         } catch (SQLException e) {
-            return Status.ERROR_PROCCESS;
+            return Status.ERROR_PROCESAR;
         }
-        return Status.OK_PROCCESS;
+        return Status.OK_PROCESAR;
     }
 
     public synchronized Status procesarSalidasAll() {
@@ -67,9 +67,9 @@ public class ProcesarSalidasCriasModel {
         try {
             conexion.execute("EXECUTE spProcesarSalidasCriasAll");
         } catch (SQLException e) {
-            return Status.ERROR_PROCCESS_ALL;
+            return Status.ERROR_PROCESAR_ALL;
         }
-        return Status.OK_PROCCESS_ALL;
+        return Status.OK_PROCESAR_ALL;
     }
 
 }

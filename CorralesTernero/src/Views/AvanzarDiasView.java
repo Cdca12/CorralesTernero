@@ -70,4 +70,12 @@ public class AvanzarDiasView extends JDialog {
         txtDias.requestFocus();
     }
 
+    public void showErrorMessage(String ERROR_MESSAGE, String ERROR_TITLE) {
+        JOptionPane.showMessageDialog(null, ERROR_MESSAGE, ERROR_TITLE, JOptionPane.ERROR_MESSAGE);
+    }
+
+    public void showOkMessage(String OK_MESSAGE, String OK_TITLE) {
+        JOptionPane.showMessageDialog(null, OK_MESSAGE, OK_TITLE, JOptionPane.INFORMATION_MESSAGE);
+    }
+
 }

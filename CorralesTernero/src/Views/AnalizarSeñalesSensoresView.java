@@ -40,12 +40,12 @@ public class AnalizarSeñalesSensoresView extends JDialog {
         btnAñadirCuarentenaAll.setBounds(btnCriasPropensasEnfermarse.getX() + btnCriasPropensasEnfermarse.getWidth() + 10, 430, 180, 30);
         btnAñadirCuarentenaAll.setEnabled(false);
         add(btnAñadirCuarentenaAll);
-        
+
         btnAñadirCuarentena = new JButton("Añadir a cuarentena");
         btnAñadirCuarentena.setBounds(btnAñadirCuarentenaAll.getX() + btnAñadirCuarentenaAll.getWidth() + 10, 430, 150, 30);
         btnAñadirCuarentena.setEnabled(false);
         add(btnAñadirCuarentena);
-        
+
         btnImprimir = new JButton("Imprimir");
         btnImprimir.setBounds(getWidth() - 150, 15, 100, 30);
         add(btnImprimir);
@@ -80,7 +80,7 @@ public class AnalizarSeñalesSensoresView extends JDialog {
         scrollPane.setViewportView(tablaSeñalesSensores);
     }
 
-    private void generarTablaPropensasEnfermarse() {
+    public void generarTablaPropensasEnfermarse() {
         Vector<Vector<String>> datosTablaPropensasEnfermarse = analizarSeñalesSensoresController.obtenerDatosTablaPropensosEnfermarse();
         vectorNombreColumnas = new Vector<>(Arrays.asList("Señal", "SensorID", "PresionArterial", "Respiracion", "Pulso", "Temperatura", "CriaID"));
         tablaSeñalesSensores = new JTable(datosTablaPropensasEnfermarse, vectorNombreColumnas);
@@ -107,11 +107,11 @@ public class AnalizarSeñalesSensoresView extends JDialog {
     public JButton getBtnAñadirCuarentenaAll() {
         return btnAñadirCuarentenaAll;
     }
-    
+
     public JTable getTablaSeñalesSensores() {
         return tablaSeñalesSensores;
     }
-    
+
     public JButton getBtnImprimir() {
         return btnImprimir;
     }
@@ -125,7 +125,13 @@ public class AnalizarSeñalesSensoresView extends JDialog {
             JOptionPane.showMessageDialog(null, Status.ERROR_PRINT.TITLE, Status.ERROR_PRINT.MESSAGE, JOptionPane.ERROR_MESSAGE);
         }
     }
-    
-    
+
+    public void showErrorMessage(String ERROR_MESSAGE, String ERROR_TITLE) {
+        JOptionPane.showMessageDialog(null, ERROR_MESSAGE, ERROR_TITLE, JOptionPane.ERROR_MESSAGE);
+    }
+
+    public void showOkMessage(String OK_MESSAGE, String OK_TITLE) {
+        JOptionPane.showMessageDialog(null, OK_MESSAGE, OK_TITLE, JOptionPane.INFORMATION_MESSAGE);
+    }
 
 }

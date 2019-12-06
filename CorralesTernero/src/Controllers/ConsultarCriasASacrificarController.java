@@ -2,6 +2,7 @@ package Controllers;
 
 import DataAccesor.SQLConnectionHelper;
 import Models.ConsultarCriasASacrificarModel;
+import Utils.Status;
 import Views.ConsultarCriasASacrificarView;
 import java.awt.event.*;
 import java.sql.*;
@@ -32,15 +33,40 @@ public class ConsultarCriasASacrificarController implements ActionListener, List
         if (evt.getSource() == consultarCriasASacrificarView.getBtnSacrificar()) {
             int row = consultarCriasASacrificarView.getTablaCriasASacrificar().getSelectedRow();
             String criaID = consultarCriasASacrificarView.getTablaCriasASacrificar().getModel().getValueAt(row, 2).toString();
-            consultarCriasASacrificarModel.sacrificarCria(criaID);
+            ejecutarAccion(consultarCriasASacrificarModel.sacrificarCria(criaID));
+            consultarCriasASacrificarView.getBtnSacrificar().setEnabled(false);
             return;
         }
         if (evt.getSource() == consultarCriasASacrificarView.getBtnSacrificarAll()) {
-            consultarCriasASacrificarModel.sacrificarCriaAll();
+            ejecutarAccion(consultarCriasASacrificarModel.sacrificarCriaAll());
             return;
         }
-        if(evt.getSource() == consultarCriasASacrificarView.getBtnImprimir()) {
+        if (evt.getSource() == consultarCriasASacrificarView.getBtnImprimir()) {
             consultarCriasASacrificarView.imprimirTabla();
+            return;
+        }
+    }
+
+    private void ejecutarAccion(Status s) {
+        if (s.CODE == Status.OK_SACRIFICAR.CODE) {
+            consultarCriasASacrificarView.showOkMessage(s.MESSAGE, s.TITLE);
+            consultarCriasASacrificarView.generarTablaResultados();
+            consultarCriasASacrificarView.getTablaCriasASacrificar().updateUI();
+            return;
+        }
+        if (s.CODE == Status.ERROR_SACRIFICAR.CODE) {
+            consultarCriasASacrificarView.showErrorMessage(s.MESSAGE, s.TITLE);
+            return;
+        }
+
+        if (s.CODE == Status.OK_SACRIFICAR_ALL.CODE) {
+            consultarCriasASacrificarView.showOkMessage(s.MESSAGE, s.TITLE);
+            consultarCriasASacrificarView.generarTablaResultados();
+            consultarCriasASacrificarView.getTablaCriasASacrificar().updateUI();
+            return;
+        }
+        if (s.CODE == Status.ERROR_SACRIFICAR_ALL.CODE) {
+            consultarCriasASacrificarView.showErrorMessage(s.MESSAGE, s.TITLE);
             return;
         }
     }

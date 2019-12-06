@@ -33,6 +33,7 @@ public class ProcesarSalidasCriasController implements ActionListener, ListSelec
             int row = procesarSalidasCriasView.getTablaProcesarSalidasCrias().getSelectedRow();
             String criaID = procesarSalidasCriasView.getTablaProcesarSalidasCrias().getModel().getValueAt(row, 0).toString();
             ejecutarAccion(procesarSalidasCriasModel.procesarSalidas(criaID));
+            procesarSalidasCriasView.getBtnProcesar().setEnabled(false);
             return;
         }
         if(evt.getSource() == procesarSalidasCriasView.getBtnProcesarAll()) {
@@ -46,29 +47,25 @@ public class ProcesarSalidasCriasController implements ActionListener, ListSelec
     }
     
     private void ejecutarAccion(Status s) {
-        if (s.CODE == Status.OK_PROCCESS.CODE) {
-            procesarSalidasCriasView.showOkMessage(Status.OK_PROCCESS.MESSAGE, Status.OK_PROCCESS.TITLE);
+        if (s.CODE == Status.OK_PROCESAR.CODE) {
+            procesarSalidasCriasView.showOkMessage(s.MESSAGE, s.TITLE);
             procesarSalidasCriasView.generarTablaResultados();
-            procesarSalidasCriasView.getBtnProcesar().setEnabled(false);
             procesarSalidasCriasView.getTablaProcesarSalidasCrias().updateUI();
             return;
         }
-        if (s.CODE == Status.ERROR_PROCCESS.CODE) {
-            procesarSalidasCriasView.showErrorMessage(Status.ERROR_PROCCESS.MESSAGE, Status.ERROR_PROCCESS.TITLE);
-            procesarSalidasCriasView.getBtnProcesar().setEnabled(false);
+        if (s.CODE == Status.ERROR_PROCESAR.CODE) {
+            procesarSalidasCriasView.showErrorMessage(s.MESSAGE, s.TITLE);
             return;
         }
         
-        if (s.CODE == Status.OK_PROCCESS_ALL.CODE) {
-            procesarSalidasCriasView.showOkMessage(Status.OK_PROCCESS_ALL.MESSAGE, Status.OK_PROCCESS_ALL.TITLE);
+        if (s.CODE == Status.OK_PROCESAR_ALL.CODE) {
+            procesarSalidasCriasView.showOkMessage(s.MESSAGE, s.TITLE);
             procesarSalidasCriasView.generarTablaResultados();
-            procesarSalidasCriasView.getBtnProcesar().setEnabled(false);
             procesarSalidasCriasView.getTablaProcesarSalidasCrias().updateUI();
             return;
         }
-        if (s.CODE == Status.ERROR_PROCCESS_ALL.CODE) {
-            procesarSalidasCriasView.showErrorMessage(Status.ERROR_PROCCESS_ALL.MESSAGE, Status.ERROR_PROCCESS_ALL.TITLE);
-            procesarSalidasCriasView.getBtnProcesar().setEnabled(false);
+        if (s.CODE == Status.ERROR_PROCESAR_ALL.CODE) {
+            procesarSalidasCriasView.showErrorMessage(s.MESSAGE, s.TITLE);
             return;
         }
         

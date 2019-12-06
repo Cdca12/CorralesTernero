@@ -123,9 +123,9 @@ public class Crias {
                     + cria.MusculoID + ", "
                     + cria.DietaID + ");");
         } catch (SQLException e) {
-            return Status.ERROR_INSERT;
+            return Status.ERROR_INSERT_CRIA;
         }
-        return Status.OK_INSERT;
+        return Status.OK_INSERT_CRIA;
     }
 
 }

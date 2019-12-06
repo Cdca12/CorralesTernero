@@ -53,7 +53,7 @@ public class ConsultarCriasASacrificarView extends JDialog {
         add(btnSacrificar);
         
         btnImprimir = new JButton("Imprimir");
-        btnImprimir.setBounds(getWidth() - 145, 15, 100, 30);
+        btnImprimir.setBounds(getWidth() - 150, 15, 100, 30);
         add(btnImprimir);
         
     }
@@ -75,7 +75,7 @@ public class ConsultarCriasASacrificarView extends JDialog {
         btnImprimir.addActionListener(consultarCriasASacrificarController);
     }
     
-    private void generarTablaResultados() {
+    public void generarTablaResultados() {
         Vector<Vector<String>> datosTablaCriasASacrificar = consultarCriasASacrificarController.obtenerDatosTabla();
         vectorNombreColumnas = new Vector<>(Arrays.asList(
                 "Transaccion",
@@ -116,5 +116,13 @@ public class ConsultarCriasASacrificarView extends JDialog {
         } catch (PrinterException ex) {
             JOptionPane.showMessageDialog(null, Status.ERROR_PRINT.TITLE, Status.ERROR_PRINT.MESSAGE, JOptionPane.ERROR_MESSAGE);
         }
+    }
+    
+    public void showErrorMessage(String ERROR_MESSAGE, String ERROR_TITLE) {
+        JOptionPane.showMessageDialog(null, ERROR_MESSAGE, ERROR_TITLE, JOptionPane.ERROR_MESSAGE);
+    }
+
+    public void showOkMessage(String OK_MESSAGE, String OK_TITLE) {
+        JOptionPane.showMessageDialog(null, OK_MESSAGE, OK_TITLE, JOptionPane.INFORMATION_MESSAGE);
     }
 }

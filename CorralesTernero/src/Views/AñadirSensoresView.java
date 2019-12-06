@@ -82,12 +82,12 @@ public class AñadirSensoresView extends JDialog {
         txtMarca.requestFocus();
     }
     
-    public void showErrorMessage(String ERROR_TITLE, String ERROR_MESSAGE) {
+    public void showErrorMessage(String ERROR_MESSAGE, String ERROR_TITLE) {
         JOptionPane.showMessageDialog(null, ERROR_MESSAGE, ERROR_TITLE, JOptionPane.ERROR_MESSAGE);
     }
 
-    public void showOkMessage(String OK_TITLE, String OK_MESSAGE) {
-        JOptionPane.showMessageDialog(null, OK_TITLE, OK_MESSAGE, JOptionPane.INFORMATION_MESSAGE);
+    public void showOkMessage(String OK_MESSAGE, String OK_TITLE) {
+        JOptionPane.showMessageDialog(null, OK_MESSAGE, OK_TITLE, JOptionPane.INFORMATION_MESSAGE);
     }
 
     public JTextField getTxtMarca() {

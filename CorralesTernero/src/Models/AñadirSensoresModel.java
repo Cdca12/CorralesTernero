@@ -1,6 +1,7 @@
 package Models;
 
 import Entities.Sensores;
+import Utils.Status;
 
 /**
  *
@@ -12,7 +13,7 @@ public class AñadirSensoresModel {
         
     }
     
-    public synchronized int añadirSensor(Sensores sensor, int cantidad) {
+    public synchronized Status añadirSensor(Sensores sensor, int cantidad) {
         return Sensores.añadirSensor(sensor, cantidad);
     }
     

@@ -49,10 +49,10 @@ public class Corrales {
     
     
     // Métodos CRUD
-    public static synchronized int añadirCorral(Corrales corral) {
+    public static synchronized Status añadirCorral(Corrales corral) {
         Statement conexion = SQLConnectionHelper.getConnection();
         if (conexion == null) {
-            return Status.ERROR_CONNECTION.CODE;
+            return Status.ERROR_CONNECTION;
         }
         try {
             conexion.execute(
@@ -61,9 +61,9 @@ public class Corrales {
                     + "'" + corral.EstadoID + "'" + ", "
                     + corral.TipoCorralID + ");");
         } catch (SQLException e) {
-            return Status.ERROR_INSERT.CODE;
+            return Status.ERROR_INSERT_CORRAL;
         }
-        return Status.OK_INSERT.CODE;
+        return Status.OK_INSERT_CORRAL;
     }
 
     

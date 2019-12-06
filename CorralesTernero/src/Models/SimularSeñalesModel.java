@@ -1,6 +1,7 @@
 package Models;
 
 import DataAccesor.SQLConnectionHelper;
+import Utils.Status;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -14,11 +15,11 @@ public class SimularSeñalesModel {
 
     }
 
-    public void simularSeñales(String sensorID, int numeroSimulaciones) {
+    public synchronized Status simularSeñales(String sensorID, int numeroSimulaciones) {
         int presionArterial, respiracion, pulso, temperatura;
         Statement conexion = SQLConnectionHelper.getConnection();
         if (conexion == null) {
-            return;
+            return Status.ERROR_CONNECTION;
         }
         presionArterial = respiracion = pulso = temperatura = 0;
         for (int i = 0; i < numeroSimulaciones; i++) {
@@ -36,9 +37,9 @@ public class SimularSeñalesModel {
                         + pulso + ", "
                         + temperatura + ");");
             } catch (SQLException e) {
-                System.out.println("Error");
-                return;
+                return Status.ERROR_SIMULAR_SEÑALES;
             }
         }
+        return Status.OK_SIMULAR_SEÑALES;
     }
 }

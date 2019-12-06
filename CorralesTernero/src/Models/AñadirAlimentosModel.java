@@ -2,6 +2,7 @@ package Models;
 
 import DataAccesor.SQLConnectionHelper;
 import Entities.*;
+import Utils.Status;
 import java.sql.*;
 import java.util.*;
 /**
@@ -14,7 +15,7 @@ public class AñadirAlimentosModel {
         
     }
     
-    public synchronized int añadirAlimento(Alimentos alimento) {
+    public synchronized Status añadirAlimento(Alimentos alimento) {
         return Alimentos.añadirAlimento(alimento);
     }
 }

@@ -1,6 +1,7 @@
 package Models;
 
 import DataAccesor.SQLConnectionHelper;
+import Utils.Status;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -74,30 +75,30 @@ public class AnalizarSeñalesSensoresModel {
         return datosTablaPropensosEnfermarse;
     }
 
-    public void añadirCuarentena(String criaID) {
+    public synchronized Status añadirCuarentena(String criaID) {
         Statement conexion = SQLConnectionHelper.getConnection();
         if (conexion == null) {
-            return;
+            return Status.ERROR_CONNECTION;
         }
         try {
             conexion.execute("EXECUTE spAñadirCuarentena " + criaID);
         } catch (SQLException e) {
-            System.out.println("Error sp");
-            return;
+            return Status.ERROR_ADD_CUARENTENA;
         }
+        return Status.OK_ADD_CUARENTENA;
     }
 
-    public void añadirCuarentenaAll() {
+    public synchronized Status añadirCuarentenaAll() {
         Statement conexion = SQLConnectionHelper.getConnection();
         if (conexion == null) {
-            return;
+            return Status.ERROR_CONNECTION;
         }
         try {
             conexion.execute("EXECUTE spAñadirCuarentenaAll");
         } catch (SQLException e) {
-            System.out.println("Error sp");
-            return;
+            return Status.ERROR_ADD_CUARENTENA_ALL;
         }
+        return Status.OK_ADD_CUARENTENA_ALL;
     }
 
 }
