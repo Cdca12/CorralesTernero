@@ -18,16 +18,16 @@ public class ConsultarDietasView extends JDialog {
     private JScrollPane scrollPane;
     private Vector<String> vectorNombreColumnas;
     private JButton btnSeleccionar, btnCancelar;
-    private Tipo config;
+    private Tipo type;
 
-    public ConsultarDietasView(Tipo config) {
+    public ConsultarDietasView(Tipo type) {
         setTitle("Dietas");
         setSize(650, 350);
         setLayout(null);
         setLocationRelativeTo(null);
         setResizable(false);
         setModal(true);
-        this.config = config;
+        this.type = type;
 
         initComponents();
 
@@ -36,7 +36,7 @@ public class ConsultarDietasView extends JDialog {
     private void initComponents() {
         scrollPane = new JScrollPane();
         int width = 590;
-        if (config == Tipo.SELECCION) {
+        if (type == Tipo.SELECCION) {
             btnSeleccionar = new JButton("Seleccionar");
             btnSeleccionar.setBounds(525, 160, 100, 30);
             btnSeleccionar.setEnabled(false);
@@ -65,7 +65,7 @@ public class ConsultarDietasView extends JDialog {
     }
 
     private void addListeners() {
-        if (config == Tipo.SELECCION) {
+        if (type == Tipo.SELECCION) {
             tablaDietas.getSelectionModel().addListSelectionListener(dietasController);
             btnSeleccionar.addActionListener(dietasController);
             btnCancelar.addActionListener(dietasController);
@@ -73,7 +73,7 @@ public class ConsultarDietasView extends JDialog {
     }
 
     private void generarTablaResultados() {
-        Vector<Vector<String>> datosTablaDietas = dietasController.obtenerDatosTabla();
+        Vector<Vector<String>> datosTablaDietas = dietasController.obtenerDatosTabla(type);
         vectorNombreColumnas = new Vector<>(Arrays.asList("DietaID", "Nombre", "Cantidad", "Dias Tratamiento"));
         tablaDietas = new JTable(datosTablaDietas, vectorNombreColumnas);
         scrollPane.setViewportView(tablaDietas);

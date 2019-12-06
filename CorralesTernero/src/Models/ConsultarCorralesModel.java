@@ -17,7 +17,7 @@ public class ConsultarCorralesModel {
         
     }
     
-    public Vector<Vector<String>> obtenerDatosTabla(Tipo config) {
+    public Vector<Vector<String>> obtenerDatosTabla(Tipo type) {
         Vector<Vector<String>> datosTablaCorrales = new Vector<>();
         Statement conexion = SQLConnectionHelper.getConnection();
         if (conexion == null) {
@@ -25,7 +25,7 @@ public class ConsultarCorralesModel {
         }
         try {
             String subConsulta = "TipoCorral";
-            if (config == Tipo.SELECCION) {
+            if (type == Tipo.SELECCION) {
                 subConsulta = "(SELECT * FROM TipoCorral WHERE TipoCorralID = 1)"; // Obtener Corrales Sanos solamente
             }
             String SQL = "SELECT C.CorralID, E.Nombre as Estado, T.Descripcion as Tipo FROM Corrales C "

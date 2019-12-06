@@ -1,6 +1,7 @@
 package Controllers;
 
 import Models.ConsultarDietasModel;
+import Utils.Tipo;
 import Views.ConsultarDietasView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,8 +23,8 @@ public class ConsultarDietasController implements ActionListener, ListSelectionL
         this.dietasModel = dietasModel;
     }
 
-    public Vector<Vector<String>> obtenerDatosTabla() {
-        return dietasModel.obtenerDatosTabla();
+    public Vector<Vector<String>> obtenerDatosTabla(Tipo type) {
+        return dietasModel.obtenerDatosTabla(type);
     }
 
     @Override

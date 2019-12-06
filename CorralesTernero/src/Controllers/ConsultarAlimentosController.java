@@ -2,6 +2,7 @@ package Controllers;
 
 import Views.*;
 import Models.*;
+import Utils.Tipo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
@@ -21,8 +22,8 @@ public class ConsultarAlimentosController implements ActionListener, ListSelecti
         this.alimentosModel = alimentosModel;
     }
     
-    public Vector<Vector<String>> obtenerDatosTabla() {
-        return alimentosModel.obtenerDatosTabla();
+    public Vector<Vector<String>> obtenerDatosTabla(Tipo type) {
+        return alimentosModel.obtenerDatosTabla(type);
     }
     
     @Override

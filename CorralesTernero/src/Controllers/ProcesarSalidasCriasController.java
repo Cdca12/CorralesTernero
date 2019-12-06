@@ -57,7 +57,6 @@ public class ProcesarSalidasCriasController implements ActionListener, ListSelec
             procesarSalidasCriasView.showErrorMessage(s.MESSAGE, s.TITLE);
             return;
         }
-        
         if (s.CODE == Status.OK_PROCESAR_ALL.CODE) {
             procesarSalidasCriasView.showOkMessage(s.MESSAGE, s.TITLE);
             procesarSalidasCriasView.generarTablaResultados();

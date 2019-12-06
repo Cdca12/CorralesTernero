@@ -18,16 +18,16 @@ public class ConsultarCorralesView extends JDialog {
     private JScrollPane scrollPane;
     private Vector<String> vectorNombreColumnas;
     private JButton btnSeleccionar, btnCancelar;
-    private Tipo config;
+    private Tipo type;
 
-    public ConsultarCorralesView(Tipo config) {
+    public ConsultarCorralesView(Tipo type) {
         setTitle("Corrales");
         setSize(650, 350);
         setLayout(null);
         setLocationRelativeTo(null);
         setResizable(false);
         setModal(true);
-        this.config = config;
+        this.type = type;
 
         initComponents();
     }
@@ -35,7 +35,7 @@ public class ConsultarCorralesView extends JDialog {
     private void initComponents() {
         scrollPane = new JScrollPane();
         int width = 590;
-        if (config == Tipo.SELECCION) {
+        if (type == Tipo.SELECCION) {
             btnSeleccionar = new JButton("Seleccionar");
             btnSeleccionar.setBounds(525, 160, 100, 30);
             btnSeleccionar.setEnabled(false);
@@ -63,7 +63,7 @@ public class ConsultarCorralesView extends JDialog {
     }
 
     private void addListeners() {
-        if (config == Tipo.SELECCION) {
+        if (type == Tipo.SELECCION) {
             tablaCorrales.getSelectionModel().addListSelectionListener(corralesController);
             btnSeleccionar.addActionListener(corralesController);
             btnCancelar.addActionListener(corralesController);
@@ -71,7 +71,7 @@ public class ConsultarCorralesView extends JDialog {
     }
 
     private void generarTablaResultados() {
-        Vector<Vector<String>> datosTablaCorrales = corralesController.obtenerDatosTabla(config);
+        Vector<Vector<String>> datosTablaCorrales = corralesController.obtenerDatosTabla(type);
         vectorNombreColumnas = new Vector<>(Arrays.asList("CorralID", "Estado", "Tipo"));
         tablaCorrales = new JTable(datosTablaCorrales, vectorNombreColumnas);
         scrollPane.setViewportView(tablaCorrales);

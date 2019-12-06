@@ -1,6 +1,7 @@
 package Models;
 
 import DataAccesor.SQLConnectionHelper;
+import Utils.Tipo;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -16,7 +17,7 @@ public class ConsultarDietasModel {
 
     }
 
-    public Vector<Vector<String>> obtenerDatosTabla() {
+    public Vector<Vector<String>> obtenerDatosTabla(Tipo type) {
         Vector<Vector<String>> datosTablaDietas = new Vector<>();
 
         Statement conexion = SQLConnectionHelper.getConnection();
@@ -24,9 +25,14 @@ public class ConsultarDietasModel {
             return null;
         }
         try {
+            String subConsulta = "Alimentos";
+            if (type == Tipo.SELECCION) {
+                // Obtener alimentos sin medicima
+                subConsulta = "(SELECT * FROM Alimentos WHERE Nombre NOT LIKE '%con medicinas')"; 
+            }
             ResultSet resultQuery = conexion.executeQuery(
                     "SELECT D.DietaID, A.Nombre, A.Cantidad, D.DiasTratamiento FROM Dietas D "
-                    + "INNER JOIN Alimentos A "
+                    + "INNER JOIN " + subConsulta + " A "
                     + "ON D.AlimentoID = A.AlimentoID;");
             Vector<String> row;
             while (resultQuery.next()) {

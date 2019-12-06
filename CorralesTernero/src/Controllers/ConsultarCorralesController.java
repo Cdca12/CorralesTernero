@@ -23,8 +23,8 @@ public class ConsultarCorralesController implements ActionListener, ListSelectio
         this.corralesModel = corralesModel;
     }
     
-    public Vector<Vector<String>> obtenerDatosTabla(Tipo config) {
-        return corralesModel.obtenerDatosTabla(config);
+    public Vector<Vector<String>> obtenerDatosTabla(Tipo type) {
+        return corralesModel.obtenerDatosTabla(type);
     }
 
     @Override
