@@ -25,8 +25,11 @@ public class ConsultarSensoresController implements ActionListener {
     }
     
     @Override
-    public void actionPerformed(ActionEvent ae) {
-        // Nada aun
+    public void actionPerformed(ActionEvent evt) {
+        if (evt.getSource() == consultarSensoresView.getBtnImprimir()) {
+            consultarSensoresView.imprimirTabla();
+            return;
+        }
     }
     
 }

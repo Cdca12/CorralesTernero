@@ -2,10 +2,13 @@ package Views;
 
 import Controllers.*;
 import Controllers.ConsultarCriasASacrificarController;
+import Utils.Status;
+import java.awt.print.PrinterException;
 import java.util.Arrays;
 import java.util.Vector;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
@@ -21,11 +24,11 @@ public class ConsultarCriasASacrificarView extends JDialog {
     private JScrollPane scrollPane;
     private Vector<String> vectorNombreColumnas;
     
-    private JButton btnSacrificar, btnSacrificarAll;
+    private JButton btnSacrificar, btnSacrificarAll, btnImprimir;
     
     public ConsultarCriasASacrificarView() {
         setTitle("Consultar Crias A Sacrificar");
-        setSize(680, 500);
+        setSize(680, 550);
         setLayout(null);
         setLocationRelativeTo(null);
         setResizable(false);
@@ -36,11 +39,11 @@ public class ConsultarCriasASacrificarView extends JDialog {
     
     private void initComponents() {
         scrollPane = new JScrollPane();
-        scrollPane.setBounds(30, 30, 600, 380);
+        scrollPane.setBounds(30, 60, 600, 400);
         add(scrollPane);
         
         btnSacrificarAll = new JButton("Sacrificar todos");
-        btnSacrificarAll.setBounds(220, 420, 120, 30);
+        btnSacrificarAll.setBounds(220, 470, 120, 30);
         btnSacrificarAll.setEnabled(false);
         add(btnSacrificarAll);
         
@@ -48,6 +51,10 @@ public class ConsultarCriasASacrificarView extends JDialog {
         btnSacrificar.setBounds(btnSacrificarAll.getX() + 130, btnSacrificarAll.getY(), 100, 30);
         btnSacrificar.setEnabled(false);
         add(btnSacrificar);
+        
+        btnImprimir = new JButton("Imprimir");
+        btnImprimir.setBounds(getWidth() - 145, 15, 100, 30);
+        add(btnImprimir);
         
     }
     
@@ -65,6 +72,7 @@ public class ConsultarCriasASacrificarView extends JDialog {
         tablaCriasASacrificar.getSelectionModel().addListSelectionListener(consultarCriasASacrificarController);
         btnSacrificar.addActionListener(consultarCriasASacrificarController);
         btnSacrificarAll.addActionListener(consultarCriasASacrificarController);
+        btnImprimir.addActionListener(consultarCriasASacrificarController);
     }
     
     private void generarTablaResultados() {
@@ -95,5 +103,18 @@ public class ConsultarCriasASacrificarView extends JDialog {
     public JButton getBtnSacrificarAll() {
         return btnSacrificarAll;
     }
-    
+
+    public JButton getBtnImprimir() {
+        return btnImprimir;
+    }
+
+    public void imprimirTabla() {
+        try {
+            if (tablaCriasASacrificar.print()) {
+                JOptionPane.showMessageDialog(null, Status.OK_PRINT.TITLE, Status.OK_PRINT.MESSAGE, JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (PrinterException ex) {
+            JOptionPane.showMessageDialog(null, Status.ERROR_PRINT.TITLE, Status.ERROR_PRINT.MESSAGE, JOptionPane.ERROR_MESSAGE);
+        }
+    }
 }

@@ -141,10 +141,10 @@ public class ConsultarCriasView extends JDialog {
     public void imprimirTabla() {
         try {
             if (tablaCrias.print()) {
-                JOptionPane.showMessageDialog(null, Status.OK_PRINT.MESSAGE, Status.OK_PRINT.TITLE, JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, Status.OK_PRINT.TITLE, Status.OK_PRINT.MESSAGE, JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (PrinterException ex) {
-            JOptionPane.showMessageDialog(null, Status.ERROR_PRINT.MESSAGE, Status.ERROR_PRINT.TITLE, JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, Status.ERROR_PRINT.TITLE, Status.ERROR_PRINT.MESSAGE, JOptionPane.ERROR_MESSAGE);
         }
     }
 

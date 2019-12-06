@@ -1,10 +1,13 @@
 package Views;
 
 import Controllers.ProcesarSalidasCriasController;
+import Utils.Status;
+import java.awt.print.PrinterException;
 import java.util.Arrays;
 import java.util.Vector;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
@@ -19,12 +22,11 @@ public class ProcesarSalidasCriasView extends JDialog {
     private JTable tablaProcesarSalidasCrias;
     private JScrollPane scrollPane;
     private Vector<String> vectorNombreColumnas;
-
-    private JButton btnProcesar, btnProcesarAll;
+    private JButton btnProcesar, btnProcesarAll, btnImprimir;
 
     public ProcesarSalidasCriasView() {
         setTitle("Procesar Salidas");
-        setSize(1120, 390);
+        setSize(1120, 600);
         setLayout(null);
         setLocationRelativeTo(null);
         setResizable(false);
@@ -35,7 +37,7 @@ public class ProcesarSalidasCriasView extends JDialog {
 
     private void initComponents() {
         btnProcesarAll = new JButton("Procesar todas");
-        btnProcesarAll.setBounds(430, 300, 130, 30);
+        btnProcesarAll.setBounds(430, 520, 130, 30);
         btnProcesarAll.setEnabled(false);
         add(btnProcesarAll);
         
@@ -43,11 +45,14 @@ public class ProcesarSalidasCriasView extends JDialog {
         btnProcesar.setBounds(btnProcesarAll.getX() + 140, btnProcesarAll.getY(), 130, 30);
         btnProcesar.setEnabled(false);
         add(btnProcesar);
+        
+        btnImprimir = new JButton("Imprimir");
+        btnImprimir.setBounds(getWidth() - 140, 15, 100, 30);
+        add(btnImprimir);
 
         scrollPane = new JScrollPane();
-        scrollPane.setBounds(30, 30, 1050, 250);
+        scrollPane.setBounds(30, 60, 1050, 440);
         add(scrollPane);
-
     }
 
     public void launchView() {
@@ -64,6 +69,7 @@ public class ProcesarSalidasCriasView extends JDialog {
         tablaProcesarSalidasCrias.getSelectionModel().addListSelectionListener(procesarSalidasCriasController);
         btnProcesar.addActionListener(procesarSalidasCriasController);
         btnProcesarAll.addActionListener(procesarSalidasCriasController);
+        btnImprimir.addActionListener(procesarSalidasCriasController);
     }
 
     private void generarTablaResultados() {
@@ -96,6 +102,20 @@ public class ProcesarSalidasCriasView extends JDialog {
 
     public JButton getBtnProcesarAll() {
         return btnProcesarAll;
+    }
+    
+    public JButton getBtnImprimir() {
+        return btnImprimir;
+    }
+
+    public void imprimirTabla() {
+        try {
+            if (tablaProcesarSalidasCrias.print()) {
+                JOptionPane.showMessageDialog(null, Status.OK_PRINT.TITLE, Status.OK_PRINT.MESSAGE, JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (PrinterException ex) {
+            JOptionPane.showMessageDialog(null, Status.ERROR_PRINT.TITLE, Status.ERROR_PRINT.MESSAGE, JOptionPane.ERROR_MESSAGE);
+        }
     }
     
 }

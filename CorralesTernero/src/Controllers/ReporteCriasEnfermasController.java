@@ -27,7 +27,10 @@ public class ReporteCriasEnfermasController implements ActionListener, ListSelec
 
     @Override
     public void actionPerformed(ActionEvent evt) {
-        // Nada...
+        if (evt.getSource() == reporteCriasEnfermasView.getBtnImprimir()) {
+            reporteCriasEnfermasView.imprimirTabla();
+            return;
+        }
     }
 
     @Override

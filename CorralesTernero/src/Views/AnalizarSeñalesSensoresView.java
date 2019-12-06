@@ -1,6 +1,8 @@
 package Views;
 
 import Controllers.AnalizarSeñalesSensoresController;
+import Utils.Status;
+import java.awt.print.PrinterException;
 import java.util.Arrays;
 import javax.swing.*;
 import java.util.Vector;
@@ -16,7 +18,7 @@ public class AnalizarSeñalesSensoresView extends JDialog {
     private JTable tablaSeñalesSensores;
     private JScrollPane scrollPane;
     private Vector<String> vectorNombreColumnas;
-    private JButton btnCriasPropensasEnfermarse, btnAñadirCuarentena, btnAñadirCuarentenaAll;
+    private JButton btnCriasPropensasEnfermarse, btnAñadirCuarentena, btnAñadirCuarentenaAll, btnImprimir;
 
     public AnalizarSeñalesSensoresView() {
         setTitle("Analizar Señales Sensores");
@@ -43,6 +45,10 @@ public class AnalizarSeñalesSensoresView extends JDialog {
         btnAñadirCuarentena.setBounds(btnAñadirCuarentenaAll.getX() + btnAñadirCuarentenaAll.getWidth() + 10, 430, 150, 30);
         btnAñadirCuarentena.setEnabled(false);
         add(btnAñadirCuarentena);
+        
+        btnImprimir = new JButton("Imprimir");
+        btnImprimir.setBounds(getWidth() - 150, 15, 100, 30);
+        add(btnImprimir);
 
         scrollPane = new JScrollPane();
         scrollPane.setBounds(50, 60, 600, 350);
@@ -64,6 +70,7 @@ public class AnalizarSeñalesSensoresView extends JDialog {
         btnCriasPropensasEnfermarse.addActionListener(analizarSeñalesSensoresController);
         btnAñadirCuarentenaAll.addActionListener(analizarSeñalesSensoresController);
         btnAñadirCuarentena.addActionListener(analizarSeñalesSensoresController);
+        btnImprimir.addActionListener(analizarSeñalesSensoresController);
     }
 
     private void generarTablaResultados() {
@@ -103,6 +110,20 @@ public class AnalizarSeñalesSensoresView extends JDialog {
     
     public JTable getTablaSeñalesSensores() {
         return tablaSeñalesSensores;
+    }
+    
+    public JButton getBtnImprimir() {
+        return btnImprimir;
+    }
+
+    public void imprimirTabla() {
+        try {
+            if (tablaSeñalesSensores.print()) {
+                JOptionPane.showMessageDialog(null, Status.OK_PRINT.TITLE, Status.OK_PRINT.MESSAGE, JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (PrinterException ex) {
+            JOptionPane.showMessageDialog(null, Status.ERROR_PRINT.TITLE, Status.ERROR_PRINT.MESSAGE, JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     

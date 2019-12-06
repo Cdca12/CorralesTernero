@@ -39,6 +39,10 @@ public class ConsultarCriasASacrificarController implements ActionListener, List
             consultarCriasASacrificarModel.sacrificarCriaAll();
             return;
         }
+        if(evt.getSource() == consultarCriasASacrificarView.getBtnImprimir()) {
+            consultarCriasASacrificarView.imprimirTabla();
+            return;
+        }
     }
 
     @Override

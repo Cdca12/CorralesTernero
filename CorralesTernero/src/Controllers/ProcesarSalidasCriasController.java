@@ -38,6 +38,10 @@ public class ProcesarSalidasCriasController implements ActionListener, ListSelec
             procesarSalidasCriasModel.procesarSalidasAll();
             return;
         }
+        if(evt.getSource() == procesarSalidasCriasView.getBtnImprimir()) {
+            procesarSalidasCriasView.imprimirTabla();
+            return;
+        }
     }
 
     @Override

@@ -48,6 +48,10 @@ public class AnalizarSeñalesSensoresController implements ActionListener, ListS
             analizarSeñalesSensoresModel.añadirCuarentenaAll();
             return;
         }
+        if(evt.getSource() == analizarSeñalesSensoresView.getBtnImprimir()) {
+            analizarSeñalesSensoresView.imprimirTabla();
+            return;
+        }
     }
     
  
