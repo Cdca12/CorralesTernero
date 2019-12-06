@@ -2,6 +2,7 @@ package Models;
 
 import DataAccesor.SQLConnectionHelper;
 import Entities.*;
+import Utils.Status;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -17,7 +18,7 @@ public class AñadirCriaModel {
         
     }
 
-    public synchronized int añadirCria(Crias cria) {
+    public synchronized Status añadirCria(Crias cria) {
         return Crias.añadirCria(cria);
     }
     

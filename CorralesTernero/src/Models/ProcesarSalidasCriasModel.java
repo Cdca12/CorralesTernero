@@ -1,6 +1,7 @@
 package Models;
 
 import DataAccesor.SQLConnectionHelper;
+import Utils.Status;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -45,29 +46,30 @@ public class ProcesarSalidasCriasModel {
         return datosTabla;
     }
 
-    public void procesarSalidas(String criaID) {
+    public synchronized Status procesarSalidas(String criaID) {
         Statement conexion = SQLConnectionHelper.getConnection();
         if (conexion == null) {
-            return;
+            return Status.ERROR_CONNECTION;
         }
         try {
             conexion.execute("EXECUTE spProcesarSalidasCrias " + criaID);
         } catch (SQLException e) {
-            e.printStackTrace();
-            return;
+            return Status.ERROR_PROCCESS;
         }
+        return Status.OK_PROCCESS;
     }
 
-    public void procesarSalidasAll() {
+    public synchronized Status procesarSalidasAll() {
         Statement conexion = SQLConnectionHelper.getConnection();
         if (conexion == null) {
-            return;
+            return Status.ERROR_CONNECTION;
         }
         try {
             conexion.execute("EXECUTE spProcesarSalidasCriasAll");
         } catch (SQLException e) {
-            return;
+            return Status.ERROR_PROCCESS_ALL;
         }
+        return Status.OK_PROCCESS_ALL;
     }
 
 }

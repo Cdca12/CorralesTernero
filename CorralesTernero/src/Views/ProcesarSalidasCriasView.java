@@ -40,12 +40,12 @@ public class ProcesarSalidasCriasView extends JDialog {
         btnProcesarAll.setBounds(430, 520, 130, 30);
         btnProcesarAll.setEnabled(false);
         add(btnProcesarAll);
-        
+
         btnProcesar = new JButton("Procesar cría");
         btnProcesar.setBounds(btnProcesarAll.getX() + 140, btnProcesarAll.getY(), 130, 30);
         btnProcesar.setEnabled(false);
         add(btnProcesar);
-        
+
         btnImprimir = new JButton("Imprimir");
         btnImprimir.setBounds(getWidth() - 140, 15, 100, 30);
         add(btnImprimir);
@@ -72,7 +72,7 @@ public class ProcesarSalidasCriasView extends JDialog {
         btnImprimir.addActionListener(procesarSalidasCriasController);
     }
 
-    private void generarTablaResultados() {
+    public void generarTablaResultados() {
         Vector<Vector<String>> datosTablaProcesarSalidasCrias = procesarSalidasCriasController.obtenerDatosTabla();
         vectorNombreColumnas = new Vector<>(Arrays.asList(
                 "CriaID",
@@ -89,7 +89,6 @@ public class ProcesarSalidasCriasView extends JDialog {
         if (tablaProcesarSalidasCrias.getRowCount() > 0) {
             btnProcesarAll.setEnabled(true);
         }
-        
     }
 
     public JTable getTablaProcesarSalidasCrias() {
@@ -103,7 +102,7 @@ public class ProcesarSalidasCriasView extends JDialog {
     public JButton getBtnProcesarAll() {
         return btnProcesarAll;
     }
-    
+
     public JButton getBtnImprimir() {
         return btnImprimir;
     }
@@ -111,11 +110,19 @@ public class ProcesarSalidasCriasView extends JDialog {
     public void imprimirTabla() {
         try {
             if (tablaProcesarSalidasCrias.print()) {
-                JOptionPane.showMessageDialog(null, Status.OK_PRINT.TITLE, Status.OK_PRINT.MESSAGE, JOptionPane.INFORMATION_MESSAGE);
+                showOkMessage(Status.OK_PRINT.MESSAGE, Status.OK_PRINT.TITLE);
             }
         } catch (PrinterException ex) {
-            JOptionPane.showMessageDialog(null, Status.ERROR_PRINT.TITLE, Status.ERROR_PRINT.MESSAGE, JOptionPane.ERROR_MESSAGE);
+            showErrorMessage(Status.ERROR_PRINT.MESSAGE, Status.ERROR_PRINT.TITLE);
         }
     }
-    
+
+    public void showErrorMessage(String ERROR_MESSAGE, String ERROR_TITLE) {
+        JOptionPane.showMessageDialog(null, ERROR_MESSAGE, ERROR_TITLE, JOptionPane.ERROR_MESSAGE);
+    }
+
+    public void showOkMessage(String OK_MESSAGE, String OK_TITLE) {
+        JOptionPane.showMessageDialog(null, OK_MESSAGE, OK_TITLE, JOptionPane.INFORMATION_MESSAGE);
+    }
+
 }
