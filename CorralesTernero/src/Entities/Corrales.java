@@ -50,7 +50,7 @@ public class Corrales {
     
     // Métodos CRUD
     public static synchronized Status añadirCorral(Corrales corral) {
-        Statement conexion = SQLConnectionHelper.getConnection();
+        Statement conexion = SQLConnectionHelper.getStatement();
         if (conexion == null) {
             return Status.ERROR_CONNECTION;
         }

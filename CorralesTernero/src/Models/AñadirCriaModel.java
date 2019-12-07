@@ -24,7 +24,7 @@ public class AñadirCriaModel {
     
     public List<GrasaCobertura> obtenerGrasasCobertura() {
         List<GrasaCobertura> listaGrasasCobertura = new ArrayList();
-        Statement conexion = SQLConnectionHelper.getConnection();
+        Statement conexion = SQLConnectionHelper.getStatement();
         if (conexion == null) {
             return null;
         }
@@ -46,7 +46,7 @@ public class AñadirCriaModel {
 
     public List<Musculo> obtenerTiposMusculo() {
         List<Musculo> listaDietas = new ArrayList();
-        Statement conexion = SQLConnectionHelper.getConnection();
+        Statement conexion = SQLConnectionHelper.getStatement();
         if (conexion == null) {
             return null;
         }
@@ -67,7 +67,7 @@ public class AñadirCriaModel {
 
     public List<EstadoCria> obtenerEstadosCria() {
         List<EstadoCria> listaEstadosCria = new ArrayList();
-        Statement conexion = SQLConnectionHelper.getConnection();
+        Statement conexion = SQLConnectionHelper.getStatement();
         if (conexion == null) {
             return null;
         }
@@ -88,7 +88,7 @@ public class AñadirCriaModel {
 
     public List<Dietas> obtenerDietas() {
         List<Dietas> listaDietas = new ArrayList();
-        Statement conexion = SQLConnectionHelper.getConnection();
+        Statement conexion = SQLConnectionHelper.getStatement();
         if (conexion == null) {
             return null;
         }

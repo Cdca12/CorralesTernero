@@ -20,7 +20,7 @@ public class ConsultarCriasASacrificarModel {
     public Vector<Vector<String>> obtenerDatosTabla() {
         Vector<Vector<String>> datosTablaCriasASacrificar = new Vector<>();
 
-        Statement conexion = SQLConnectionHelper.getConnection();
+        Statement conexion = SQLConnectionHelper.getStatement();
         if (conexion == null) {
             return null;
         }
@@ -45,7 +45,7 @@ public class ConsultarCriasASacrificarModel {
     }
 
     public synchronized Status sacrificarCria(String criaID) {
-        Statement conexion = SQLConnectionHelper.getConnection();
+        Statement conexion = SQLConnectionHelper.getStatement();
         if (conexion == null) {
             return Status.ERROR_CONNECTION;
         }
@@ -58,7 +58,7 @@ public class ConsultarCriasASacrificarModel {
     }
 
     public synchronized Status sacrificarCriaAll() {
-        Statement conexion = SQLConnectionHelper.getConnection();
+        Statement conexion = SQLConnectionHelper.getStatement();
         if (conexion == null) {
             return Status.ERROR_CONNECTION;
         }

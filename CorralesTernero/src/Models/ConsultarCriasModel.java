@@ -20,7 +20,7 @@ public class ConsultarCriasModel {
 
     public Vector<Vector<String>> obtenerDatosTabla() {
         Vector<Vector<String>> datosTablaCrias = new Vector<>();
-        Statement conexion = SQLConnectionHelper.getConnection();
+        Statement conexion = SQLConnectionHelper.getStatement();
         if (conexion == null) {
             return null;
         }
@@ -49,7 +49,7 @@ public class ConsultarCriasModel {
     
     public Vector<Vector<String>> obtenerDatosTabla(String atributo, String valor) {
         Vector<Vector<String>> datosTablaCrias = new Vector<>();
-        Statement conexion = SQLConnectionHelper.getConnection();
+        Statement conexion = SQLConnectionHelper.getStatement();
         if (conexion == null) {
             return null;
         }

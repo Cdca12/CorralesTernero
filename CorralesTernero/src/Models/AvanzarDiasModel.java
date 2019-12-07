@@ -16,7 +16,7 @@ public class AvanzarDiasModel {
     }
 
     public synchronized Status avanzarDias(int numeroDias) {
-        Statement conexion = SQLConnectionHelper.getConnection();
+        Statement conexion = SQLConnectionHelper.getStatement();
         if (conexion == null) {
             return Status.ERROR_CONNECTION;
         }

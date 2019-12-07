@@ -23,7 +23,7 @@ public class AnalizarSeñalesSensoresModel {
     public Vector<Vector<String>> obtenerDatosTabla() {
         Vector<Vector<String>> datosTablaSeñalesSensores = new Vector<>();
 
-        Statement conexion = SQLConnectionHelper.getConnection();
+        Statement conexion = SQLConnectionHelper.getStatement();
         if (conexion == null) {
             return null;
         }
@@ -50,7 +50,7 @@ public class AnalizarSeñalesSensoresModel {
     public Vector<Vector<String>> obtenerDatosTablaPropensosEnfermarse() {
         Vector<Vector<String>> datosTablaPropensosEnfermarse = new Vector<>();
 
-        Statement conexion = SQLConnectionHelper.getConnection();
+        Statement conexion = SQLConnectionHelper.getStatement();
         if (conexion == null) {
             return null;
         }
@@ -76,7 +76,7 @@ public class AnalizarSeñalesSensoresModel {
     }
 
     public synchronized Status añadirCuarentena(String criaID) {
-        Statement conexion = SQLConnectionHelper.getConnection();
+        Statement conexion = SQLConnectionHelper.getStatement();
         if (conexion == null) {
             return Status.ERROR_CONNECTION;
         }
@@ -89,7 +89,7 @@ public class AnalizarSeñalesSensoresModel {
     }
 
     public synchronized Status añadirCuarentenaAll() {
-        Statement conexion = SQLConnectionHelper.getConnection();
+        Statement conexion = SQLConnectionHelper.getStatement();
         if (conexion == null) {
             return Status.ERROR_CONNECTION;
         }

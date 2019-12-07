@@ -44,7 +44,7 @@ public class Alimentos {
     
     // Métodos CRUD
     public static synchronized Status añadirAlimento(Alimentos alimento) {
-        Statement conexion = SQLConnectionHelper.getConnection();
+        Statement conexion = SQLConnectionHelper.getStatement();
         if (conexion == null) {
             return Status.ERROR_CONNECTION;
         }

@@ -22,7 +22,7 @@ public class AñadirCorralesModel {
 
     public List<TipoCorral> obtenerTipoCorral() {
         List<TipoCorral> listaTipoCorral = new ArrayList();
-        Statement conexion = SQLConnectionHelper.getConnection();
+        Statement conexion = SQLConnectionHelper.getStatement();
         if (conexion == null) {
             return null;
         }
@@ -43,7 +43,7 @@ public class AñadirCorralesModel {
     
     public List<Estados> obtenerEstados() {
         List<Estados> listaEstados = new ArrayList();
-        Statement conexion = SQLConnectionHelper.getConnection();
+        Statement conexion = SQLConnectionHelper.getStatement();
         if (conexion == null) {
             return null;
         }

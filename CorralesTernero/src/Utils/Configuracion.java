@@ -66,7 +66,7 @@ public final class Configuracion {
         ResultSet resultQuery;
 
         // Obtener configuración
-        Statement conexion = SQLConnectionHelper.getConnection();
+        Statement conexion = SQLConnectionHelper.getStatement();
         if (conexion == null) {
             return;
         }

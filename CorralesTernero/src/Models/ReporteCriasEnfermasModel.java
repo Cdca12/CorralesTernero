@@ -19,7 +19,7 @@ public class ReporteCriasEnfermasModel {
     public Vector<Vector<String>> obtenerDatosTabla() {
         Vector<Vector<String>> datosTablaCriasEnfermas = new Vector<>();
 
-        Statement conexion = SQLConnectionHelper.getConnection();
+        Statement conexion = SQLConnectionHelper.getStatement();
         if (conexion == null) {
             return null;
         }

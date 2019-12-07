@@ -17,7 +17,7 @@ public class SimularSeñalesModel {
 
     public synchronized Status simularSeñales(String sensorID, int numeroSimulaciones) {
         int presionArterial, respiracion, pulso, temperatura;
-        Statement conexion = SQLConnectionHelper.getConnection();
+        Statement conexion = SQLConnectionHelper.getStatement();
         if (conexion == null) {
             return Status.ERROR_CONNECTION;
         }

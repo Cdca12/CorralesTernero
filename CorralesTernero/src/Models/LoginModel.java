@@ -17,7 +17,7 @@ public class LoginModel {
 
     public boolean login(Token token) {
         SQLConnectionHelper.setToken(token);
-        Statement conexion = SQLConnectionHelper.getConnection();
+        Statement conexion = SQLConnectionHelper.getStatement();
         if (conexion == null) {
             return false;
         }

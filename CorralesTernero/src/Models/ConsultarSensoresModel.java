@@ -19,7 +19,7 @@ public class ConsultarSensoresModel {
     public Vector<Vector<String>> obtenerDatosTabla() {
         Vector<Vector<String>> datosTablaSensores = new Vector<>();
 
-        Statement conexion = SQLConnectionHelper.getConnection();
+        Statement conexion = SQLConnectionHelper.getStatement();
         if (conexion == null) {
             return null;
         }

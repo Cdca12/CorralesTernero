@@ -109,7 +109,7 @@ public class Crias {
 
     // Métodos CRUD
     public static synchronized Status añadirCria(Crias cria) {
-        Statement conexion = SQLConnectionHelper.getConnection();
+        Statement conexion = SQLConnectionHelper.getStatement();
         if (conexion == null) {
             return Status.ERROR_CONNECTION;
         }

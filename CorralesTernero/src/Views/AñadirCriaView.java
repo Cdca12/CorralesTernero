@@ -24,7 +24,7 @@ public class AñadirCriaView extends JDialog {
 
     public AñadirCriaView() {
         setTitle("Añadir Cría");
-        setSize(600, 550);
+        setSize(400, 350);
         setLayout(null);
         setLocationRelativeTo(null);
         setResizable(false);
@@ -37,66 +37,66 @@ public class AñadirCriaView extends JDialog {
         // Labels
         lbCorral = new JLabel("Corral");
         lbCorral.setFont(new Font("Arial", Font.PLAIN, 14));
-        lbCorral.setBounds(190, 150, 100, 20);
+        lbCorral.setBounds(90, 50, 100, 20);
         add(lbCorral);
 
         lbDieta = new JLabel("Dieta");
         lbDieta.setFont(new Font("Arial", Font.PLAIN, 14));
-        lbDieta.setBounds(200, lbCorral.getY() + 40, 100, 20);
+        lbDieta.setBounds(100, lbCorral.getY() + 40, 100, 20);
         add(lbDieta);
 
         lbTipoMusculo = new JLabel("Tipo Músculo");
         lbTipoMusculo.setFont(new Font("Arial", Font.PLAIN, 14));
-        lbTipoMusculo.setBounds(160, lbDieta.getY() + 40, 150, 20);
+        lbTipoMusculo.setBounds(60, lbDieta.getY() + 40, 150, 20);
         add(lbTipoMusculo);
 
         lbPeso = new JLabel("Peso");
         lbPeso.setFont(new Font("Arial", Font.PLAIN, 14));
-        lbPeso.setBounds(200, lbTipoMusculo.getY() + 40, 150, 20);
+        lbPeso.setBounds(100, lbTipoMusculo.getY() + 40, 150, 20);
         add(lbPeso);
 
         JLabel lbKgPeso = new JLabel("kg");
         lbKgPeso.setFont(new Font("Arial", Font.PLAIN, 14));
-        lbKgPeso.setBounds(370, lbPeso.getY(), 150, 20);
+        lbKgPeso.setBounds(270, lbPeso.getY(), 150, 20);
         add(lbKgPeso);
 
         lbGrasa = new JLabel("Grasa");
         lbGrasa.setFont(new Font("Arial", Font.PLAIN, 14));
-        lbGrasa.setBounds(195, lbPeso.getY() + 40, 150, 20);
+        lbGrasa.setBounds(95, lbPeso.getY() + 40, 150, 20);
         add(lbGrasa);
 
-        JLabel lbKgGrasa = new JLabel("kg");
+        JLabel lbKgGrasa = new JLabel("%");
         lbKgGrasa.setFont(new Font("Arial", Font.PLAIN, 14));
-        lbKgGrasa.setBounds(370, lbGrasa.getY(), 150, 20);
+        lbKgGrasa.setBounds(270, lbGrasa.getY(), 150, 20);
         add(lbKgGrasa);
 
         // TextFields
         txtCorral = new JTextField();
-        txtCorral.setBounds(270, 145, 90, 30);
+        txtCorral.setBounds(170, 45, 90, 30);
         txtCorral.setEditable(false);
         add(txtCorral);
 
         txtDieta = new JTextField();
-        txtDieta.setBounds(270, txtCorral.getY() + 40, 90, 30);
+        txtDieta.setBounds(170, txtCorral.getY() + 40, 90, 30);
         txtDieta.setEditable(false);
         add(txtDieta);
 
         txtPeso = new JTextField();
-        txtPeso.setBounds(270, txtDieta.getY() + 80, 90, 30);
+        txtPeso.setBounds(170, txtDieta.getY() + 80, 90, 30);
         add(txtPeso);
 
         txtGrasa = new JTextField();
-        txtGrasa.setBounds(270, txtPeso.getY() + 40, 90, 30);
+        txtGrasa.setBounds(170, txtPeso.getY() + 40, 90, 30);
         add(txtGrasa);
 
         // ComboBox
         cmbTipoMusculo = new JComboBox();
-        cmbTipoMusculo.setBounds(270, txtDieta.getY() + 40, 185, 30);
+        cmbTipoMusculo.setBounds(170, txtDieta.getY() + 40, 185, 30);
         add(cmbTipoMusculo);
 
         // Buttons
         btnLimpiar = new JButton("Limpiar");
-        btnLimpiar.setBounds(200, 410, 100, 30);
+        btnLimpiar.setBounds(100, 260, 100, 30);
         add(btnLimpiar);
 
         btnAñadir = new JButton("Añadir");

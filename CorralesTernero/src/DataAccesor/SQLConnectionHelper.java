@@ -14,8 +14,6 @@ public class SQLConnectionHelper {
     static private Connection conn;
     static private Token token;
 
-    // Base de Datos local
-    //url = "jdbc:sqlserver://localhost\\MSSQLSERVER01:1433;databaseName=CorralesTernero;user=desarrollo;password=desarrollo;";
     static synchronized public void setToken(Token tkn) {
         token = tkn;
     }
@@ -24,7 +22,7 @@ public class SQLConnectionHelper {
         return token;
     }
 
-    static synchronized public Statement getConnection() {
+    static synchronized public Statement getStatement() {
         if (statement == null) {
             // Base de Datos en Azure
             url = "jdbc:sqlserver://pruebascdca.database.windows.net:1433;database=CorralesTernero;"

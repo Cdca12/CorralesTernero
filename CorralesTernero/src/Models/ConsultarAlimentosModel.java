@@ -19,7 +19,7 @@ public class ConsultarAlimentosModel {
     public Vector<Vector<String>> obtenerDatosTabla(Tipo type) {
         Vector<Vector<String>> datosTablaAlimentos = new Vector<>();
 
-        Statement conexion = SQLConnectionHelper.getConnection();
+        Statement conexion = SQLConnectionHelper.getStatement();
         if (conexion == null) {
             return null;
         }

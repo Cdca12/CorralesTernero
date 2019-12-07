@@ -19,7 +19,7 @@ public class ConsultarCorralesModel {
     
     public Vector<Vector<String>> obtenerDatosTabla(Tipo type) {
         Vector<Vector<String>> datosTablaCorrales = new Vector<>();
-        Statement conexion = SQLConnectionHelper.getConnection();
+        Statement conexion = SQLConnectionHelper.getStatement();
         if (conexion == null) {
             return null;
         }

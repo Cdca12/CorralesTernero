@@ -22,7 +22,7 @@ public class MenuPrincipalModel {
 
     public void pruebaConexionBaseDeDatos() {
         // Test bd
-        Statement conexion = SQLConnectionHelper.getConnection();
+        Statement conexion = SQLConnectionHelper.getStatement();
         if (conexion == null) {
             JOptionPane.showMessageDialog(null, "No se pudo conectar a la base de datos. Compruebe"
                     + " su conexión a internet", "ERROR: Conexión NO realizada", JOptionPane.ERROR_MESSAGE);
@@ -32,7 +32,7 @@ public class MenuPrincipalModel {
     }
 
     public void sacrificarCrias() {
-        Statement conexion = SQLConnectionHelper.getConnection();
+        Statement conexion = SQLConnectionHelper.getStatement();
         if (conexion == null) {
             return;
         }

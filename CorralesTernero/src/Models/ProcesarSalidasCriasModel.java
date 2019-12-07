@@ -20,7 +20,7 @@ public class ProcesarSalidasCriasModel {
     public Vector<Vector<String>> obtenerDatosTabla() {
         Vector<Vector<String>> datosTabla = new Vector<>();
 
-        Statement conexion = SQLConnectionHelper.getConnection();
+        Statement conexion = SQLConnectionHelper.getStatement();
         if (conexion == null) {
             return null;
         }
@@ -47,7 +47,7 @@ public class ProcesarSalidasCriasModel {
     }
 
     public synchronized Status procesarSalidas(String criaID) {
-        Statement conexion = SQLConnectionHelper.getConnection();
+        Statement conexion = SQLConnectionHelper.getStatement();
         if (conexion == null) {
             return Status.ERROR_CONNECTION;
         }
@@ -60,7 +60,7 @@ public class ProcesarSalidasCriasModel {
     }
 
     public synchronized Status procesarSalidasAll() {
-        Statement conexion = SQLConnectionHelper.getConnection();
+        Statement conexion = SQLConnectionHelper.getStatement();
         if (conexion == null) {
             return Status.ERROR_CONNECTION;
         }

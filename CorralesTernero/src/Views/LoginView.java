@@ -62,8 +62,6 @@ public class LoginView extends JDialog {
         btnLogin = new JButton("Login");
         btnLogin.setBounds(btnSalir.getX() + btnSalir.getWidth() + 10, btnSalir.getY(), 100, 30);
         add(btnLogin);
-        
-        
     }
     
     public void launchView() {
@@ -98,7 +96,9 @@ public class LoginView extends JDialog {
     
     public void mostrarMensajeError() {
         JOptionPane.showMessageDialog(null, Status.ERROR_LOGIN.MESSAGE, Status.ERROR_LOGIN.TITLE, JOptionPane.ERROR_MESSAGE);
+        txtUsername.requestFocus();
     }
+    
     
     
     

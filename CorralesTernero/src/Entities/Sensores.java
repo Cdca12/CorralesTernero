@@ -44,7 +44,7 @@ public class Sensores {
 
     // Métodos CRUD
     public static synchronized Status añadirSensor(Sensores sensor) {
-        Statement conexion = SQLConnectionHelper.getConnection();
+        Statement conexion = SQLConnectionHelper.getStatement();
         if (conexion == null) {
             return Status.ERROR_CONNECTION;
         }
@@ -61,7 +61,7 @@ public class Sensores {
     
     // Insercion masiva
     public static synchronized Status añadirSensor(Sensores sensor, int cantidad) {
-        Statement conexion = SQLConnectionHelper.getConnection();
+        Statement conexion = SQLConnectionHelper.getStatement();
         if (conexion == null) {
             return Status.ERROR_CONNECTION;
         }
